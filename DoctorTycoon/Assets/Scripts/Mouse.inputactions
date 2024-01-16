@@ -1,0 +1,34 @@
+{
+    "name": "Mouse",
+    "maps": [
+        {
+            "name": "Main",
+            "id": "a445afcf-c728-4ac7-bee4-c41e9e9365db",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Button",
+                    "id": "6f04044a-e600-4563-a40b-1b27690e5a22",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "9da02554-c012-4739-9439-a95ab07df8de",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
