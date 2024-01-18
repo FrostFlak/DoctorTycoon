@@ -8,18 +8,12 @@ public class DoorPlate : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<CharacterMovment>())
-        {
-            print("Open");
             _onEnter.Invoke();
-        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.GetComponent<CharacterMovment>())
-        {
-            print("Close");
             _onExit.Invoke();
-        }
     }
 }
