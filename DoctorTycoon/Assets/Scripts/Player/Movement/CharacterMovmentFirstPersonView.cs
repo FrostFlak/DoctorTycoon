@@ -10,6 +10,8 @@ namespace Player
     [SerializeField] private float _lookRotationSpeed;
     [SerializeField] private bool _isWalking;
     [SerializeField] private CinemachineVirtualCamera _camera;
+    [SerializeField] private NavMeshAgent _agent;
+    [SerializeField] private Animator _animator;
     private bool _lockCursor = true;
     private Vector3 _targetVelocity;
     private const string IDLE = "Idle";
@@ -18,14 +20,7 @@ namespace Player
     private float _vertical;
     private float yaw = 0.0f;
     private float pitch = 0.0f;
-    private NavMeshAgent _agent;
-    private Animator _animator;
 
-    private void Awake()
-    {
-        _agent = GetComponent<NavMeshAgent>();
-        _animator = GetComponent<Animator>();
-    }
     private void Update()
     {
         AssignMoveButtons();
