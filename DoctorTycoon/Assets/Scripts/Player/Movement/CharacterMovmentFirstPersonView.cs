@@ -6,7 +6,6 @@ namespace Player
 {
     public class CharacterMovmentFirstPersonView : MonoBehaviour
 {
-    //[SerializeField] private Camera _camera;
     [SerializeField] private float _lookRotationSpeed;
     [SerializeField] private bool _isWalking;
     [SerializeField] private CinemachineVirtualCamera _camera;
