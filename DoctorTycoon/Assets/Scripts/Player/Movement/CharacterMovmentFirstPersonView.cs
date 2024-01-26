@@ -23,11 +23,8 @@ namespace Player
     private void Update()
     {
         AssignMoveButtons();
-        RotateFace();
         StartAnimation();
-    }
-    private void FixedUpdate()
-    {
+        RotateFace();
         Move();
     }
 
