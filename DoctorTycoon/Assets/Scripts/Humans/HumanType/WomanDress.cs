@@ -1,6 +1,10 @@
 using UnityEngine;
 
-public class WomanDress : Human
+namespace People
+{
+    public class WomanDress : Human
 {
     
+}
+
 }

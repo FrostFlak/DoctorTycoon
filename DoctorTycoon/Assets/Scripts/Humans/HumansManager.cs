@@ -1,85 +1,67 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
-public class HumansManager : MonoBehaviour
+namespace People
 {
-    [Header("Humans")]
-    [SerializeField] private List<Human> _allHumans = new List<Human>();
-    [SerializeField] private List<WomanDress> _womansDress = new List<WomanDress>();
-    [SerializeField] private List<ManCasual> _mansCasual = new List<ManCasual>();
-    private int _maxHumanCount;
-    private int _maxOneTypeHumanCount = 3;
-    [Header("Human Prefabs")]
-    [SerializeField] private WomanDress _womanDress;
-    [SerializeField] private ManCasual _manCasual;
+    public class HumansManager : MonoBehaviour
+{
+        [Header("Humans")]
+        [SerializeField] private List<Human> _allHumans = new List<Human>();
+        [SerializeField] private int _maxHumanCount;
+        [Header("Human Prefabs")]
+        [SerializeField] private WomanDress _womanDress;
+        [SerializeField] private ManCasual _manCasual;
 
-    [Header("Bed")]
-    [SerializeField] private BedManager _bedManager;
+        [Header("Bed")]
+        [SerializeField] private BedManager _bedManager;
 
-    [Header("SpawnSettings")]
-    [SerializeField] private Transform _spawnPosition;
-    [SerializeField] private int _spawnRate;
-    private void Start()
-    {
-        _maxHumanCount = _bedManager.Beds.Count + 5;
-    }
+        [Header("SpawnSettings")]
+        [SerializeField] private Transform _spawnPosition;
+        [SerializeField] private int _spawnRate;
 
-
-    private void CheckHumanTypeCount()
-    {
-        for (int i = 0; i < _allHumans.Count; i++)
+  
+        private void Start()
         {
-            if (_allHumans[i].HumanType == HumanType.WomanDrees)
-            {
-                _womanDress = (WomanDress)_allHumans[i];
-                _womansDress.Add(_womanDress);
-                _allHumans.Add(_womanDress);
-            }
-            else if(_allHumans[i].HumanType == HumanType.ManCasual)
-            {
-                _manCasual = (ManCasual)_allHumans[i];
-                _mansCasual.Add(_manCasual);
-                _allHumans.Add(_manCasual);
-
-            }
+            _maxHumanCount = _bedManager.Beds.Count + 5;
         }
-    }
 
-    private bool CheckSpawnPosibility()
-    {
-        for(int i = 0; i < _allHumans.Count; i++)
+        public void Initialize()
         {
-            if (_allHumans.Count < _maxHumanCount)
+         //   AddHumansInList();
+        }
+
+        private bool CheckSpawnPosibility() 
+        {
+            if (_allHumans.Count > _maxHumanCount)
+                    return false;
+            else
                 return true;
-            else 
-                return false;
-        }
-        return false;
     }
 
 
 
-    public void TryToSpawnHuman()
-    {
-        if (CheckSpawnPosibility())
+        public void TryToSpawnHuman()
         {
-            //CheckHumanTypeCount();
-            SpawnManCasual();   
-            SpawnWomanDress();
+            Debug.Log("Spawning....");
+            if (CheckSpawnPosibility())
+            {
+                Debug.Log("Spawned");
+                SpawnManCasual();
+            }
+    }
 
+        private void SpawnManCasual()
+        {
+            ManCasual spawnManCasual = Instantiate(_manCasual, _spawnPosition.transform.position, Quaternion.identity, transform.parent);
+            _allHumans.Add(spawnManCasual);
         }
-    }
 
-    private void SpawnManCasual()
-    {
-        var spawnManCasual = Instantiate(_manCasual, _spawnPosition.transform.position, Quaternion.identity, transform.parent);
-    }
+        private void SpawnWomanDress()
+        {
+            var spawnWomanDress = Instantiate(_womanDress, _spawnPosition.transform.position, Quaternion.identity, transform.parent);
+        }
 
-    private void SpawnWomanDress()
-    {
-        var spawnWomanDress = Instantiate(_womanDress, _spawnPosition.transform.position, Quaternion.identity, transform.parent);
+        
     }
 
 }

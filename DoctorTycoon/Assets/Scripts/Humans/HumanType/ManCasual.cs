@@ -1,4 +1,8 @@
 
-public class ManCasual : Human
+namespace People
 {
+    public class ManCasual : Human
+{
+}
+
 }

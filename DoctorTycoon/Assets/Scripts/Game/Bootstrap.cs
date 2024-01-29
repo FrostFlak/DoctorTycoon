@@ -1,6 +1,7 @@
 using UnityEngine;
 using Player;
 using UI;
+using People;
 
 public class Bootstrap : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class Bootstrap : MonoBehaviour
     [SerializeField] private LevelProgressBar _levelProgressBar;
     [SerializeField] private CharacterMovmentThirdPersonView _characterMovmentThirdPersonView;
     [SerializeField] private MovementType _movementType;
+    [SerializeField] private HumansManager _humansManager;
     public static Bootstrap Instance { get; private set; }
     private void Awake()
     {
@@ -16,6 +18,7 @@ public class Bootstrap : MonoBehaviour
         InitializeSaveSystem();
         InitializeUI();
         InitializePlayer();
+        //InitializePeoplesSystems();
     }
 
     private void Initialize()
@@ -47,5 +50,9 @@ public class Bootstrap : MonoBehaviour
     private void InitializePlayer()
     {
         _characterMovmentThirdPersonView.Initialize();
+    }
+
+    private void InitializePeoplesSystems()
+    {
     }
 }
