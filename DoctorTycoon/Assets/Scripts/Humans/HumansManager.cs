@@ -12,8 +12,9 @@ namespace People
         [SerializeField] private WomanDress _womanDress;
         [SerializeField] private ManCasual _manCasual;
 
-        [Header("Bed")]
+        [Header("Managers")]
         [SerializeField] private BedManager _bedManager;
+        private RegistrationTable _registrationTable;
 
         [Header("SpawnSettings")]
         [SerializeField] private Transform _spawnPosition;
@@ -22,6 +23,7 @@ namespace People
   
         private void Start()
         {
+            _registrationTable = FindObjectOfType<RegistrationTable>();
             _maxHumanCount = _bedManager.Beds.Count + 5;
         }
 
@@ -33,7 +35,10 @@ namespace People
         private bool CheckSpawnPosibility() 
         {
             if (_allHumans.Count > _maxHumanCount)
-                    return false;
+            {
+                Debug.LogWarning("Too Much People");
+                return false;
+            }
             else
                 return true;
     }
@@ -42,11 +47,10 @@ namespace People
 
         public void TryToSpawnHuman()
         {
-            Debug.Log("Spawning....");
             if (CheckSpawnPosibility())
             {
-                Debug.Log("Spawned");
                 SpawnManCasual();
+                
             }
     }
 
