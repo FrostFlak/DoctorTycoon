@@ -5,20 +5,26 @@ using People;
 
 public class Bootstrap : MonoBehaviour
 {
+    [Header("Systems")]
     [SerializeField] private SaveSystem _saveSystem;
-    [SerializeField] private StatsTextShower _statsText;
-    [SerializeField] private LevelProgressBar _levelProgressBar;
+    [SerializeField] private HumansManager _humansManager;
     [SerializeField] private CharacterMovmentThirdPersonView _characterMovmentThirdPersonView;
     [SerializeField] private MovementType _movementType;
-    [SerializeField] private HumansManager _humansManager;
+    [SerializeField] private RegistrationTable _registrationTable;
+    [Header("Stats")]
+    [SerializeField] private StatsTextShower _statsText;
+
+    [Header("ProgressBars")]
+    [SerializeField] private LevelProgressBar _levelProgressBar;
+    [SerializeField] private RegistrationTableProgressBar _registrationTableProgressBar;
     public static Bootstrap Instance { get; private set; }
     private void Awake()
     {
         Initialize();
         InitializeSaveSystem();
-        InitializeUI();
         InitializePlayer();
-        //InitializePeoplesSystems();
+        InitializeUI();
+        InitializePeoplesSystems();
     }
 
     private void Initialize()
@@ -45,6 +51,7 @@ public class Bootstrap : MonoBehaviour
     {
         _statsText.Initialize();
         _levelProgressBar.Initialize();
+        _registrationTableProgressBar.Initialize();
     }
 
     private void InitializePlayer()

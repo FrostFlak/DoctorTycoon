@@ -63,14 +63,15 @@ namespace Player
 
         private void StartAnimation()
         {
-            if(_agent.velocity == Vector3.zero)
+            if(_agent.velocity != Vector3.zero)
             {
-                _animator.Play(IDLE);
+                _animator.Play(WALK);
             }
             else
             {
-                _animator.Play(WALK);
-            }   
+                _animator.Play(IDLE);
+            }
+
         }
 
         private void OnEnable()

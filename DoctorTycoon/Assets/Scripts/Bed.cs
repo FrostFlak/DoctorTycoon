@@ -1,20 +1,24 @@
-﻿using System;
+﻿using People;
+using UnityEngine;
 
-
-[Serializable]
-public class Bed
+namespace People
 {
-    public bool _isBusy;
-    
-    public bool IsFree()
-    {
-        if (!_isBusy)
+    public class Bed : MonoBehaviour
+{
+        [SerializeField] private bool _isBusy;
+        [SerializeField] private bool _isPurchased;
+        public bool IsBusy { get { return _isBusy; } set { _isBusy = value; } }
+        public bool IsPurchased { get { return _isPurchased; } set { _isPurchased = value; } }
+
+        private void OnTriggerEnter(Collider other)
         {
-            return true;
+            _isBusy = true;
+            if(other.TryGetComponent(out Human human))
+            {
+                human.StartLayAnimation();
+            }
+            //start Animation event
         }
-        else
-        {
-            return false;
-        }
-    }
+}
+
 }

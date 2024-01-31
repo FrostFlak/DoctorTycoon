@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
@@ -8,25 +9,21 @@ namespace People
 {
         [Header("Agent")]
         [SerializeField] private NavMeshAgent _agent;
-        [SerializeField] private Vector3 _goPos;
+        [SerializeField] private Human _human;
         private RegistrationTable _registrationTable;
+
+        #region MonoBehaviour
         private void Start()
         {
             _registrationTable = FindObjectOfType<RegistrationTable>();
-            StartCoroutine(CheckPlaceDisponibility());
-            GoToFreePlace();
-            _goPos = _registrationTable.FreePlace;
-            if (CheckQuitQueuePosition())
-            {
-                QuitQueue();
-            }
+            _human = GetComponent<Human>();
+            TakePlaceInQueue();
         }
 
-        private void Update()
-        {
+        #endregion
 
-        }
-        private IEnumerator CheckPlaceDisponibility()
+        #region Enter && Relase Queue
+        private void TakePlaceInQueue()
         {
             for (int i = 0; i < _registrationTable.Points.Count; i++)
             {
@@ -40,36 +37,117 @@ namespace People
                     Debug.Log($"Free Place : {_registrationTable.Points[i].name}");
                     _registrationTable.FreePlace = _registrationTable.Points[i].transform.position;
                     _registrationTable.Points[i].IsBusy = true;
-                    yield break;
+                    EnterInFreePlaceInQueue();
+                    if (IsQuitQueuePosition(i))
+                    {
+                        StartCoroutine(QuitQueue(i));
+                    }
+                    break;
                 }
             }
         }
 
-        private void GoToFreePlace()
+        private void ReleasePlaceInQueue(int index) 
+        {
+            if (_registrationTable.Points[index].IsBusy)
+            {
+                _registrationTable.Points[index].IsBusy = false;
+            }
+        }
+
+        private void EnterInFreePlaceInQueue()
         {
             _agent.SetDestination(_registrationTable.FreePlace);
         }
 
-        private bool CheckQuitQueuePosition()
-        {
-            if (_registrationTable.Points[0].transform)
-            {
-                Debug.Log($"Table pos: { _registrationTable.Points[0].transform.position}");
-                //Debug.Log($"Character end pos: {_agent.pathEndPosition}");
+        #endregion
 
+        #region Next Queue Position
+        private IEnumerator CheckNextPositionInQueue()
+        {
+            Debug.Log("Check");
+            yield return new WaitForSeconds(5f);
+            for (int i = 1; i < _registrationTable.Points.Count; i++)
+            {
+                if (!_human.LeftQueue && !_registrationTable.Points[i - 1].IsBusy)
+                {
+                    Debug.Log($"Next Position : {_registrationTable.Points[i - 1].name}");
+                    _registrationTable.FreePlace = _registrationTable.Points[i - 1].transform.position;
+                    GoNextPositionInQueue();
+                    _registrationTable.Points[i - 1].IsBusy = true;
+                    ReleasePlaceInQueue(i);
+                    if (IsQuitQueuePosition(i - 1))
+                    {
+                        StartCoroutine(QuitQueue(i - 1));
+                    }
+                    yield break;
+                }
+            }
+        }
+        
+        private void GoNextPositionInQueue()
+        {
+            _agent.SetDestination(_registrationTable.FreePlace);
+        }
+
+        #endregion
+
+        #region Quit Queue
+        private bool IsQuitQueuePosition(int index)
+        {
+            if (_registrationTable.Points[index].IsExit)
+            {
+                Debug.Log("Is Exit");
                 return true;
             }
-            return false;
+            else
+            {
+                StartCoroutine(CheckNextPositionInQueue());
+                return false;
+            }
         }
 
-        private void QuitQueue()
+        private bool CheckQuitPosibility()
+        {   // if is enough beds ret true && is waited enough time????
+            /*   if (Mathf.Round(_registrationTable.AcceptClientProgress) >= _registrationTable.TimeToAcceptClient)
+               {
+                   Debug.Log("Yep");
+                   return true;
+               }
+               else
+               {
+                   Debug.Log("none");
+                   return false;
+               }
+
+   */
+            return true;
+        }
+
+        private IEnumerator QuitQueue(int index)
         {
-            Debug.Log("Quited");
-            //_agent.SetDestination(transform.position + new Vector3(0 , 0 , 3f));
+            if (CheckQuitPosibility())
+            {
+                yield return new WaitForSeconds(4f);
+                Debug.Log("Quited");
+                ReleasePlaceInQueue(index);
+                _human.LeftQueue = true;
+                _agent.SetDestination(transform.position + new Vector3(0, 0, 3f));
+            //CheckFreeBedsAvailability
+            //GoToFreeBed
+            //instead of v
+            }
         }
 
+        #endregion
 
+        #region Bed
+        private void GoToFreeBed()
+        {
+            //_agent.SetDestination() free bed
+        }
 
+        #endregion
     }
 
 }

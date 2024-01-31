@@ -370,10 +370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _agent: {fileID: 1710738096798316320}
-  _corridorWayPoints: []
-  _corridorWayPointIndex: 0
-  _registrationTable: {fileID: 1613221495232478988, guid: 9ee7822950170854b9356faf0428a869, type: 3}
-  _freePlace: {x: 0, y: 0, z: 0}
+  _goPos: {x: 0, y: 0, z: 0}
 --- !u!114 &1947686196840458394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -403,6 +400,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isLaying: 0
   _humanType: 0
+  _animator: {fileID: 992203576377732009}
 --- !u!1 &1833903773501739008
 GameObject:
   m_ObjectHideFlags: 0

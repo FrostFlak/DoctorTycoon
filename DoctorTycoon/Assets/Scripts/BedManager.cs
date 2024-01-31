@@ -1,25 +1,37 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class BedManager : MonoBehaviour
+namespace People
 {
-    [SerializeField] private List<Bed> beds = new List<Bed>();
-    public List<Bed> Beds {  get { return beds; } }
+    public class BedManager : MonoBehaviour
+{
+    [SerializeField] private List<Bed> _beds = new List<Bed>();
+    public List<Bed> Beds {  get { return _beds; } }
     public static event UnityAction<bool> OnBedBusy;
 
-    private void Update()
+    private void Start()
     {
-        FindFreePlaces();
     }
-    private void FindFreePlaces()
+    private IEnumerator CheckPlaceDisponibility()
     {
-        foreach (Bed bed in beds)
+        for (int i = 0; i < _beds.Count; i++)
         {
-            if (bed.IsFree())
+            if (_beds[i].IsBusy)
             {
-
+                Debug.Log($"Place : {_beds[i].name} is Busy");
+            }
+            else
+            {
+                Debug.Log($"Current index : {i}");
+                Debug.Log($"Free Place : {_beds[i].name}");
+                //_beds.FreePlace = _beds[i].transform.position;
+                _beds[i].IsBusy = true;
+                yield break;
             }
         }
     }
+}
+
 }
