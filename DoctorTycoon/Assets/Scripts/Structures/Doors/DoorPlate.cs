@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using Player;
+using People;
 
 public class DoorPlate : MonoBehaviour
 {
@@ -8,13 +9,13 @@ public class DoorPlate : MonoBehaviour
     [SerializeField] private UnityEvent _onExit;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<CharacterMovmentThirdPersonView>())
+        if (other.TryGetComponent(out MovementType player) || other.TryGetComponent(out Human human))
             _onEnter.Invoke();
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<CharacterMovmentThirdPersonView>())
+        if (other.TryGetComponent(out MovementType player) || other.TryGetComponent(out Human human))
             _onExit.Invoke();
     }
 }

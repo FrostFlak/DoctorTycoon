@@ -54,6 +54,7 @@ namespace Player
                     "Player Expirience: " + _playerData.Expirience +
                     " Player Current Lvl: " + _playerData.CurrentLvl +
                     " Player Current Money: " + _playerData.Money);
+                EventsManager.Instance.OnMoneyAddedEvent();
             }
             else
                 Debug.Log("There is no save files to load!");

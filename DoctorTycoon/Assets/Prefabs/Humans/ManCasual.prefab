@@ -1193,9 +1193,9 @@ NavMeshAgent:
   m_GameObject: {fileID: 5665783757251741923}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.29
+  m_Radius: 0.1
   m_Speed: 3.5
-  m_Acceleration: 99999
+  m_Acceleration: 9999999
   avoidancePriority: 50
   m_AngularSpeed: 0
   m_StoppingDistance: 0
@@ -1205,7 +1205,7 @@ NavMeshAgent:
   m_Height: 1.79
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 0
 --- !u!95 &6207493695679046283
 Animator:
   serializedVersion: 5
@@ -1239,8 +1239,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a5eb14cc96af84449b3fe8f4dba0bf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _human: {fileID: 4763560138431379755}
   _agent: {fileID: 9213582625581663421}
-  _goPos: {x: 0, y: 0, z: 0}
 --- !u!114 &2847329290240564202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1269,6 +1269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isLaying: 0
+  _leftQueue: 0
   _humanType: 1
   _animator: {fileID: 6207493695679046283}
 --- !u!1 &6074732633637576230

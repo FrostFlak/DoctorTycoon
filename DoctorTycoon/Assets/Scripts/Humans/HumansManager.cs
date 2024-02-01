@@ -49,6 +49,7 @@ namespace People
         {
             if (CheckSpawnPosibility())
             {
+                SpawnWomanDress();
                 SpawnManCasual();
                 
             }
@@ -63,9 +64,11 @@ namespace People
         private void SpawnWomanDress()
         {
             var spawnWomanDress = Instantiate(_womanDress, _spawnPosition.transform.position, Quaternion.identity, transform.parent);
+            _allHumans.Add(spawnWomanDress);
+
         }
 
-        
+
     }
 
 }

@@ -1311,7 +1311,6 @@ GameObject:
   - component: {fileID: 2458087557756589817}
   - component: {fileID: 8317261278604409}
   - component: {fileID: 1726578562428716850}
-  - component: {fileID: 2336697853602297030}
   m_Layer: 0
   m_Name: EntraceDoor
   m_TagString: Untagged
@@ -1369,22 +1368,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33e5ed809b535944f81d6b5eceb354e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!208 &2336697853602297030
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4768332858470228012}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1 &4928388894711809140
 GameObject:
   m_ObjectHideFlags: 0

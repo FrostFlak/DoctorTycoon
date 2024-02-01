@@ -1,21 +1,25 @@
 using Player;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.VFX;
 
 namespace People
 {
     public class RegistrationTable : MonoBehaviour
 {
+        #region Serialized Fields
         [SerializeField] private List<Waypoint> _points = new List<Waypoint>();
         [SerializeField] private Vector3 _quitQueuePosition;
         [SerializeField] private float _acceptClientProgress;
         [SerializeField] private float _timeToAcceptClient;
+        #endregion
+
+        #region Private Fields
         private Vector3 _freePlace;
         private bool _inZone;
         private bool _canQuitQueue;
-        public event UnityAction OnStayInTriggerZone;
+        #endregion
+
+        #region Properties
         public bool InZone { get { return _inZone; } }
         public bool CanQuitQueue { get { return _canQuitQueue; } set { _canQuitQueue = value; } }
         public Vector3 QuitQueuePosition { get { return _quitQueuePosition; } private set { } }
@@ -23,6 +27,7 @@ namespace People
         public List<Waypoint> Points { get { return _points; } set { _points = value; } }
         public float AcceptClientProgress { get { return _acceptClientProgress; } private set { } }
         public float TimeToAcceptClient { get { return _timeToAcceptClient; } }
+        #endregion
 
         private void Start()
         {
@@ -30,16 +35,35 @@ namespace People
         
         }
 
+        private void Update()
+        {
+            if (!_inZone)
+                DecreaseProgress();
+            IsSomeoneInQueue();
+        }
+
+        private bool IsSomeoneInQueue()
+        {
+            for(int i = 0; i < _points.Count; i++)
+            {
+                if (_points[i].IsBusy)
+                    return true;
+                else
+                    return false;
+            }
+            return false;
+        }
+
         private void OnTriggerStay(Collider other)
         {
-            if(other.TryGetComponent(out MovementType player))
+            if(other.TryGetComponent(out MovementType player) && IsSomeoneInQueue())
             {
                 for (int i = 0; i < Points.Count; i++)
                 {
                     if (!Points[i].IsBusy)
                     {
                         _inZone = true;
-                        OnStayInTriggerZone?.Invoke();
+                        EventsManager.Instance.OnStayInTriggerZoneEvent();
                         _acceptClientProgress += Time.deltaTime;
                             _canQuitQueue = true;
                         if (_acceptClientProgress >= _timeToAcceptClient)
@@ -60,11 +84,6 @@ namespace People
             }
         }
 
-        private void Update()
-        {
-            if (!_inZone)
-                DecreaseProgress();
-        }
         private void DecreaseProgress()
         {
             _acceptClientProgress -= Time.deltaTime;

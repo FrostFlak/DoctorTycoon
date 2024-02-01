@@ -7,43 +7,58 @@ namespace People
 {
     public class HumanPathFinder : MonoBehaviour
 {
-        [Header("Agent")]
-        [SerializeField] private NavMeshAgent _agent;
+        [Header("Human")]
         [SerializeField] private Human _human;
+        [SerializeField] private NavMeshAgent _agent;
         private RegistrationTable _registrationTable;
 
         #region MonoBehaviour
         private void Start()
         {
             _registrationTable = FindObjectOfType<RegistrationTable>();
-            _human = GetComponent<Human>();
-            TakePlaceInQueue();
+            StartCoroutine(TakePlaceInQueue());
         }
 
         #endregion
 
         #region Enter && Relase Queue
-        private void TakePlaceInQueue()
+
+        private bool CheckEnoughSpaceInQueue()
         {
-            for (int i = 0; i < _registrationTable.Points.Count; i++)
+            if (_registrationTable.Points[_registrationTable.Points.Count - 1].IsBusy)
+                return false;
+            else
+                return true;
+        }
+        private IEnumerator TakePlaceInQueue()
+        {
+            if (CheckEnoughSpaceInQueue())
             {
-                if (_registrationTable.Points[i].IsBusy)
-                { 
-                    Debug.Log($"Place : {_registrationTable.Points[i].name} is Busy");
-                }
-                else
+                for (int i = 0; i < _registrationTable.Points.Count; i++)
                 {
-                    Debug.Log($"Current index : {i}");
-                    Debug.Log($"Free Place : {_registrationTable.Points[i].name}");
-                    _registrationTable.FreePlace = _registrationTable.Points[i].transform.position;
-                    _registrationTable.Points[i].IsBusy = true;
-                    EnterInFreePlaceInQueue();
-                    if (IsQuitQueuePosition(i))
-                    {
-                        StartCoroutine(QuitQueue(i));
+                    if (_registrationTable.Points[i].IsBusy)
+                    { 
+                        Debug.Log($"Place : {_registrationTable.Points[i].name} is Busy");
                     }
-                    break;
+                    else
+                    {
+                        Debug.Log($"Current index : {i}");
+                        Debug.Log($"Free Place : {_registrationTable.Points[i].name}");
+                        _registrationTable.FreePlace = _registrationTable.Points[i].transform.position;
+                        _registrationTable.Points[i].IsBusy = true;
+                        EnterInFreePlaceInQueue();
+                        if (IsQuitQueuePosition(i))
+                        {
+                            StartCoroutine(QuitQueue(i));
+                        }
+                        yield break;
+                    }
                 }
+            }
+            else
+            {
+                yield return new WaitForSeconds(4f);
+                StartCoroutine(TakePlaceInQueue());
             }
         }
 

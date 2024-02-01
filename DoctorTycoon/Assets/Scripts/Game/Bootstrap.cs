@@ -11,6 +11,7 @@ public class Bootstrap : MonoBehaviour
     [SerializeField] private CharacterMovmentThirdPersonView _characterMovmentThirdPersonView;
     [SerializeField] private MovementType _movementType;
     [SerializeField] private RegistrationTable _registrationTable;
+
     [Header("Stats")]
     [SerializeField] private StatsTextShower _statsText;
 

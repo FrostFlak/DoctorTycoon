@@ -4,7 +4,6 @@ using UnityEngine.Events;
 
 public class MoneyWallet : MonoBehaviour
 {
-    public event UnityAction OnMoneyAdded;
 
     //change int to long
     public void AddMoney(int count)
@@ -12,7 +11,7 @@ public class MoneyWallet : MonoBehaviour
         if (TryAddMoney(count))
         {
             SaveSystem._playerData.Money += count;
-            OnMoneyAdded?.Invoke();
+            EventsManager.Instance.OnMoneyAddedEvent();
         }
     }
     private bool TryAddMoney(long count)

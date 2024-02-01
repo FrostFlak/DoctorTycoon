@@ -1,11 +1,12 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-
-
 public class EventsManager : MonoBehaviour
 {
     public event UnityAction OnPeopleSpawned;
+    public event UnityAction OnMoneyAdded;
+    public event UnityAction OnStayInTriggerZone;
+
     public static EventsManager Instance { get; private set; }
 
     private void Awake()
@@ -27,5 +28,15 @@ public class EventsManager : MonoBehaviour
     public void OnPeopleSpawnedEvent()
     {
         OnPeopleSpawned?.Invoke();
+    }
+
+    public void OnMoneyAddedEvent()
+    {
+        OnMoneyAdded?.Invoke();
+    }
+
+    public void OnStayInTriggerZoneEvent()
+    {
+        OnStayInTriggerZone?.Invoke();
     }
 }

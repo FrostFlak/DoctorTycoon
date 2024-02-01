@@ -13,14 +13,14 @@ namespace People
         {
             _progressBar.fillAmount = 0f;
         }
-        private void OnEnable()
+        private void Start()
         {
-            _table.OnStayInTriggerZone += IncreaseProgressBar;
+            EventsManager.Instance.OnStayInTriggerZone += IncreaseProgressBar;
         }
 
         private void OnDisable()
         {
-            _table.OnStayInTriggerZone -= IncreaseProgressBar;
+            EventsManager.Instance.OnStayInTriggerZone -= IncreaseProgressBar;
         }
 
         private void Update()

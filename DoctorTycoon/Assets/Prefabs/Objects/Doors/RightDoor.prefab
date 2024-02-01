@@ -110,7 +110,6 @@ GameObject:
   - component: {fileID: 6414216887325126981}
   - component: {fileID: 874973235568439426}
   - component: {fileID: 6395167359848135120}
-  - component: {fileID: 205788612652525726}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -239,22 +238,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33e5ed809b535944f81d6b5eceb354e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!208 &205788612652525726
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2197220057125184932}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.25}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1 &3998784452042843930
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,7 +249,6 @@ GameObject:
   - component: {fileID: 1825655011734953716}
   - component: {fileID: 4262661494836085443}
   - component: {fileID: 3185108839286424785}
-  - component: {fileID: 6011344073305699297}
   m_Layer: 0
   m_Name: Door Fastening
   m_TagString: Untagged
@@ -339,27 +321,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6011344073305699297
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3998784452042843930}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4999329875307370268
 GameObject:
   m_ObjectHideFlags: 0
@@ -404,7 +365,6 @@ GameObject:
   - component: {fileID: 5816700375384524064}
   - component: {fileID: 8432030278741174459}
   - component: {fileID: 217564298849771734}
-  - component: {fileID: 7916408827897132946}
   m_Layer: 0
   m_Name: Handle
   m_TagString: Untagged
@@ -477,27 +437,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7916408827897132946
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6349867231822462648}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7076291163176296585
 GameObject:
   m_ObjectHideFlags: 0
@@ -542,7 +481,6 @@ GameObject:
   - component: {fileID: 5410872732775518934}
   - component: {fileID: 7305872325897736631}
   - component: {fileID: 7411628308305945218}
-  - component: {fileID: 8337567102755764915}
   m_Layer: 0
   m_Name: Handle
   m_TagString: Untagged
@@ -615,27 +553,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8337567102755764915
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8093412781803785514}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8628839823915985899
 GameObject:
   m_ObjectHideFlags: 0
@@ -647,7 +564,6 @@ GameObject:
   - component: {fileID: 4092089443193690758}
   - component: {fileID: 8933250317208430002}
   - component: {fileID: 3374638225428634464}
-  - component: {fileID: 1249457929777719283}
   m_Layer: 0
   m_Name: Door Fastening
   m_TagString: Untagged
@@ -720,27 +636,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1249457929777719283
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8628839823915985899}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8860454754479029008
 GameObject:
   m_ObjectHideFlags: 0
