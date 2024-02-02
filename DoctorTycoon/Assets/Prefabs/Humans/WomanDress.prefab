@@ -237,9 +237,9 @@ GameObject:
   - component: {fileID: 992203576377732009}
   - component: {fileID: 6017086944007799796}
   - component: {fileID: 689879926367889746}
-  - component: {fileID: 2067292335654129649}
   - component: {fileID: 1947686196840458394}
   - component: {fileID: 6775090332427245634}
+  - component: {fileID: 3392136560390731461}
   m_Layer: 0
   m_Name: WomanDress
   m_TagString: Untagged
@@ -357,20 +357,6 @@ CapsuleCollider:
   m_Height: 1.8661444
   m_Direction: 1
   m_Center: {x: 0, y: 0.9396883, z: 0}
---- !u!114 &2067292335654129649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1706451633558391776}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a5eb14cc96af84449b3fe8f4dba0bf0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _human: {fileID: 6775090332427245634}
-  _agent: {fileID: 1710738096798316320}
 --- !u!114 &1947686196840458394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -402,6 +388,20 @@ MonoBehaviour:
   _leftQueue: 0
   _humanType: 0
   _animator: {fileID: 992203576377732009}
+--- !u!114 &3392136560390731461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1706451633558391776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b016e85597797147968e11e03cc1fdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _human: {fileID: 6775090332427245634}
+  _agent: {fileID: 1710738096798316320}
 --- !u!1 &1833903773501739008
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,12 +16,10 @@ namespace People
         #region Private Fields
         private Vector3 _freePlace;
         private bool _inZone;
-        private bool _canQuitQueue;
         #endregion
 
         #region Properties
         public bool InZone { get { return _inZone; } }
-        public bool CanQuitQueue { get { return _canQuitQueue; } set { _canQuitQueue = value; } }
         public Vector3 QuitQueuePosition { get { return _quitQueuePosition; } private set { } }
         public Vector3 FreePlace { get { return _freePlace; } set { _freePlace = value; } }
         public List<Waypoint> Points { get { return _points; } set { _points = value; } }
@@ -58,18 +56,13 @@ namespace People
         {
             if(other.TryGetComponent(out MovementType player) && IsSomeoneInQueue())
             {
-                for (int i = 0; i < Points.Count; i++)
+                _inZone = true;
+                EventsManager.Instance.OnStayInTriggerZoneEvent();
+                _acceptClientProgress += Time.deltaTime;
+                if (_acceptClientProgress >= _timeToAcceptClient)
                 {
-                    if (!Points[i].IsBusy)
-                    {
-                        _inZone = true;
-                        EventsManager.Instance.OnStayInTriggerZoneEvent();
-                        _acceptClientProgress += Time.deltaTime;
-                            _canQuitQueue = true;
-                        if (_acceptClientProgress >= _timeToAcceptClient)
-                            _acceptClientProgress = 0;
-                        break;
-                    }   
+                    EventsManager.Instance.OnTimerToAcceptPeopleEndEvent();
+                    _acceptClientProgress = 0;
                 }
             }
             
@@ -80,7 +73,6 @@ namespace People
             if(other.TryGetComponent(out MovementType player))
             {
                 _inZone = false;
-                _canQuitQueue = false;
             }
         }
 

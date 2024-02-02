@@ -1,4 +1,3 @@
-using Player;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -41,7 +40,6 @@ namespace People
         private void DecreaseProgressBar()
         {
             _progressBar.fillAmount = (_table.AcceptClientProgress / _table.TimeToAcceptClient) / 1f;
-
         }
     }
 

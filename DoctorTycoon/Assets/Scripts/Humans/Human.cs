@@ -8,7 +8,7 @@ public enum HumanType
     ManCasual = 1,
 }
 [RequireComponent(typeof(CapsuleCollider) , typeof(Rigidbody) , typeof(NavMeshAgent))]
-[RequireComponent(typeof(Animator) , typeof(HumanAnimationController) , typeof(HumanPathFinder))]
+[RequireComponent(typeof(Animator) , typeof(HumanAnimationController) , typeof(HumanQueueController))]
     public abstract class Human : MonoBehaviour
     {
         [SerializeField] private bool _isLaying;

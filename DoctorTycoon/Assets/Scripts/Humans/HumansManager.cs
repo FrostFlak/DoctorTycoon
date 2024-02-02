@@ -50,7 +50,7 @@ namespace People
             if (CheckSpawnPosibility())
             {
                 SpawnWomanDress();
-                SpawnManCasual();
+               // SpawnManCasual();
                 
             }
     }
