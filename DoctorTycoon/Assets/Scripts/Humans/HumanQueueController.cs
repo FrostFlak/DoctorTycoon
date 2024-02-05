@@ -9,6 +9,7 @@ namespace People
         [Header("Human")]
         [SerializeField] private Human _human;
         [SerializeField] private NavMeshAgent _agent;
+        [SerializeField] private HumanBedController _humanBedController;
         private RegistrationTable _registrationTable;
         private int _positionIndex;
 
@@ -19,7 +20,6 @@ namespace People
             _registrationTable = FindObjectOfType<RegistrationTable>();
             EventsManager.Instance.OnTimerToAcceptPeopleEnd += OnTimerToAcceptPeopleEnd;
             StartCoroutine(EnterInQueue());
-            StartCoroutine(CheckNextPositionInQueue());
             
         }
 
@@ -94,7 +94,6 @@ namespace People
         #endregion
 
         #region Next Queue Position
-        //????
         private IEnumerator CheckNextPositionInQueue()
         {
             if (!_human.LeftQueue)
@@ -105,21 +104,16 @@ namespace People
                 {
                     if (!_registrationTable.Points[i - number].IsBusy)
                     {
-                        if (!(i - number >= number))
-                        {
-                            Debug.Log($"Next Position : {_registrationTable.Points[i - number].name}");
-                            _registrationTable.FreePlace = _registrationTable.Points[i - number].transform.position;
-                            SetAgentDestination(_registrationTable.FreePlace);
-                            TakePositionInQueue(i - number);
-                            ReleasePlaceInQueue(i);
-                            _positionIndex = i - number;
-                            yield break;
-                        }
+                        Debug.Log($"Next Position : {_registrationTable.Points[i - number].name}");
+                        _registrationTable.FreePlace = _registrationTable.Points[i - number].transform.position;
+                        SetAgentDestination(_registrationTable.FreePlace);
+                        TakePositionInQueue(i - number);
+                        ReleasePlaceInQueue(i);
+                        _positionIndex = i - number;
+                        yield break;
                     }
                 }
             }
-            yield return new WaitForSeconds(2f);
-            StartCoroutine(CheckNextPositionInQueue());
         }
         
 
@@ -136,7 +130,11 @@ namespace People
                 ReleasePlaceInQueue(_positionIndex);
                 return true;
             }
-            else return false;
+            else
+            {
+                StartCoroutine(CheckNextPositionInQueue());
+                return false;
+            }
         }
 
         private bool IsOnQuitQueuePosition(int index)
@@ -159,24 +157,15 @@ namespace People
                 Debug.Log("Quiting Queue");
                 _human.LeftQueue = true;
                 //Set to free bed
+                _humanBedController.enabled = true;
+                enabled = false;
                 //give money and ex
-                SetAgentDestination(transform.position + new Vector3(0, 0, 3f));
             }
             
         }
 
         #endregion
 
-        #region Bed
-        private void GoToFreeBed()
-        {
-            //_agent.SetDestination() free bed
-            //CheckFreeBedsAvailability
-            //GoToFreeBed
-            //instead of v
-        }
-
-        #endregion
     }
 
 }

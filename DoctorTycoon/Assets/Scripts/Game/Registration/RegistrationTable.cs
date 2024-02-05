@@ -8,12 +8,12 @@ namespace People
 {
         #region Serialized Fields
         [SerializeField] private List<Waypoint> _points = new List<Waypoint>();
-        [SerializeField] private Vector3 _quitQueuePosition;
         [SerializeField] private float _acceptClientProgress;
         [SerializeField] private float _timeToAcceptClient;
         #endregion
 
         #region Private Fields
+        private Vector3 _quitQueuePosition;
         private Vector3 _freePlace;
         private bool _inZone;
         #endregion
@@ -30,7 +30,6 @@ namespace People
         private void Start()
         {
             _quitQueuePosition = _points[0].transform.position;
-        
         }
 
         private void Update()

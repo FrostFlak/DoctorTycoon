@@ -8,7 +8,7 @@ public class EventsManager : MonoBehaviour
     public event UnityAction OnMoneyAdded;
     public event UnityAction OnStayInTriggerZone;
     public event UnityAction OnTimerToAcceptPeopleEnd;
-
+    public event UnityAction OnTimerToPeopleLayEnd;
     public static EventsManager Instance { get; private set; }
 
     private void Awake()
@@ -45,5 +45,10 @@ public class EventsManager : MonoBehaviour
     public void OnTimerToAcceptPeopleEndEvent()
     {
         OnTimerToAcceptPeopleEnd?.Invoke();
+    }
+
+    public void OnTimerToPeopleLayEndEvent()
+    {
+        OnTimerToPeopleLayEnd?.Invoke();
     }
 }

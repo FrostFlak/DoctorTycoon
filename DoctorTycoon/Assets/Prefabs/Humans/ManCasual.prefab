@@ -1110,6 +1110,7 @@ GameObject:
   - component: {fileID: 2847329290240564202}
   - component: {fileID: 4763560138431379755}
   - component: {fileID: 136670640482504141}
+  - component: {fileID: 2584593629626305978}
   m_Layer: 0
   m_Name: ManCasual
   m_TagString: Untagged
@@ -1192,7 +1193,7 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5665783757251741923}
   m_Enabled: 1
-  m_AgentTypeID: 0
+  m_AgentTypeID: -1372625422
   m_Radius: 0.1
   m_Speed: 3.5
   m_Acceleration: 9999999
@@ -1240,6 +1241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _agent: {fileID: 9213582625581663421}
+  _human: {fileID: 4763560138431379755}
   _lookRotationSpeed: 8
   _animator: {fileID: 6207493695679046283}
 --- !u!114 &4763560138431379755
@@ -1256,8 +1258,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isLaying: 0
   _leftQueue: 0
-  _humanType: 1
-  _animator: {fileID: 6207493695679046283}
 --- !u!114 &136670640482504141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1268,6 +1268,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b016e85597797147968e11e03cc1fdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _human: {fileID: 4763560138431379755}
+  _agent: {fileID: 9213582625581663421}
+  _humanBedController: {fileID: 2584593629626305978}
+--- !u!114 &2584593629626305978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5665783757251741923}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0fa82303eb81a840969b5a785e045b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _human: {fileID: 4763560138431379755}
