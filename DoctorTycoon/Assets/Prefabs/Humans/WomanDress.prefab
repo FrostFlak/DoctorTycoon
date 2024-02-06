@@ -274,7 +274,7 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1706451633558391776}
   m_Enabled: 1
-  m_AgentTypeID: 0
+  m_AgentTypeID: -1372625422
   m_Radius: 0.1
   m_Speed: 3.5
   m_Acceleration: 9999999
@@ -297,8 +297,8 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1706451633558391776}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 49f405d656adfea4f94fe714f334714d, type: 2}
+  m_Avatar: {fileID: 9000000, guid: 190f868dc6d3851408a4b098c2d75958, type: 3}
+  m_Controller: {fileID: 9100000, guid: 63610b1db0a57604ab5ee3d08401822e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -356,9 +356,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.30289596
-  m_Height: 1.8661444
+  m_Height: 1.0797276
   m_Direction: 1
-  m_Center: {x: 0, y: 0.9396883, z: 0}
+  m_Center: {x: 0, y: 0.9002267, z: 0}
 --- !u!65 &2164937639632737045
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -378,8 +378,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 0.3886136, y: 0.09932436, z: 1.6604543}
-  m_Center: {x: -0.015237981, y: 0.64548177, z: -0.33022794}
+  m_Size: {x: 0.3886136, y: 0.24311839, z: 1.7194089}
+  m_Center: {x: -0.015237981, y: 0.029774083, z: 0.17932197}
 --- !u!114 &1947686196840458394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394,7 +394,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _agent: {fileID: 1710738096798316320}
   _human: {fileID: 6775090332427245634}
-  _capsuleCollider: {fileID: 0}
+  _humanBedController: {fileID: 8049292670509274929}
   _lookRotationSpeed: 8
   _animator: {fileID: 992203576377732009}
 --- !u!114 &6775090332427245634

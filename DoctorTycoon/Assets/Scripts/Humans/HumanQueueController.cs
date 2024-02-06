@@ -124,7 +124,6 @@ namespace People
         private bool CanQuitQueue()
         {
             //if is available beds
-            //if character filled the progress bar on table
             if (IsOnQuitQueuePosition(_positionIndex))
             {
                 ReleasePlaceInQueue(_positionIndex);
@@ -156,7 +155,6 @@ namespace People
             {
                 Debug.Log("Quiting Queue");
                 _human.LeftQueue = true;
-                //Set to free bed
                 _humanBedController.enabled = true;
                 enabled = false;
                 //give money and ex

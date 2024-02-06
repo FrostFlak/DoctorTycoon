@@ -8,14 +8,23 @@ namespace People
         [Header("Agent")]
         [SerializeField] private NavMeshAgent _agent;
         [SerializeField] private Human _human;
-        [SerializeField] private CapsuleCollider _capsuleCollider;
+        [SerializeField] private HumanBedController _humanBedController;
         [Header("Properties")]
         [SerializeField] private float _lookRotationSpeed;
         [SerializeField] private Animator _animator;
         private const string IDLE = "Idle";
         private const string WALK = "Walk";
-        private const string LAYINGDOWN = "LayingDown";
+        private const string SLEEP = "Sleep";
 
+        private void Start()
+        {
+            EventsManager.Instance.OnTimerToPeopleLayEnd += EndLayAnimation;
+        }
+
+        private void OnDisable()
+        {
+            EventsManager.Instance.OnTimerToPeopleLayEnd -= EndLayAnimation;
+        }
         private void Update()
         {
             if (!_human.IsLaying)
@@ -23,7 +32,7 @@ namespace People
                 FaceTarget();
                 StartMoveAnimation();
             }
-            else
+            else if(_human.IsLaying && !_human.LeftBed)
             {
                 OnLayTargetFace();
                 StartLayAnimation();
@@ -64,13 +73,25 @@ namespace People
             {
                 if (_agent.remainingDistance == 0)
                 {
-                    _animator.Play(LAYINGDOWN);
+                    transform.position = _humanBedController.LayPosition;
                     _agent.ResetPath();
                     _agent.enabled = false;
+                    _animator.Play(SLEEP);
                 }
             }
-
         }
+
+        private void EndLayAnimation()
+        {
+            if (_humanBedController.BedManager.Beds[_humanBedController.Index].CanLeaveBed)
+            {
+                Debug.Log("Animator afteer");
+                _agent.enabled = true;
+                transform.position = _humanBedController.ReleasePosition;
+                _animator.Play(IDLE);
+            }        
+        }
+
     }
 
 }
