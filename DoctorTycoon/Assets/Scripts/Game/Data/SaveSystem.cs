@@ -54,6 +54,7 @@ namespace Player
                     "Player Expirience: " + _playerData.Expirience +
                     " Player Current Lvl: " + _playerData.CurrentLvl +
                     " Player Current Money: " + _playerData.Money);
+                    //" Count of Patients: " + _playerData.PatientsCount);
                 EventsManager.Instance.OnMoneyAddedEvent();
             }
             else
@@ -67,6 +68,7 @@ namespace Player
             _playerData.Expirience = 0;
             _playerData.CurrentLvl = 1;
             _playerData.Money = 0;
+            //_playerData.PatientsCount = 0;
             SaveGame();
         }
         public void DeleteSaveFile()
@@ -90,6 +92,7 @@ namespace Player
         public const int _maxExpirience = 100;
         public int _currentLvl = 1;
         public long _money;
+        //public int _patientsCount;
 
         #region Properties
         public string Name { get { return _name; } set { _name = value; } }
@@ -108,8 +111,24 @@ namespace Player
         }
 
         public int MaxExpirience { get { return _maxExpirience; } private set { } }
-        public int CurrentLvl { get { return _currentLvl; } set { _currentLvl = value; } }
-        public long Money { get { return _money; } set { _money = value; } }
+        public int CurrentLvl { get { return _currentLvl; } 
+            set { 
+                if(value < 0)
+                    throw new ArgumentOutOfRangeException(nameof(_currentLvl));
+                else _currentLvl = value;
+            } }
+        public long Money { get { return _money; } 
+            set { 
+                if(value < 0)
+                    throw new ArgumentOutOfRangeException(nameof(_money));
+                else _money = value; 
+            } }
+       /* public int PatientsCount { get {  return _patientsCount; } set {  
+                if(value < 0)
+                    throw new ArgumentOutOfRangeException(nameof(_patientsCount));
+                else _patientsCount = value;
+            }
+        }*/
 
         #endregion
     }

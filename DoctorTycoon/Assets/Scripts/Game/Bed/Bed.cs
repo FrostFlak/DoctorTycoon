@@ -19,6 +19,8 @@ namespace People
         {
             if (!_inZone) 
                 DecreaseProgress();
+            if(_canLeaveBed)
+                _isBusy = false;
         }
         private void OnTriggerEnter(Collider other)
         {
@@ -35,6 +37,7 @@ namespace People
         {
             if (other.TryGetComponent(out MovementType character) && _isBusy)
             {
+                EventsManager.Instance.OnStayInBedTriggerZoneEvent();
                 _timeToHeal += Time.deltaTime;
                 if (_timeToHeal >= _maxTimeToHeal)
                 {
@@ -47,7 +50,10 @@ namespace People
         private void OnTriggerExit(Collider other)
         {
             if (other.TryGetComponent(out MovementType character))
+            {
+                EventsManager.Instance.OnExitBedTriggerZoneEvent();
                 _inZone = false;
+            }
         }
         private void DecreaseProgress()
         {

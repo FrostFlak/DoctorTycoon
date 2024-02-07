@@ -238,8 +238,8 @@ GameObject:
   - component: {fileID: 6017086944007799796}
   - component: {fileID: 689879926367889746}
   - component: {fileID: 2164937639632737045}
-  - component: {fileID: 1947686196840458394}
   - component: {fileID: 6775090332427245634}
+  - component: {fileID: 1947686196840458394}
   - component: {fileID: 3392136560390731461}
   - component: {fileID: 8049292670509274929}
   m_Layer: 0
@@ -380,6 +380,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.3886136, y: 0.24311839, z: 1.7194089}
   m_Center: {x: -0.015237981, y: 0.029774083, z: 0.17932197}
+--- !u!114 &6775090332427245634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1706451633558391776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 364655936d4c68044afda74ecf966e22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isLaying: 0
+  _leftQueue: 0
+  _leftBed: 0
 --- !u!114 &1947686196840458394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,20 +412,6 @@ MonoBehaviour:
   _humanBedController: {fileID: 8049292670509274929}
   _lookRotationSpeed: 8
   _animator: {fileID: 992203576377732009}
---- !u!114 &6775090332427245634
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1706451633558391776}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 364655936d4c68044afda74ecf966e22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isLaying: 0
-  _leftQueue: 0
 --- !u!114 &3392136560390731461
 MonoBehaviour:
   m_ObjectHideFlags: 0

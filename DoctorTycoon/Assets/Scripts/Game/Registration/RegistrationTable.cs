@@ -56,7 +56,7 @@ namespace People
             if(other.TryGetComponent(out MovementType player) && IsSomeoneInQueue())
             {
                 _inZone = true;
-                EventsManager.Instance.OnStayInTriggerZoneEvent();
+                EventsManager.Instance.OnStayInRegistrationTriggerZoneEvent();
                 _acceptClientProgress += Time.deltaTime;
                 if (_acceptClientProgress >= _timeToAcceptClient)
                 {
@@ -72,6 +72,7 @@ namespace People
             if(other.TryGetComponent(out MovementType player))
             {
                 _inZone = false;
+                EventsManager.Instance.OnExitRegistartionTriggerZoneEvent();
             }
         }
 

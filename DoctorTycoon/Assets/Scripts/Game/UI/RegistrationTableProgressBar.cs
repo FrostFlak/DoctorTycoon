@@ -14,12 +14,12 @@ namespace People
         }
         private void Start()
         {
-            EventsManager.Instance.OnStayInTriggerZone += IncreaseProgressBar;
+            EventsManager.Instance.OnStayInRegistrationTriggerZone += IncreaseProgressBar;
         }
 
         private void OnDisable()
         {
-            EventsManager.Instance.OnStayInTriggerZone -= IncreaseProgressBar;
+            EventsManager.Instance.OnStayInRegistrationTriggerZone -= IncreaseProgressBar;
         }
 
         private void Update()

@@ -1,3 +1,4 @@
+using Player;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,28 +9,26 @@ namespace People
         [Header("Humans")]
         [SerializeField] private List<Human> _allHumans = new List<Human>();
         [SerializeField] private int _maxHumanCount;
-        [Header("Human Prefabs")]
+        [Header("Human Spawn Prefabs")]
         [SerializeField] private WomanDress _womanDress;
         [SerializeField] private ManCasual _manCasual;
 
         [Header("Managers")]
         [SerializeField] private BedManager _bedManager;
-        private RegistrationTable _registrationTable;
 
         [Header("SpawnSettings")]
         [SerializeField] private Transform _spawnPosition;
         [SerializeField] private int _spawnRate;
-
   
         private void Start()
         {
-            _registrationTable = FindObjectOfType<RegistrationTable>();
-            _maxHumanCount = _bedManager.Beds.Count + 5;
+            _maxHumanCount = _bedManager.Beds.Count + 4;
+            EventsManager.Instance.OnPatientLeaveBed += RemovePeople;
         }
 
-        public void Initialize()
+        private void OnDisable()
         {
-         //   AddHumansInList();
+            EventsManager.Instance.OnPatientLeaveBed -= RemovePeople;
         }
 
         private bool CheckSpawnPosibility() 
@@ -41,7 +40,7 @@ namespace People
             }
             else
                 return true;
-    }
+        }
 
 
 
@@ -59,16 +58,21 @@ namespace People
         {
             ManCasual spawnManCasual = Instantiate(_manCasual, _spawnPosition.transform.position, Quaternion.identity, transform.parent);
             _allHumans.Add(spawnManCasual);
+            EventsManager.Instance.OnPatientSpawnedEvent(_allHumans.Count);
         }
 
         private void SpawnWomanDress()
         {
             var spawnWomanDress = Instantiate(_womanDress, _spawnPosition.transform.position, Quaternion.identity, transform.parent);
             _allHumans.Add(spawnWomanDress);
-
+            EventsManager.Instance.OnPatientSpawnedEvent(_allHumans.Count);
         }
 
-
+        private void RemovePeople(Human human)
+        {
+            _allHumans.Remove(human);
+            EventsManager.Instance.OnPatientLeaveHospitalEvent(_allHumans.Count);
+        }
     }
 
 }

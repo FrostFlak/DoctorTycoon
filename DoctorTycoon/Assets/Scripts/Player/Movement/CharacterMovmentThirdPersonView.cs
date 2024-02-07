@@ -1,7 +1,5 @@
-using System;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.InputSystem;
 
 namespace Player
 {
@@ -13,10 +11,7 @@ namespace Player
         [SerializeField] private float _lookRotationSpeed;
         [SerializeField] private ParticleSystem _clickParticle;
         [SerializeField] private NavMeshAgent _agent;
-        [SerializeField] private Animator _animator;
         private bool _lockCursor = false;
-        private const string IDLE = "Idle";
-        private const string WALK = "Walk";
         private Mouse _input;
 
         public void Initialize()
@@ -27,7 +22,6 @@ namespace Player
         private void Update()
         {
             FaceTarget();
-            StartAnimation();
         }
   
 
@@ -59,19 +53,6 @@ namespace Player
                 Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x + 0.001f, 0, direction.z + 0.001f));
                 transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * _lookRotationSpeed);
             }
-        }
-
-        private void StartAnimation()
-        {
-            if(_agent.velocity != Vector3.zero)
-            {
-                _animator.Play(WALK);
-            }
-            else
-            {
-                _animator.Play(IDLE);
-            }
-
         }
 
         private void OnEnable()

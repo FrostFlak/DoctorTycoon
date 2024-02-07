@@ -5,6 +5,7 @@ namespace Player
 {
     [RequireComponent(typeof(Rigidbody), typeof(NavMeshAgent), typeof(Animator))]
     [RequireComponent(typeof(CameraType), typeof(CharacterMovmentThirdPersonView), typeof(CharacterMovmentFirstPersonView))]
+    [RequireComponent(typeof(CharacterAnimationController))]
     public class MovementType : MonoBehaviour
     {
         [SerializeField] private CameraType _cameraType;

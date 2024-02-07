@@ -9,6 +9,7 @@ namespace People
         [SerializeField] private NavMeshAgent _agent;
         [SerializeField] private Human _human;
         [SerializeField] private HumanBedController _humanBedController;
+        [SerializeField] private BedManager _bedManager;
         [Header("Properties")]
         [SerializeField] private float _lookRotationSpeed;
         [SerializeField] private Animator _animator;
@@ -18,6 +19,7 @@ namespace People
 
         private void Start()
         {
+            _bedManager = FindObjectOfType<BedManager>();
             EventsManager.Instance.OnTimerToPeopleLayEnd += EndLayAnimation;
         }
 
@@ -34,7 +36,7 @@ namespace People
             }
             else if(_human.IsLaying && !_human.LeftBed)
             {
-                OnLayTargetFace();
+                TargetFaceOnLay();
                 StartLayAnimation();
             }
         }
@@ -48,7 +50,7 @@ namespace People
                 transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * _lookRotationSpeed);
             }
         }
-        private void OnLayTargetFace()
+        private void TargetFaceOnLay()
         {
             Quaternion lookRotation = Quaternion.LookRotation(new Vector3(0f , 0f , 0f + 0.00001f));
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * _lookRotationSpeed);
@@ -83,12 +85,11 @@ namespace People
 
         private void EndLayAnimation()
         {
-            if (_humanBedController.BedManager.Beds[_humanBedController.Index].CanLeaveBed)
+            if (_bedManager.Beds[_humanBedController.Index].CanLeaveBed)
             {
-                Debug.Log("Animator afteer");
+                Debug.Log("Animator after");
                 _agent.enabled = true;
                 transform.position = _humanBedController.ReleasePosition;
-                _animator.Play(IDLE);
             }        
         }
 

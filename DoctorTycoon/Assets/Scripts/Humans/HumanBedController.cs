@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Reflection;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -47,6 +45,7 @@ namespace People
                 else
                 {
                     Debug.Log($"Free Bed : {_bedsManager.Beds[i].name}");
+                    Debug.Log(i);
                     _bedsManager.Beds[i].IsBusy = true;
                     _bedsManager.FreeBed = _bedsManager.Beds[i].transform.position;
                     _layPosition = _bedsManager.Beds[i].transform.position;
@@ -80,10 +79,13 @@ namespace People
                 ReleaseBed(_index);
                 _human.IsLaying = false;
                 _human.LeftBed = true;
-
+                _bedsManager.Beds[_index].CanLeaveBed = false;
+                EventsManager.Instance.OnPatientLeaveBedEvent(_human);
+                SetAgentDestination(_bedsManager.QuitPosition);
             }
         }
 
+        
 
     }
 
