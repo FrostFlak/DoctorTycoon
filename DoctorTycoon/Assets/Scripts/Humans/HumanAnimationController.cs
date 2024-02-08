@@ -9,10 +9,10 @@ namespace People
         [SerializeField] private NavMeshAgent _agent;
         [SerializeField] private Human _human;
         [SerializeField] private HumanBedController _humanBedController;
-        [SerializeField] private BedManager _bedManager;
         [Header("Properties")]
         [SerializeField] private float _lookRotationSpeed;
         [SerializeField] private Animator _animator;
+        private BedManager _bedManager;
         private const string IDLE = "Idle";
         private const string WALK = "Walk";
         private const string SLEEP = "Sleep";
@@ -20,18 +20,18 @@ namespace People
         private void Start()
         {
             _bedManager = FindObjectOfType<BedManager>();
-            EventsManager.Instance.OnTimerToPeopleLayEnd += EndLayAnimation;
+            EventsManager.Instance.OnTimerToHealPatinetEnd += TurnOnAgent;
         }
 
         private void OnDisable()
         {
-            EventsManager.Instance.OnTimerToPeopleLayEnd -= EndLayAnimation;
+            EventsManager.Instance.OnTimerToHealPatinetEnd -= TurnOnAgent;
         }
         private void Update()
         {
-            if (!_human.IsLaying)
+            if ((_human.IsLaying && _human.IsGoingToBed) || (!_human.IsLaying && !_human.IsGoingToBed))
             {
-                FaceTarget();
+                TargetFace();
                 StartMoveAnimation();
             }
             else if(_human.IsLaying && !_human.LeftBed)
@@ -41,7 +41,7 @@ namespace People
             }
         }
 
-        private void FaceTarget()
+        private void TargetFace()
         {
             if (_agent.velocity != Vector3.zero)
             {
@@ -55,7 +55,6 @@ namespace People
             Quaternion lookRotation = Quaternion.LookRotation(new Vector3(0f , 0f , 0f + 0.00001f));
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * _lookRotationSpeed);
         }
-
 
         private void StartMoveAnimation()
         {
@@ -83,13 +82,12 @@ namespace People
             }
         }
 
-        private void EndLayAnimation()
+        private void TurnOnAgent()
         {
-            if (_bedManager.Beds[_humanBedController.Index].CanLeaveBed)
+            if (_bedManager.Beds[_humanBedController.Index].CanLeaveBed && _human.IsLaying && !_human.LeftBed)
             {
-                Debug.Log("Animator after");
+                Debug.Log($"Human Animator: {gameObject.transform.position}");
                 _agent.enabled = true;
-                transform.position = _humanBedController.ReleasePosition;
             }        
         }
 

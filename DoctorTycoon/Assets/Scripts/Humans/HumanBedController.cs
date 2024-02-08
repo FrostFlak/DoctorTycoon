@@ -12,8 +12,6 @@ namespace People
         private Vector3 _releasePosition;
         private BedManager _bedsManager;
         private int _index;
-
-        public BedManager BedManager {  get { return _bedsManager; } }
         public int Index { get { return _index; } }
         public Vector3 LayPosition {  get { return _layPosition; } }
         public Vector3 ReleasePosition { get { return _releasePosition; } }
@@ -21,13 +19,13 @@ namespace People
         private void Start()
         {
             _bedsManager = FindObjectOfType<BedManager>();
-            EventsManager.Instance.OnTimerToPeopleLayEnd += OnTimerToHealPeopleEnd;
+            EventsManager.Instance.OnTimerToHealPatinetEnd += OnTimerToHealPeopleEnd;
             StartCoroutine(TakeBed());
         }
 
         private void OnDisable()
         {
-            EventsManager.Instance.OnTimerToPeopleLayEnd -= OnTimerToHealPeopleEnd;
+            EventsManager.Instance.OnTimerToHealPatinetEnd -= OnTimerToHealPeopleEnd;
         }
         private void OnTimerToHealPeopleEnd()
         {
@@ -45,11 +43,9 @@ namespace People
                 else
                 {
                     Debug.Log($"Free Bed : {_bedsManager.Beds[i].name}");
-                    Debug.Log(i);
                     _bedsManager.Beds[i].IsBusy = true;
-                    _bedsManager.FreeBed = _bedsManager.Beds[i].transform.position;
-                    _layPosition = _bedsManager.Beds[i].transform.position;
-                    _releasePosition = _bedsManager.Beds[i].transform.position - new Vector3(-2f , 0f , 0f);
+                    SetPositions(i);
+                    _human.IsLaying = true;
                     _index = i;
                     SetAgentDestination(_bedsManager.FreeBed);
                     yield break;
@@ -62,6 +58,13 @@ namespace People
             _agent.SetDestination(position);
         }
 
+        private void SetPositions(int i)
+        {
+            _bedsManager.FreeBed = _bedsManager.Beds[i].transform.position;
+            _layPosition = _bedsManager.Beds[i].transform.position;
+            _releasePosition = _bedsManager.Beds[i].transform.position - new Vector3(-2f, 0f, 0f);
+        }
+
         private void ReleaseBed(int index)
         {
             if (_bedsManager.Beds[index].IsBusy)
@@ -70,12 +73,10 @@ namespace People
             }
         }
 
-
         private void QuitBed()
         {
-            if (_bedsManager.Beds[_index].CanLeaveBed)
+            if (_bedsManager.Beds[_index].CanLeaveBed && _human.IsLaying)
             {
-                Debug.Log("Controller");
                 ReleaseBed(_index);
                 _human.IsLaying = false;
                 _human.LeftBed = true;

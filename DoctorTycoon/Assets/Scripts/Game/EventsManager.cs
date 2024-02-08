@@ -12,7 +12,7 @@ public class EventsManager : MonoBehaviour
 
     #region TimersEvents
     public event UnityAction OnTimerToAcceptPeopleEnd;
-    public event UnityAction OnTimerToPeopleLayEnd;
+    public event UnityAction OnTimerToHealPatinetEnd;
     #endregion
 
     #region PlayerEvents
@@ -57,7 +57,7 @@ public class EventsManager : MonoBehaviour
 
     #region Timers
     public void OnTimerToAcceptPeopleEndEvent() => OnTimerToAcceptPeopleEnd?.Invoke();
-    public void OnTimerToPeopleLayEndEvent() => OnTimerToPeopleLayEnd?.Invoke();
+    public void OnTimerToHealPatinetEndEvent() => OnTimerToHealPatinetEnd?.Invoke();
     #endregion
 
     #region Player

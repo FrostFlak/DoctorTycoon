@@ -10,8 +10,9 @@ namespace People
     {
         #region SerializedFields
         [SerializeField] private bool _isLaying;
-        [SerializeField] private bool _leftQueue;
+        [SerializeField] private bool _isInQueue;
         [SerializeField] private bool _leftBed;
+        [SerializeField] private bool _isGoingToBed;
         #endregion
 
         #region Private Fields
@@ -20,8 +21,9 @@ namespace People
 
         #region Properties
         public bool IsLaying { get { return _isLaying; } set { _isLaying = value; } }
-        public bool LeftQueue { get { return _leftQueue; } set { _leftQueue = value; } }
+        public bool IsInQueue { get { return _isInQueue; } set { _isInQueue = value; } }
         public bool LeftBed { get { return _leftBed; } set { _leftBed = value; } }
+        public bool IsGoingToBed { get { return _isGoingToBed; } set { _isGoingToBed = value; } }
         #endregion
 
 

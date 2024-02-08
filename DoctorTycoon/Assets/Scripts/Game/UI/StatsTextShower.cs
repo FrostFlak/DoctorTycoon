@@ -41,7 +41,7 @@ namespace UI
         }
         private void UpdatePersonalText()
         {
-
+            //personal
         }
 
     }

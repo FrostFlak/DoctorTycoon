@@ -24,13 +24,10 @@ namespace People
         }
         private void OnTriggerEnter(Collider other)
         {
-            if(other.TryGetComponent(out Human human))
-            {
-                _isBusy = true;
-                human.IsLaying = true;
-            }
-            else if(other.TryGetComponent(out MovementType character))
+            if(other.TryGetComponent(out MovementType character))
                 _inZone = true;
+            else if(other.TryGetComponent(out Human human))
+                human.IsGoingToBed = false;
         }
 
         private void OnTriggerStay(Collider other)
@@ -42,7 +39,7 @@ namespace People
                 if (_timeToHeal >= _maxTimeToHeal)
                 {
                     _canLeaveBed = true;
-                    EventsManager.Instance.OnTimerToPeopleLayEndEvent();
+                    EventsManager.Instance.OnTimerToHealPatinetEndEvent();
                     _timeToHeal = 0;
                 }
             }

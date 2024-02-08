@@ -13,6 +13,7 @@ namespace People
         #endregion
 
         #region Private Fields
+        private BedManager _bedManager;
         private Vector3 _quitQueuePosition;
         private Vector3 _freePlace;
         private bool _inZone;
@@ -29,6 +30,7 @@ namespace People
 
         private void Start()
         {
+            _bedManager = FindObjectOfType<BedManager>();
             _quitQueuePosition = _points[0].transform.position;
         }
 
@@ -53,7 +55,7 @@ namespace People
 
         private void OnTriggerStay(Collider other)
         {
-            if(other.TryGetComponent(out MovementType player) && IsSomeoneInQueue())
+            if(other.TryGetComponent(out MovementType player) && IsSomeoneInQueue() && _bedManager.IsAnyBedAvailable() && _points[0].IsBusy)
             {
                 _inZone = true;
                 EventsManager.Instance.OnStayInRegistrationTriggerZoneEvent();

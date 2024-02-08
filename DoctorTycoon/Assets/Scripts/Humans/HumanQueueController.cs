@@ -11,6 +11,7 @@ namespace People
         [SerializeField] private NavMeshAgent _agent;
         [SerializeField] private HumanBedController _humanBedController;
         private RegistrationTable _registrationTable;
+        private BedManager _bedsManager;
         private int _positionIndex;
 
 
@@ -18,6 +19,7 @@ namespace People
         private void Start()
         {
             _registrationTable = FindObjectOfType<RegistrationTable>();
+            _bedsManager = FindObjectOfType<BedManager>();
             EventsManager.Instance.OnTimerToAcceptPeopleEnd += OnTimerToAcceptPeopleEnd;
             StartCoroutine(EnterInQueue());
             
@@ -46,7 +48,7 @@ namespace People
 
         private IEnumerator EnterInQueue()
         {
-            if (CheckEnoughSpaceInQueue() && !_human.LeftQueue)
+            if (CheckEnoughSpaceInQueue() && !_human.IsInQueue)
             {
                 Debug.Log("Enter");
                 for (int i = 0; i < _registrationTable.Points.Count; i++)
@@ -84,6 +86,7 @@ namespace People
         private void TakePositionInQueue(int index)
         {
             _registrationTable.Points[index].IsBusy = true;
+            _human.IsInQueue = true;
         }
         private void SetAgentDestination(Vector3 position)
         {
@@ -96,7 +99,7 @@ namespace People
         #region Next Queue Position
         private IEnumerator CheckNextPositionInQueue()
         {
-            if (!_human.LeftQueue)
+            if (_human.IsInQueue)
             {
                 Debug.Log("Check Next Position");
                 int number = 1;
@@ -115,16 +118,15 @@ namespace People
                 }
             }
         }
-        
+
 
         #endregion
 
         #region Quit Queue
-
+    
         private bool CanQuitQueue()
         {
-            //if is available beds
-            if (IsOnQuitQueuePosition(_positionIndex))
+            if (IsOnQuitQueuePosition(_positionIndex) && _human.IsInQueue && _bedsManager.IsAnyBedAvailable())
             {
                 ReleasePlaceInQueue(_positionIndex);
                 return true;
@@ -151,11 +153,12 @@ namespace People
 
         private void QuitQueue()
         {
-            if (CanQuitQueue() && !_human.LeftQueue)
+            if (CanQuitQueue())
             {
                 Debug.Log("Quiting Queue");
-                _human.LeftQueue = true;
+                _human.IsInQueue = false;
                 _humanBedController.enabled = true;
+                _human.IsGoingToBed = true;
                 enabled = false;
                 //give money and ex
             }
