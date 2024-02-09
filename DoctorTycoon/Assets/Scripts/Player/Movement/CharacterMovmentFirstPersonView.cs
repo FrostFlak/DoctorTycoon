@@ -4,62 +4,72 @@ using UnityEngine.AI;
 
 namespace Player
 {
-    public class CharacterMovmentFirstPersonView : MonoBehaviour
+    public class CharacterMovmentFirstPersonView : CharacterMovment
 {
-        [SerializeField] private float _lookRotationSpeed;
-        [SerializeField] private bool _isWalking;
-        [SerializeField] private CinemachineVirtualCamera _camera;
-        [SerializeField] private NavMeshAgent _agent;
-        [SerializeField] private Animator _animator;
-        private bool _lockCursor = true;
+        [SerializeField] private CinemachineVirtualCamera _virtualCamera;
+        private bool _isCursorLocked;
         private Vector3 _targetVelocity;
         private float _horizontal;
         private float _vertical;
+        private string _stringHorizontalAxis = "Horizontal";
+        private string _stringVerticalAxis = "Vertical";
+        private string _mouseXAxis = "Mouse X";
         private float _yaw = 0.0f;
         private float _pitch = 0.0f;
 
-        public bool IsWalking {  get { return _isWalking; } }
+        public bool IsCursorLocked {  get { return _isCursorLocked; } set {  _isCursorLocked = value; } }
+
+
+        private void OnEnable()
+        {
+            _isCursorLocked = true;
+        }
+
+        private void OnDisable()
+        {
+            _isCursorLocked = false;
+        }
 
         private void Update()
         {
-            AssignMoveButtons();
-            RotateFace();
-            Move();
+            AssignInputs();
+            TargetFace();
+            Move(Agent);
         }
 
-        private void AssignMoveButtons()
+        public override void AssignInputs()
         {
-            _horizontal = Input.GetAxisRaw("Horizontal");
-            _vertical = Input.GetAxisRaw("Vertical"); 
+            _horizontal = Input.GetAxisRaw(_stringHorizontalAxis);
+            _vertical = Input.GetAxisRaw(_stringVerticalAxis); 
         }
-        private void Move()
+        public override void Move(NavMeshAgent agent)
         {
-        _targetVelocity = new Vector3(_horizontal, 0, _vertical);
+            _targetVelocity = new Vector3(_horizontal, 0, _vertical);
 
             if (_targetVelocity.x != 0 || _targetVelocity.z != 0)
             {
-                _isWalking = true;
+                IsWalking = true;
             }
             else
             {
-                _isWalking = false;
+                IsWalking = false;
             }
-            _agent.ResetPath();
-            _targetVelocity = transform.TransformDirection(_targetVelocity) * _agent.speed * Time.deltaTime;
-            _agent.Move(_targetVelocity);
+            agent.ResetPath();
+            _targetVelocity = transform.TransformDirection(_targetVelocity) * agent.speed * Time.deltaTime;
+            agent.Move(_targetVelocity);
         }
 
-        private void RotateFace()
+        public override void TargetFace()
         {
-            if (_lockCursor)
+            if (_isCursorLocked)
             {
                 Cursor.lockState = CursorLockMode.Locked;
             }
-            _yaw = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * _lookRotationSpeed;
+            _yaw = transform.localEulerAngles.y + Input.GetAxis(_mouseXAxis) * LookRotationSpeed;
             transform.localEulerAngles = new Vector3(0, _yaw, 0);
 
             _pitch = Mathf.Clamp(_pitch, -180, 180);
-            _camera.transform.localEulerAngles = new Vector3(_pitch, 0, 0);
+            _virtualCamera.transform.localEulerAngles = new Vector3(_pitch, 0, 0);
         }
 }
 

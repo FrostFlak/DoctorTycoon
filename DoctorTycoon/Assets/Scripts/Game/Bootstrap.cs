@@ -8,8 +8,8 @@ public class Bootstrap : MonoBehaviour
     [Header("Systems")]
     [SerializeField] private SaveSystem _saveSystem;
     [SerializeField] private HumansManager _humansManager;
-    [SerializeField] private CharacterMovmentThirdPersonView _characterMovmentThirdPersonView;
-    [SerializeField] private MovementType _movementType;
+    [SerializeField] private CharacterClickMovmentThirdPersonView _characterClickMovmentThirdPersonView;
+    [SerializeField] private CameraViewChanger _movementType;
     [SerializeField] private RegistrationTable _registrationTable;
 
     [Header("Stats")]
@@ -57,7 +57,7 @@ public class Bootstrap : MonoBehaviour
 
     private void InitializePlayer()
     {
-        _characterMovmentThirdPersonView.Initialize();
+        _characterClickMovmentThirdPersonView.Initialize();
     }
 
     private void InitializePeoplesSystems()

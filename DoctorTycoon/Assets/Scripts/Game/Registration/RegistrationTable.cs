@@ -55,7 +55,7 @@ namespace People
 
         private void OnTriggerStay(Collider other)
         {
-            if(other.TryGetComponent(out MovementType player) && IsSomeoneInQueue() && _bedManager.IsAnyBedAvailable() && _points[0].IsBusy)
+            if(other.TryGetComponent(out CameraViewChanger player) && IsSomeoneInQueue() && _bedManager.IsAnyBedAvailable() && _points[0].IsBusy)
             {
                 _inZone = true;
                 EventsManager.Instance.OnStayInRegistrationTriggerZoneEvent();
@@ -71,7 +71,7 @@ namespace People
 
         private void OnTriggerExit(Collider other)
         {
-            if(other.TryGetComponent(out MovementType player))
+            if(other.TryGetComponent(out CameraViewChanger player))
             {
                 _inZone = false;
                 EventsManager.Instance.OnExitRegistartionTriggerZoneEvent();

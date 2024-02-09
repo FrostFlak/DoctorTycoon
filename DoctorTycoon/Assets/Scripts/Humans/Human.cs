@@ -5,7 +5,7 @@ namespace People
 
 [RequireComponent(typeof(CapsuleCollider) , typeof(Rigidbody) , typeof(NavMeshAgent))]
 [RequireComponent(typeof(Animator) , typeof(HumanAnimationController) , typeof(HumanQueueController))]
-[RequireComponent(typeof(HumanBedController))]
+[RequireComponent(typeof(HumanBedController) , typeof(BoxCollider))]
     public abstract class Human : MonoBehaviour
     {
         #region SerializedFields

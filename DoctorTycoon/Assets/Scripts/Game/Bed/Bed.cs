@@ -24,7 +24,7 @@ namespace People
         }
         private void OnTriggerEnter(Collider other)
         {
-            if(other.TryGetComponent(out MovementType character))
+            if(other.TryGetComponent(out CameraViewChanger character))
                 _inZone = true;
             else if(other.TryGetComponent(out Human human))
                 human.IsGoingToBed = false;
@@ -32,7 +32,7 @@ namespace People
 
         private void OnTriggerStay(Collider other)
         {
-            if (other.TryGetComponent(out MovementType character) && _isBusy)
+            if (other.TryGetComponent(out CameraViewChanger character) && _isBusy)
             {
                 EventsManager.Instance.OnStayInBedTriggerZoneEvent();
                 _timeToHeal += Time.deltaTime;
@@ -46,7 +46,7 @@ namespace People
         }
         private void OnTriggerExit(Collider other)
         {
-            if (other.TryGetComponent(out MovementType character))
+            if (other.TryGetComponent(out CameraViewChanger character))
             {
                 EventsManager.Instance.OnExitBedTriggerZoneEvent();
                 _inZone = false;

@@ -16,6 +16,7 @@ namespace People
         private const string IDLE = "Idle";
         private const string WALK = "Walk";
         private const string SLEEP = "Sleep";
+        private const string INJURED_WALK = "InjuredWalk";
 
         private void Start()
         {
@@ -59,13 +60,11 @@ namespace People
         private void StartMoveAnimation()
         {
             if (_agent.velocity == Vector3.zero)
-            {
                 _animator.Play(IDLE);
-            }
-            else
-            {
+            else if (_agent.velocity != Vector3.zero && _human.LeftBed)
                 _animator.Play(WALK);
-            }
+            else if (_agent.velocity != Vector3.zero && !_human.LeftBed)
+                _animator.Play(INJURED_WALK);
         }
 
         private void StartLayAnimation()
@@ -84,11 +83,7 @@ namespace People
 
         private void TurnOnAgent()
         {
-            if (_bedManager.Beds[_humanBedController.Index].CanLeaveBed && _human.IsLaying && !_human.LeftBed)
-            {
-                Debug.Log($"Human Animator: {gameObject.transform.position}");
-                _agent.enabled = true;
-            }        
+            if (_bedManager.Beds[_humanBedController.Index].CanLeaveBed && _human.IsLaying && !_human.LeftBed) _agent.enabled = true;      
         }
 
     }

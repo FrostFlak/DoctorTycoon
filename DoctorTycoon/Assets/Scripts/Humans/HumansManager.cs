@@ -12,6 +12,7 @@ namespace People
         [Header("Human Spawn Prefabs")]
         [SerializeField] private WomanDress _womanDress;
         [SerializeField] private ManCasual _manCasual;
+        [SerializeField] private FemaleCasual _femaleCasual;
 
         [Header("Managers")]
         [SerializeField] private BedManager _bedManager;
@@ -48,9 +49,11 @@ namespace People
         {
             if (CheckSpawnPosibility())
             {
-                SpawnWomanDress();
-               // SpawnManCasual();
-                
+                //SpawnWomanDress();
+                //SpawnManCasual();
+                SpawnFemaleCasual();
+
+
             }
     }
 
@@ -65,6 +68,12 @@ namespace People
         {
             var spawnWomanDress = Instantiate(_womanDress, _spawnPosition.transform.position, Quaternion.identity, transform.parent);
             _allHumans.Add(spawnWomanDress);
+            EventsManager.Instance.OnPatientSpawnedEvent(_allHumans.Count);
+        }
+        private void SpawnFemaleCasual()
+        {
+            FemaleCasual spawnFemaleCasual = Instantiate(_femaleCasual, _spawnPosition.transform.position, Quaternion.identity, transform.parent);
+            _allHumans.Add(spawnFemaleCasual);
             EventsManager.Instance.OnPatientSpawnedEvent(_allHumans.Count);
         }
 
