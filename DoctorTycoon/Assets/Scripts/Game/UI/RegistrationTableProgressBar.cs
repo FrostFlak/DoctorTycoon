@@ -15,11 +15,14 @@ namespace People
         private void Start()
         {
             EventsManager.Instance.OnStayInRegistrationTriggerZone += IncreaseProgressBar;
+            EventsManager.Instance.OnTimerToAcceptPeopleEnd += IncreaseProgressBar;
         }
 
         private void OnDisable()
         {
             EventsManager.Instance.OnStayInRegistrationTriggerZone -= IncreaseProgressBar;
+            EventsManager.Instance.OnTimerToAcceptPeopleEnd -= IncreaseProgressBar;
+
         }
 
         private void Update()

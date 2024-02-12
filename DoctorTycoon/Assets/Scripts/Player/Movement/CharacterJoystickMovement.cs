@@ -7,8 +7,6 @@ public class CharacterJoystickMovement : CharacterMovment
 {
     [SerializeField] private Vector2 _joystickSize = new Vector2(200, 200);
     [SerializeField] private FloatingJoystick _joystick;
-    [SerializeField] private LayerMask _joystickLayer;
-    [SerializeField] private Camera _camera;
     private Vector3 _scaledMovement;
     private Finger _movementFinger;
     private Vector2 _movementAmount;

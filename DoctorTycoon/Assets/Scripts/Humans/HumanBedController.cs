@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Rendering;
 
 namespace People
 {
@@ -12,6 +13,7 @@ namespace People
         private Vector3 _releasePosition;
         private BedManager _bedsManager;
         private int _index;
+        private int _timeWaitingInterval = 3;
         public int Index { get { return _index; } }
         public Vector3 LayPosition {  get { return _layPosition; } }
         public Vector3 ReleasePosition { get { return _releasePosition; } }
@@ -57,14 +59,12 @@ namespace People
         {
             _agent.SetDestination(position);
         }
-
         private void SetPositions(int i)
         {
             _bedsManager.FreeBed = _bedsManager.Beds[i].transform.position;
             _layPosition = _bedsManager.Beds[i].transform.position;
             _releasePosition = _bedsManager.Beds[i].transform.position - new Vector3(-2f, 0f, 0f);
         }
-
         private void ReleaseBed(int index)
         {
             if (_bedsManager.Beds[index].IsBusy)
@@ -73,6 +73,34 @@ namespace People
             }
         }
 
+        private IEnumerator SetQuitRoomPosition(int index , int timeInterval)
+        {
+            WaitForSeconds waitForSeconds = new WaitForSeconds(timeInterval);
+            if (index >= 0 && index <= 3)
+            {
+                SetAgentDestination(_bedsManager.ExitRoomPosition[0].transform.position);
+                yield return waitForSeconds;
+                SetAgentDestination(_bedsManager.QuitPosition);
+            }
+            else if (index >= 4 && index <= 7)
+            {
+                SetAgentDestination(_bedsManager.ExitRoomPosition[1].transform.position);
+                yield return waitForSeconds;
+                SetAgentDestination(_bedsManager.QuitPosition);
+            }
+            else if (index >= 8 && index <= 11) //????????
+            {
+                SetAgentDestination(_bedsManager.ExitRoomPosition[2].transform.position);
+                yield return waitForSeconds;
+                SetAgentDestination(_bedsManager.QuitPosition);
+            }
+            else if (index >= 12 && index <= 15)
+            {
+                SetAgentDestination(_bedsManager.ExitRoomPosition[3].transform.position);
+                yield return waitForSeconds;
+                SetAgentDestination(_bedsManager.QuitPosition);
+            }
+        }
         private void QuitBed()
         {
             if (_bedsManager.Beds[_index].CanLeaveBed && _human.IsLaying)
@@ -82,7 +110,7 @@ namespace People
                 _human.LeftBed = true;
                 _bedsManager.Beds[_index].CanLeaveBed = false;
                 EventsManager.Instance.OnPatientLeaveBedEvent(_human);
-                SetAgentDestination(_bedsManager.QuitPosition);
+                StartCoroutine(SetQuitRoomPosition(_index , _timeWaitingInterval));
             }
         }
 

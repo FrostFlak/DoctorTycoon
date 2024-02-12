@@ -33,13 +33,13 @@ namespace Player
 
         public override void Move(NavMeshAgent agent)
         {
-            /*RaycastHit hit;
+            RaycastHit hit;
             if (Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out hit, 100, _clickableLayer))
             {
                 agent.destination = hit.point;
                 if (_clickParticle != null)
                     Instantiate(_clickParticle, hit.point += new Vector3(0f, 0.1f, 0f), _clickParticle.transform.rotation);
-            }*/
+            }
         }
 
         public override void TargetFace(NavMeshAgent agent)

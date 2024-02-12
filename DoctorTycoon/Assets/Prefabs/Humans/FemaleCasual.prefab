@@ -430,7 +430,7 @@ GameObject:
   - component: {fileID: 7919641268190554161}
   - component: {fileID: 8718552830903746176}
   - component: {fileID: 8431930878297790148}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FemaleCasual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -447,7 +447,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 75.23114, y: 0.25, z: 61.37758}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.15, y: 1.15, z: 1.15}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5862383981469242290}
@@ -543,9 +543,9 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Interpolate: 1
+  m_Constraints: 112
+  m_CollisionDetection: 1
 --- !u!195 &1319585653796039072
 NavMeshAgent:
   m_ObjectHideFlags: 0

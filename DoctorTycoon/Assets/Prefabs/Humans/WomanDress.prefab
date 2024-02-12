@@ -242,7 +242,7 @@ GameObject:
   - component: {fileID: 1947686196840458394}
   - component: {fileID: 3392136560390731461}
   - component: {fileID: 8049292670509274929}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WomanDress
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -393,8 +393,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isLaying: 0
-  _leftQueue: 0
+  _isInQueue: 0
   _leftBed: 0
+  _isGoingToBed: 0
 --- !u!114 &1947686196840458394
 MonoBehaviour:
   m_ObjectHideFlags: 0

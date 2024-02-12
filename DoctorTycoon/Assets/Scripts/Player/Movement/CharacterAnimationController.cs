@@ -5,7 +5,6 @@ using UnityEngine.AI;
 public class CharacterAnimationController : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
-    
     [SerializeField] private NavMeshAgent _agent;
     [SerializeField] private CharacterMovmentFirstPersonView _firstPersonController;
     [SerializeField] private CharacterJoystickMovement _characterJoystickMovement;
@@ -61,7 +60,6 @@ public class CharacterAnimationController : MonoBehaviour
         _animator.SetFloat(SEARCHSPEED, _searchSpeed);
         _animator.Play(SEARCH);
     }
-
     private void SwitchRegistrationAnimationState() => _isPlayingRegistrationAnimation = false;
 
     private void StartHealAnimation()

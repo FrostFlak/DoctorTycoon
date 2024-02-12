@@ -23,11 +23,13 @@ namespace Player
         private void OnEnable()
         {
             _isCursorLocked = true;
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
         private void OnDisable()
         {
             _isCursorLocked = false;
+            Cursor.lockState = CursorLockMode.None;
         }
 
         private void Update()
@@ -61,10 +63,6 @@ namespace Player
 
         public override void TargetFace()
         {
-            if (_isCursorLocked)
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-            }
             _yaw = transform.localEulerAngles.y + Input.GetAxis(_mouseXAxis) * LookRotationSpeed;
             transform.localEulerAngles = new Vector3(0, _yaw, 0);
 
