@@ -1266,6 +1266,9 @@ MonoBehaviour:
   _isInQueue: 0
   _leftBed: 0
   _isGoingToBed: 0
+  _leftHospital: 0
+  _bedController: {fileID: 2584593629626305978}
+  _queueController: {fileID: 136670640482504141}
 --- !u!114 &2847329290240564202
 MonoBehaviour:
   m_ObjectHideFlags: 0

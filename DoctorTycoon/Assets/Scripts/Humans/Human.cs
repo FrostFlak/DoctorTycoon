@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 namespace People
@@ -13,10 +14,13 @@ namespace People
         [SerializeField] private bool _isInQueue;
         [SerializeField] private bool _leftBed;
         [SerializeField] private bool _isGoingToBed;
+        [SerializeField] private bool _leftHospital;
+        [SerializeField] private HumanBedController _bedController;
+        [SerializeField] private HumanQueueController _queueController;
         #endregion
 
         #region Private Fields
-
+        private const string EnterInQueueString = "EnterInQueue";
         #endregion
 
         #region Properties
@@ -24,8 +28,29 @@ namespace People
         public bool IsInQueue { get { return _isInQueue; } set { _isInQueue = value; } }
         public bool LeftBed { get { return _leftBed; } set { _leftBed = value; } }
         public bool IsGoingToBed { get { return _isGoingToBed; } set { _isGoingToBed = value; } }
+        public bool LeftHospital { get {  return _leftHospital; } set { _leftBed = value; } }
         #endregion
 
+        public void OnHumanEndHealing()
+        {
+            _isLaying = false;
+            _isInQueue = false;
+            _leftBed = false;
+            _isGoingToBed = false;
+            _leftHospital = false;
+            _bedController.enabled = false;
+            _queueController.enabled = true;
+        }
+
+        public void EnterInQueue()
+        {
+            _queueController.StartCoroutine(EnterInQueueString);
+        }
+
+        public void ReUseHuman()
+        {
+            //_bedController.StartCoroutine();
+        }
 
 
     }

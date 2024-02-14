@@ -62,5 +62,6 @@ public class Bootstrap : MonoBehaviour
 
     private void InitializePeoplesSystems()
     {
+
     }
 }

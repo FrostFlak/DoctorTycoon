@@ -22,7 +22,6 @@ namespace People
             _bedsManager = FindObjectOfType<BedManager>();
             EventsManager.Instance.OnTimerToAcceptPeopleEnd += OnTimerToAcceptPeopleEnd;
             StartCoroutine(EnterInQueue());
-            
         }
 
         private void OnDisable()
@@ -32,6 +31,7 @@ namespace People
 
         private void OnTimerToAcceptPeopleEnd()
         {
+            Debug.Log(123);
             QuitQueue();
         }
         #endregion
@@ -46,7 +46,7 @@ namespace People
                 return true;
         }
 
-        private IEnumerator EnterInQueue()
+        public IEnumerator EnterInQueue()
         {
             if (CheckEnoughSpaceInQueue() && !_human.IsInQueue)
             {

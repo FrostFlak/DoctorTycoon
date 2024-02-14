@@ -1,5 +1,6 @@
 ﻿using Player;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace People
 {
@@ -11,21 +12,37 @@ namespace People
         [SerializeField] private float _maxTimeToHeal;
         [SerializeField] private bool _inZone;
         [SerializeField] private bool _canLeaveBed;
+        [SerializeField] private Image _progressBar;
+        [SerializeField] private GameObject _progressBarParent;
+
         public bool IsBusy { get { return _isBusy; } set { _isBusy = value; } }
         public bool IsPurchased { get { return _isPurchased; } set { _isPurchased = value; } }
         public bool CanLeaveBed { get { return _canLeaveBed; } set { _canLeaveBed = value; } }
 
+        public float TimeToHeal { get { return _timeToHeal; } }
+
+        private void Start()
+        {
+            _progressBarParent.SetActive(false);
+        }
         private void Update()
         {
-            if (!_inZone) 
+            if (!_inZone)
+            {
                 DecreaseProgress();
+                DecreaseProgressBar();
+            }
             if(_canLeaveBed)
                 _isBusy = false;
         }
         private void OnTriggerEnter(Collider other)
         {
             if(other.TryGetComponent(out CameraViewChanger character))
+            {
                 _inZone = true;
+                if(_isBusy)
+                    _progressBarParent.SetActive(true);
+            }
             else if(other.TryGetComponent(out Human human))
                 human.IsGoingToBed = false;
         }
@@ -36,6 +53,7 @@ namespace People
             {
                 EventsManager.Instance.OnStayInBedTriggerZoneEvent();
                 _timeToHeal += Time.deltaTime;
+                IncreaseProgressBar();
                 if (_timeToHeal >= _maxTimeToHeal)
                 {
                     _canLeaveBed = true;
@@ -50,6 +68,7 @@ namespace People
             {
                 EventsManager.Instance.OnExitBedTriggerZoneEvent();
                 _inZone = false;
+                _progressBarParent.SetActive(false);
             }
         }
         private void DecreaseProgress()
@@ -59,6 +78,19 @@ namespace People
             {
                 _timeToHeal = 0;
             }
+        }
+
+        private void IncreaseProgressBar()
+        {
+            _progressBar.fillAmount = (_timeToHeal / _maxTimeToHeal) / 1f;
+            if (_progressBar.fillAmount == 1)
+            {
+                _progressBar.fillAmount = 0f;
+            }
+        }
+        private void DecreaseProgressBar()
+        {
+            _progressBar.fillAmount = (_timeToHeal / _maxTimeToHeal) / 1f;
         }
     }
 

@@ -1,37 +1,42 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Rendering;
 
 namespace People
 {
     public class HumanBedController : MonoBehaviour
     {
+        #region SerializedFields
         [SerializeField] private Human _human;
         [SerializeField] private NavMeshAgent _agent;
+        #endregion
+
+        #region PrivateFieleds
         private Vector3 _layPosition;
         private Vector3 _releasePosition;
         private BedManager _bedsManager;
         private int _index;
-        private int _timeWaitingInterval = 3;
+        private const float _onQuitWaitingTimeInterval = 2.5f;
+        private const float _onEntraceWaitingTimeInterval = 2f;
+        #endregion
+
+        #region Properties
         public int Index { get { return _index; } }
         public Vector3 LayPosition {  get { return _layPosition; } }
         public Vector3 ReleasePosition { get { return _releasePosition; } }
 
+        #endregion
+
         private void Start()
         {
             _bedsManager = FindObjectOfType<BedManager>();
-            EventsManager.Instance.OnTimerToHealPatinetEnd += OnTimerToHealPeopleEnd;
+            EventsManager.Instance.OnTimerToHealPatinetEnd += QuitBed;
             StartCoroutine(TakeBed());
         }
 
         private void OnDisable()
         {
-            EventsManager.Instance.OnTimerToHealPatinetEnd -= OnTimerToHealPeopleEnd;
-        }
-        private void OnTimerToHealPeopleEnd()
-        {
-            QuitBed();
+            EventsManager.Instance.OnTimerToHealPatinetEnd -= QuitBed;
         }
 
         private IEnumerator TakeBed()
@@ -49,7 +54,7 @@ namespace People
                     SetPositions(i);
                     _human.IsLaying = true;
                     _index = i;
-                    SetAgentDestination(_bedsManager.FreeBed);
+                    StartCoroutine(GoToWayPointPosition(i, _onEntraceWaitingTimeInterval, _bedsManager.FreeBed));
                     yield break;
                 }
             }
@@ -73,32 +78,80 @@ namespace People
             }
         }
 
-        private IEnumerator SetQuitRoomPosition(int index , int timeInterval)
+        private IEnumerator GoToWayPointPosition(int index , float timeInterval ,Vector3 position)
         {
             WaitForSeconds waitForSeconds = new WaitForSeconds(timeInterval);
-            if (index >= 0 && index <= 3)
+            if (index >= 0 && index <= 2)
             {
-                SetAgentDestination(_bedsManager.ExitRoomPosition[0].transform.position);
+                SetAgentDestination(_bedsManager.WaypointPosition[(int)WaypointsPositions.LeftDownRoom].transform.position);
                 yield return waitForSeconds;
-                SetAgentDestination(_bedsManager.QuitPosition);
+                SetAgentDestination(position);
             }
-            else if (index >= 4 && index <= 7)
+            else if (index >= 3 && index <= 5)
             {
-                SetAgentDestination(_bedsManager.ExitRoomPosition[1].transform.position);
+                SetAgentDestination(_bedsManager.WaypointPosition[(int)WaypointsPositions.RightDownRoom].transform.position);
                 yield return waitForSeconds;
-                SetAgentDestination(_bedsManager.QuitPosition);
+                SetAgentDestination(position);
             }
-            else if (index >= 8 && index <= 11) //????????
+            else if (index >= 6 && index <= 8)
             {
-                SetAgentDestination(_bedsManager.ExitRoomPosition[2].transform.position);
+                SetAgentDestination(_bedsManager.WaypointPosition[(int)WaypointsPositions.LeftUpRoom].transform.position);
                 yield return waitForSeconds;
-                SetAgentDestination(_bedsManager.QuitPosition);
+                SetAgentDestination(position);
             }
-            else if (index >= 12 && index <= 15)
+            else if (index >= 9 && index <= 11)
             {
-                SetAgentDestination(_bedsManager.ExitRoomPosition[3].transform.position);
+                SetAgentDestination(_bedsManager.WaypointPosition[(int)WaypointsPositions.RightUpRoom].transform.position);
                 yield return waitForSeconds;
-                SetAgentDestination(_bedsManager.QuitPosition);
+                SetAgentDestination(position);
+            }
+            else if (index > 11)
+            {
+                yield return waitForSeconds;
+                SetAgentDestination(position);
+            }
+        }
+        private IEnumerator GoToWayPointPosition(int index, float timeInterval, Vector3 firstPosition , Vector3 secondPosition)
+        {
+            WaitForSeconds waitForSeconds = new WaitForSeconds(timeInterval);
+            if (index >= 0 && index <= 2)
+            {
+                SetAgentDestination(_bedsManager.WaypointPosition[(int)WaypointsPositions.LeftDownRoom].transform.position);
+                yield return waitForSeconds;
+                SetAgentDestination(firstPosition);
+                yield return waitForSeconds;
+                SetAgentDestination(secondPosition);
+            }
+            else if (index >= 3 && index <= 5)
+            {
+                SetAgentDestination(_bedsManager.WaypointPosition[(int)WaypointsPositions.RightDownRoom].transform.position);
+                yield return waitForSeconds;
+                SetAgentDestination(firstPosition);
+                yield return waitForSeconds;
+                SetAgentDestination(secondPosition); 
+            }
+            else if (index >= 6 && index <= 8)
+            {
+                SetAgentDestination(_bedsManager.WaypointPosition[(int)WaypointsPositions.LeftUpRoom].transform.position);
+                yield return waitForSeconds;
+                SetAgentDestination(firstPosition);
+                yield return waitForSeconds;
+                SetAgentDestination(secondPosition);
+            }
+            else if (index >= 9 && index <= 11)
+            {
+                SetAgentDestination(_bedsManager.WaypointPosition[(int)WaypointsPositions.RightUpRoom].transform.position);
+                yield return waitForSeconds;
+                SetAgentDestination(firstPosition);
+                yield return waitForSeconds;
+                SetAgentDestination(secondPosition);
+            }
+            else if (index > 11)
+            {
+                yield return waitForSeconds;
+                SetAgentDestination(firstPosition);
+                yield return waitForSeconds;
+                SetAgentDestination(secondPosition);
             }
         }
         private void QuitBed()
@@ -110,7 +163,11 @@ namespace People
                 _human.LeftBed = true;
                 _bedsManager.Beds[_index].CanLeaveBed = false;
                 EventsManager.Instance.OnPatientLeaveBedEvent(_human);
-                StartCoroutine(SetQuitRoomPosition(_index , _timeWaitingInterval));
+                StartCoroutine(GoToWayPointPosition(_index,
+                    _onQuitWaitingTimeInterval,
+                    _bedsManager.WaypointPosition[(int)WaypointsPositions.MiddleDoor].transform.position,
+                    _bedsManager.WaypointPosition[(int)WaypointsPositions.QuitHospital].transform.position));
+                
             }
         }
 
