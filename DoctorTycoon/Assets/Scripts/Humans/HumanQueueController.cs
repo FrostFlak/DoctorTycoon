@@ -10,18 +10,16 @@ namespace People
         [SerializeField] private Human _human;
         [SerializeField] private NavMeshAgent _agent;
         [SerializeField] private HumanBedController _humanBedController;
+        [SerializeField] private HumanAnimationController _humanAnimationController;
         private RegistrationTable _registrationTable;
-        private BedManager _bedsManager;
+        private BedManager _bedManager;
         private int _positionIndex;
 
 
         #region MonoBehaviour
-        private void Start()
+        private void OnEnable()
         {
-            _registrationTable = FindObjectOfType<RegistrationTable>();
-            _bedsManager = FindObjectOfType<BedManager>();
             EventsManager.Instance.OnTimerToAcceptPeopleEnd += OnTimerToAcceptPeopleEnd;
-            StartCoroutine(EnterInQueue());
         }
 
         private void OnDisable()
@@ -31,7 +29,6 @@ namespace People
 
         private void OnTimerToAcceptPeopleEnd()
         {
-            Debug.Log(123);
             QuitQueue();
         }
         #endregion
@@ -46,8 +43,11 @@ namespace People
                 return true;
         }
 
-        public IEnumerator EnterInQueue()
+        public IEnumerator EnterInQueue(RegistrationTable registrationTable , BedManager bedManager)
         {
+            _registrationTable = registrationTable;
+            _bedManager = bedManager;
+            _humanAnimationController.SetBedManager(bedManager);
             if (CheckEnoughSpaceInQueue() && !_human.IsInQueue)
             {
                 Debug.Log("Enter");
@@ -72,7 +72,7 @@ namespace People
             else
             {
                 yield return new WaitForSeconds(3f);
-                StartCoroutine(EnterInQueue());
+                StartCoroutine(EnterInQueue(registrationTable , bedManager));
             }
         }
 
@@ -126,7 +126,7 @@ namespace People
     
         private bool CanQuitQueue()
         {
-            if (IsOnQuitQueuePosition(_positionIndex) && _human.IsInQueue && _bedsManager.IsAnyBedAvailable())
+            if (IsOnQuitQueuePosition(_positionIndex) && _human.IsInQueue && _bedManager.IsAnyBedAvailable())
             {
                 ReleasePlaceInQueue(_positionIndex);
                 return true;
@@ -159,8 +159,9 @@ namespace People
                 _human.IsInQueue = false;
                 _humanBedController.enabled = true;
                 _human.IsGoingToBed = true;
+                _humanBedController.StartCoroutine(_humanBedController.TakeBed(_bedManager));
                 enabled = false;
-                //give money and ex
+                //give money and ex event
             }
             
         }

@@ -20,7 +20,6 @@ namespace People
         #endregion
 
         #region Private Fields
-        private const string EnterInQueueString = "EnterInQueue";
         #endregion
 
         #region Properties
@@ -42,16 +41,10 @@ namespace People
             _queueController.enabled = true;
         }
 
-        public void EnterInQueue()
+        public void EnterInQueue(RegistrationTable registrationTable , BedManager bedManager)
         {
-            _queueController.StartCoroutine(EnterInQueueString);
+            _queueController.StartCoroutine(_queueController.EnterInQueue(registrationTable , bedManager));
         }
-
-        public void ReUseHuman()
-        {
-            //_bedController.StartCoroutine();
-        }
-
 
     }
 

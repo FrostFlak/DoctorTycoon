@@ -5939,7 +5939,8 @@ MonoBehaviour:
   - {fileID: 6775090332427245634, guid: fa1422973d0056948a8c819174d570d4, type: 3}
   _manPrefab: {fileID: 4763560138431379755, guid: 37bb79354f1f2434f99f0f4b85a8be07, type: 3}
   _spawnPosition: {fileID: 271300657}
-  _spawnRate: 0.5
+  _spawnRate: 2
+  _registrationTable: {fileID: 6149468972301475347}
   _bedManager: {fileID: 280591782}
 --- !u!4 &266579820
 Transform:

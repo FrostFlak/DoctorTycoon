@@ -18,9 +18,8 @@ namespace People
         private const string SLEEP = "Sleep";
         private const string INJURED_WALK = "InjuredWalk";
 
-        private void Start()
+        private void OnEnable()
         {
-            _bedManager = FindObjectOfType<BedManager>();
             EventsManager.Instance.OnTimerToHealPatinetEnd += TurnOnAgent;
         }
 
@@ -42,6 +41,7 @@ namespace People
             }
         }
 
+        public void SetBedManager(BedManager bedManager) => _bedManager = bedManager;
         private void TargetFace()
         {
             if (_agent.velocity != Vector3.zero)
@@ -56,7 +56,6 @@ namespace People
             Quaternion lookRotation = Quaternion.LookRotation(new Vector3(0f , 0f , 0f + 0.00001f));
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * _lookRotationSpeed);
         }
-
         private void StartMoveAnimation()
         {
             if (_agent.velocity == Vector3.zero)

@@ -10,6 +10,7 @@ public class QuitHospitalPlace : MonoBehaviour
         {
             human.LeftHospital = true;
             _humansManager.Pool.Release(human);
+            _humansManager.StartCoroutine(_humansManager.SpawnCoroutine());
         }
     }
 }

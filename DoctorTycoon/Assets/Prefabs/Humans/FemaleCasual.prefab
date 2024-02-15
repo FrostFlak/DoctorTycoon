@@ -619,6 +619,7 @@ MonoBehaviour:
   _human: {fileID: 7002053436406226257}
   _agent: {fileID: 1319585653796039072}
   _humanBedController: {fileID: 8431930878297790148}
+  _humanAnimationController: {fileID: 7919641268190554161}
 --- !u!114 &8431930878297790148
 MonoBehaviour:
   m_ObjectHideFlags: 0

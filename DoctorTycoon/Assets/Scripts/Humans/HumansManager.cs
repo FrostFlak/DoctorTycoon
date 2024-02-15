@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Net.NetworkInformation;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -8,9 +7,9 @@ namespace People
 {
     public class HumansManager : MonoBehaviour
 {
+        #region SerializedFields
         [Header("Human Setting")]
         [SerializeField] private List<Human> _allHumans = new List<Human>();
-        [SerializeField] private int _maxHumanCount;
 
         [Header("Human Spawn Prefabs")]
         [SerializeField] private List<Human> _humanPrefabs;
@@ -22,29 +21,49 @@ namespace People
 
 
         [Header("Managers")]
+        [SerializeField] private RegistrationTable _registrationTable;
         [SerializeField] private BedManager _bedManager;
 
+        #endregion
+
+        #region PrivateFields
+        private int _maxHumanCount;
         private ObjectPool<Human> _humanPool;
         private WaitForSeconds _waitForSpawnInterval;
         private WaitForSeconds _waitForCheckSpawnInterval;
         private float _spawnCheckInterval = 5f;
 
+        #endregion
+
+        #region Properties
         public ObjectPool<Human> Pool {  get { return _humanPool; } }
 
+        #endregion
 
+        #region MonoBehaviour
         private void Start()
         {
-            _maxHumanCount = _bedManager.Beds.Count + 1;
-            _humanPool = new ObjectPool<Human>(CreatePoolObject , OnTakeFromPool , OnReturnToPool , OnDestroyObject , false , _maxHumanCount, _maxHumanCount + 1);
-            _waitForSpawnInterval = new WaitForSeconds(_spawnRate);
-            _waitForCheckSpawnInterval = new WaitForSeconds(_spawnCheckInterval);
-            //StartCoroutine(SpawnCoroutine());
+            StartCoroutine(SpawnCoroutine());
             EventsManager.Instance.OnPatientLeaveBed += RemovePeopleFromList;
         }
+        private void OnDisable()
+        {
+            EventsManager.Instance.OnPatientLeaveBed -= RemovePeopleFromList;
+        }
+        public void Initialize()
+        {
+            _maxHumanCount = _bedManager.Beds.Count + 1;
+            _humanPool = new ObjectPool<Human>(CreatePoolObject, OnTakeFromPool, OnReturnToPool, OnDestroyObject, false, _maxHumanCount, _maxHumanCount);
+            _waitForSpawnInterval = new WaitForSeconds(_spawnRate);
+            _waitForCheckSpawnInterval = new WaitForSeconds(_spawnCheckInterval);
+        }
 
+        #endregion
+
+        #region Pool
         private Human CreatePoolObject()
         {
-            Human human = Instantiate(_manPrefab, _spawnPosition.transform.position, Quaternion.identity, transform);
+            Human human = Instantiate(_humanPrefabs[Random.Range(0, _humanPrefabs.Count)], _spawnPosition.transform.position, Quaternion.identity, transform);
             human.gameObject.SetActive(false);
             Debug.Log("Create");
             return human;
@@ -54,8 +73,8 @@ namespace People
         {
             human.gameObject.SetActive(true);
             human.transform.SetParent(transform, true);
+            human.EnterInQueue(_registrationTable , _bedManager);
             _allHumans.Add(human);
-            human.EnterInQueue();
             Debug.Log("OnTake");
         }
 
@@ -74,20 +93,13 @@ namespace People
             Debug.Log("OnDestroy");
         }
 
-        private void OnDisable()
-        {
-            EventsManager.Instance.OnPatientLeaveBed -= RemovePeopleFromList;
-        }
+        #endregion
 
+        #region Spawn
         private bool CheckSpawnPosibility() 
         {
-            if (_allHumans.Count > _maxHumanCount)
-            {
-               // Debug.LogWarning("Too Much People");
-                return false;
-            }
-            else
-                return true;
+            if (_allHumans.Count > _maxHumanCount) return false;
+            else return true;
         }
 
         public void TryToSpawnHuman()
@@ -98,7 +110,7 @@ namespace People
             }
         }
 
-        private IEnumerator SpawnCoroutine()
+        public IEnumerator SpawnCoroutine()
         {
             for (int i = 0; i < _maxHumanCount; i++)
             {
@@ -106,11 +118,10 @@ namespace People
                 {
                     yield return _waitForSpawnInterval;
                     _humanPool.Get();
-                    yield return _waitForSpawnInterval;
                 }
+                else yield break;
             }
             yield return _waitForCheckSpawnInterval;
-            StartCoroutine(SpawnCoroutine());   
         }
 
         private void RemovePeopleFromList(Human human)
@@ -118,7 +129,8 @@ namespace People
             _allHumans.Remove(human);
             EventsManager.Instance.OnPatientLeaveHospitalEvent(_allHumans.Count);
         }
-        
+
+        #endregion
     }
 
 }
