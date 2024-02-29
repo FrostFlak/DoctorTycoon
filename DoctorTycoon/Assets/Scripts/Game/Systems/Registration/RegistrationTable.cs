@@ -28,7 +28,7 @@ namespace People
         public float TimeToAcceptClient { get { return _timeToAcceptClient; } }
         #endregion
 
-        private void Start()
+        public void Initialize()
         {
             _bedManager = FindObjectOfType<BedManager>();
             _quitQueuePosition = _points[0].transform.position;

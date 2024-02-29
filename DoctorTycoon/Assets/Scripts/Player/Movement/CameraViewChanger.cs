@@ -4,7 +4,7 @@ using UnityEngine.AI;
 namespace Player
 {
     [RequireComponent(typeof(Rigidbody), typeof(NavMeshAgent), typeof(Animator))]
-    [RequireComponent(typeof(CameraType), typeof(CharacterClickMovmentThirdPersonView), typeof(CharacterMovmentFirstPersonView))]
+    [RequireComponent(typeof(CameraType), typeof(CharacterMovmentFirstPersonView))]
     [RequireComponent(typeof(CharacterAnimationController))]
     public class CameraViewChanger : MonoBehaviour
     {
@@ -13,7 +13,6 @@ namespace Player
         [SerializeField] private LayerMask _firstPersonViewableLayers;
         [SerializeField] private CameraType _cameraType;
         [SerializeField] private CharacterMovmentFirstPersonView _characterMovmentFirstPersonView;
-        [SerializeField] private CharacterClickMovmentThirdPersonView _characterMovmentThirdPersonView;
         [SerializeField] private CharacterJoystickMovement _characterJoystickMovement;
 
         private void Update()
@@ -24,7 +23,7 @@ namespace Player
         {
             if(_cameraType.CurrentCameraIndex == 0)
             {
-                _characterMovmentThirdPersonView.enabled = true;
+                _characterJoystickMovement.enabled = true;
                 _mainCamera.cullingMask = _thirdPersonViewableLayers;
                 _characterMovmentFirstPersonView.enabled = false;
             }
@@ -32,7 +31,7 @@ namespace Player
             {
                 _characterMovmentFirstPersonView.enabled = true;
                 _mainCamera.cullingMask = _firstPersonViewableLayers;
-                _characterMovmentThirdPersonView.enabled= false;
+                _characterJoystickMovement.enabled= false;
             }
         }
 }

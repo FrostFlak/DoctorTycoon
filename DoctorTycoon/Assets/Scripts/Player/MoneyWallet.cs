@@ -1,22 +1,24 @@
-using Player;
 using UnityEngine;
-using UnityEngine.Events;
 
-public class MoneyWallet : MonoBehaviour
+namespace Player
 {
-
-    //change int to long
-    public void AddMoney(int count)
+    public class MoneyWallet : MonoBehaviour
     {
-        if (TryAddMoney(count))
+
+        //change int to long
+        public void AddMoney(int count)
         {
-            SaveSystem._playerData.Money += count;
-            EventsManager.Instance.OnMoneyAddedEvent();
+            if (TryAddMoney(count))
+            {
+                SaveSystem._playerData.Money += count;
+                EventsManager.Instance.OnMoneyAddedEvent();
+            }
+        }
+        private bool TryAddMoney(long count)
+        {
+            if(count < long.MaxValue && count >= 0) return true;
+            else return false;
         }
     }
-    private bool TryAddMoney(long count)
-    {
-        if(count < long.MaxValue && count >= 0) return true;
-        else return false;
-    }
+
 }

@@ -13,7 +13,6 @@ namespace People
 
         [Header("Human Spawn Prefabs")]
         [SerializeField] private List<Human> _humanPrefabs;
-        [SerializeField] private ManCasual _manPrefab;
 
         [Header("SpawnSettings")]
         [SerializeField] private Transform _spawnPosition;

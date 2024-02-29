@@ -8,7 +8,6 @@ public class Bootstrap : MonoBehaviour
     [Header("Systems")]
     [SerializeField] private SaveSystem _saveSystem;
     [SerializeField] private HumansManager _humansManager;
-    [SerializeField] private CharacterClickMovmentThirdPersonView _characterClickMovmentThirdPersonView;
     [SerializeField] private CameraViewChanger _movementType;
     [SerializeField] private RegistrationTable _registrationTable;
 
@@ -18,17 +17,21 @@ public class Bootstrap : MonoBehaviour
     [Header("ProgressBars")]
     [SerializeField] private LevelProgressBar _levelProgressBar;
     [SerializeField] private RegistrationTableProgressBar _registrationTableProgressBar;
+
+    private bool _hasDoneAwake;
     public static Bootstrap Instance { get; private set; }
     private void Awake()
     {
-        Initialize();
+        InitializeBootstrap();
         InitializeSaveSystem();
         InitializePlayer();
+        InitializeBasicSystems();
         InitializeUI();
         InitializePeoplesSystems();
+        _hasDoneAwake = true;   
     }
 
-    private void Initialize()
+    private void InitializeBootstrap()
     {
         if (Instance == null)
         {
@@ -48,6 +51,11 @@ public class Bootstrap : MonoBehaviour
         _saveSystem.LoadGame();
     }
 
+    private void InitializeBasicSystems()
+    {
+        _registrationTable.Initialize();
+    }
+
     private void InitializeUI()
     {
         _statsText.Initialize();
@@ -57,7 +65,6 @@ public class Bootstrap : MonoBehaviour
 
     private void InitializePlayer()
     {
-        _characterClickMovmentThirdPersonView.Initialize();
     }
 
     private void InitializePeoplesSystems()
