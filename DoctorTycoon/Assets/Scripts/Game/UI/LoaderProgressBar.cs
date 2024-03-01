@@ -6,6 +6,7 @@ namespace UI
     public class LoaderProgressBar : MonoBehaviour
     {
         [SerializeField] private Image _barFill;
+        [SerializeField] private LoaderSceneChanger _sceneChanger;
 
         private void Awake()
         {
@@ -17,7 +18,7 @@ namespace UI
         }
         private void FillProgressBar()
         {
-            _barFill.fillAmount += Time.deltaTime;
+            _barFill.fillAmount = _sceneChanger.LoadOperation.progress + 0.9f;
         }
     }
 
