@@ -59,6 +59,7 @@ namespace People
                     _canLeaveBed = true;
                     EventsManager.Instance.OnTimerToHealPatinetEndEvent();
                     _timeToHeal = 0;
+                    _progressBarParent.SetActive(false);
                 }
             }
         }

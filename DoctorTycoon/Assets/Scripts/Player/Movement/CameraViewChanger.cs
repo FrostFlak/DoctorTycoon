@@ -1,10 +1,15 @@
 using UnityEngine;
 using UnityEngine.AI;
 
+public enum CameraTypes
+{
+    ThirdPerson = 0,
+    FirstPerson = 1,
+}
 namespace Player
 {
     [RequireComponent(typeof(Rigidbody), typeof(NavMeshAgent), typeof(Animator))]
-    [RequireComponent(typeof(CameraType), typeof(CharacterMovmentFirstPersonView))]
+    [RequireComponent(typeof(CameraType), typeof(CharacterMovmentFirstPersonView) , typeof(CharacterJoystickMovement))]
     [RequireComponent(typeof(CharacterAnimationController))]
     public class CameraViewChanger : MonoBehaviour
     {
@@ -21,19 +26,23 @@ namespace Player
         }
         private void CheckViewType()
         {
-            if(_cameraType.CurrentCameraIndex == 0)
+            if(_cameraType.CurrentCameraIndex == (int)CameraTypes.ThirdPerson)
             {
+                _characterMovmentFirstPersonView.IsWalking = false;
                 _characterJoystickMovement.enabled = true;
                 _mainCamera.cullingMask = _thirdPersonViewableLayers;
                 _characterMovmentFirstPersonView.enabled = false;
+
             }
-            else if(_cameraType.CurrentCameraIndex == 1)
+            else if(_cameraType.CurrentCameraIndex == (int)CameraTypes.FirstPerson)
             {
+                _characterJoystickMovement.IsWalking = false;
+                _characterJoystickMovement.TurnOffJoystick();
                 _characterMovmentFirstPersonView.enabled = true;
                 _mainCamera.cullingMask = _firstPersonViewableLayers;
-                _characterJoystickMovement.enabled= false;
+                _characterJoystickMovement.enabled = false;
             }
         }
-}
+    }
 
 }

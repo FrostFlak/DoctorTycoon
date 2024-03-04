@@ -15,7 +15,7 @@ namespace People
         [SerializeField] private List<Human> _humanPrefabs;
 
         [Header("SpawnSettings")]
-        [SerializeField] private Transform _spawnPosition;
+        [SerializeField] private Transform[] _spawnPositions;
         [SerializeField] private float _spawnRate;
 
 
@@ -51,7 +51,7 @@ namespace People
         }
         public void Initialize()
         {
-            _maxHumanCount = _bedManager.Beds.Count + 1;
+            _maxHumanCount = _bedManager.Beds.Count - 2;
             _humanPool = new ObjectPool<Human>(CreatePoolObject, OnTakeFromPool, OnReturnToPool, OnDestroyObject, false, _maxHumanCount, _maxHumanCount);
             _waitForSpawnInterval = new WaitForSeconds(_spawnRate);
             _waitForCheckSpawnInterval = new WaitForSeconds(_spawnCheckInterval);
@@ -62,7 +62,7 @@ namespace People
         #region Pool
         private Human CreatePoolObject()
         {
-            Human human = Instantiate(_humanPrefabs[Random.Range(0, _humanPrefabs.Count)], _spawnPosition.transform.position, Quaternion.identity, transform);
+            Human human = Instantiate(_humanPrefabs[Random.Range(0, _humanPrefabs.Count)], _spawnPositions[Random.Range(0, _spawnPositions.Length)].transform.position, Quaternion.identity, transform);
             human.gameObject.SetActive(false);
             Debug.Log("Create");
             return human;
@@ -80,7 +80,7 @@ namespace People
         public void OnReturnToPool(Human human)
         {
             human.gameObject.SetActive(false);
-            human.transform.position = _spawnPosition.transform.position;
+            human.transform.position = _spawnPositions[Random.Range(0, _spawnPositions.Length)].transform.position;
             human.OnHumanEndHealing();
             RemovePeopleFromList(human);
             Debug.Log("OnReturn");

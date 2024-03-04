@@ -48,7 +48,7 @@ namespace Player
         {
             _targetVelocity = new Vector3(_horizontal, 0, _vertical);
 
-            if (_targetVelocity.x != 0 || _targetVelocity.z != 0)
+            if ((_targetVelocity.x != 0 || _targetVelocity.z != 0) && CameraType.CurrentCameraIndex == (int)CameraTypes.FirstPerson)
             {
                 IsWalking = true;
             }

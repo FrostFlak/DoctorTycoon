@@ -12,14 +12,18 @@ namespace People
         RightUpRoom = 3,
         MiddleDoor = 4,
         QuitHospital = 5,
-        CrosswalkStart = 6,
-        CrosswalkEnd = 7
+        EnterHospitalPoint_1 = 6 ,
+        EnterHospitalPoint_2 = 7 ,
+        EnterHospitalPoint_3 = 8 ,
+        EnterHospitalPoint_4 = 9 ,
+        EnterHospitalPoint_5 = 10 ,
+
     }
     public class BedManager : MonoBehaviour
     {
         [SerializeField] private List<Bed> _beds = new List<Bed>();
-        [SerializeField] private bool _isAvailableBeds;
         [SerializeField] private List<Transform> _waypointPositions;
+        private bool _isAvailableBeds;
 
         private Vector3 _freeBed;
 

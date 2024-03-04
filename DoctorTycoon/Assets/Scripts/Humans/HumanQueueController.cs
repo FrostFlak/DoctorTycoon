@@ -14,6 +14,8 @@ namespace People
         private RegistrationTable _registrationTable;
         private BedManager _bedManager;
         private int _positionIndex;
+        private float _timeIntervalBtwClaimPlace = 1.5f;
+        private bool _humanClaimedPosition;
 
 
         #region MonoBehaviour
@@ -45,9 +47,12 @@ namespace People
 
         public IEnumerator EnterInQueue(RegistrationTable registrationTable , BedManager bedManager)
         {
-            _registrationTable = registrationTable;
             _bedManager = bedManager;
+            _registrationTable = registrationTable;
+            StartCoroutine(GoToStartPointPositions(_timeIntervalBtwClaimPlace));
             _humanAnimationController.SetBedManager(bedManager);
+            _humanClaimedPosition = true;
+            yield return new WaitForSeconds(_timeIntervalBtwClaimPlace);
             if (CheckEnoughSpaceInQueue() && !_human.IsInQueue)
             {
                 Debug.Log("Enter");
@@ -75,7 +80,6 @@ namespace People
                 StartCoroutine(EnterInQueue(registrationTable , bedManager));
             }
         }
-
         private void ReleasePlaceInQueue(int index) 
         {
             if (_registrationTable.Points[index].IsBusy)
@@ -93,7 +97,15 @@ namespace People
             _agent.SetDestination(position);
         }
 
-
+        private IEnumerator GoToStartPointPositions(float timeInterval)
+        {
+            if (!_humanClaimedPosition)
+            {
+                WaitForSeconds waitForSeconds = new WaitForSeconds(timeInterval);
+                SetAgentDestination(_bedManager.WaypointPosition[Random.Range((int)WaypointsPositions.EnterHospitalPoint_1 , (int)WaypointsPositions.EnterHospitalPoint_5)].transform.position);
+                yield return waitForSeconds;
+            }
+        }
         #endregion
 
         #region Next Queue Position

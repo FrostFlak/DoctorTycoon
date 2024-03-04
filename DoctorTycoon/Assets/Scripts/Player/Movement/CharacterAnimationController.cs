@@ -1,24 +1,33 @@
 using Player;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class CharacterAnimationController : MonoBehaviour
 {
+    #region SerializedFields
     [SerializeField] private Animator _animator;
     [SerializeField] private NavMeshAgent _agent;
     [SerializeField] private CharacterMovmentFirstPersonView _firstPersonController;
     [SerializeField] private CharacterJoystickMovement _characterJoystickMovement;
+    #endregion
+
+    #region PrivateFields
+    private int _searchSpeed = 1;
+    private int _healSpeed = 1;
+    private bool _isPlayingRegistrationAnimation;
+    private bool _isPlayingHealingAnimation;
+    #endregion
+
+    #region Constants
     private const string IDLE = "Idle";
     private const string WALK = "Walk";
     private const string SEARCH = "SearchingFiles";
     private const string SEARCHSPEED = "SearchSpeed";
     private const string HEAL = "Shake";
     private const string HEALSPEED = "HealSpeed";
-    private int _searchSpeed = 1;
-    private int _healSpeed = 1;
-    private bool _isPlayingRegistrationAnimation;
-    private bool _isPlayingHealingAnimation;
-
+    
+    #endregion
     private void Start()
     {
         EventsManager.Instance.OnStayInRegistrationTriggerZone += StartRegistrationAnimation;
@@ -40,18 +49,18 @@ public class CharacterAnimationController : MonoBehaviour
     void Update()
     {
         if (!_isPlayingRegistrationAnimation && !_isPlayingHealingAnimation)
-            StartAnimation();
+            StartWalkAnimation();
     }
-    private void StartAnimation()
+
+    private void StartWalkAnimation()
     {
-        if (_agent.velocity != Vector3.zero || _firstPersonController.IsWalking || _characterJoystickMovement.IsWalking)
+        if (_firstPersonController.IsWalking || _characterJoystickMovement.IsWalking)
         {
             _animator.Play(WALK);
+
         }
         else
-        {
             _animator.Play(IDLE);
-        }
     }
 
     private void StartRegistrationAnimation()
@@ -69,4 +78,5 @@ public class CharacterAnimationController : MonoBehaviour
         _animator.Play(HEAL);
     }
     private void SwitchHealingAnimationState() => _isPlayingHealingAnimation = false;
+
 }
