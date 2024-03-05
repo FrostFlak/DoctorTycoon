@@ -31,8 +31,11 @@ namespace Player
 
         private void Update()
         {
-            TargetFace();
-            Move(Agent);
+            if (_joystick.CanInteract)
+            {
+                TargetFace();
+                Move(Agent);
+            }
         }
         public override void Move(NavMeshAgent agent)
         {
@@ -45,7 +48,6 @@ namespace Player
             else
                 IsWalking = false;
         }
-
         public override void TargetFace()
         {
             Agent.transform.LookAt((Agent.transform.position + _scaledMovement) * LookRotationSpeed, Vector3.up);

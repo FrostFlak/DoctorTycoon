@@ -12,6 +12,7 @@ namespace Player
         private float _defalultSpeed = 3.5f;
         private float _reducedSpeed = 1.5f;
         public bool IsWalking { get; set; }
+        public float LookRotationSpeedProperty { get { return LookRotationSpeed; } set { LookRotationSpeed = value; } }
 
         private void Start()
         {

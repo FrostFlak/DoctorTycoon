@@ -11,14 +11,14 @@ public class Bootstrap : MonoBehaviour
     [SerializeField] private CameraViewChanger _movementType;
     [SerializeField] private RegistrationTable _registrationTable;
 
-    [Header("Stats")]
+    [Header("UI")]
     [SerializeField] private StatsTextShower _statsText;
+    [SerializeField] private SensitivityShower _sensitivityShower;
 
     [Header("ProgressBars")]
     [SerializeField] private LevelProgressBar _levelProgressBar;
     [SerializeField] private RegistrationTableProgressBar _registrationTableProgressBar;
 
-    private bool _hasDoneAwake;
     public static Bootstrap Instance { get; private set; }
     private void Awake()
     {
@@ -28,7 +28,6 @@ public class Bootstrap : MonoBehaviour
         InitializeBasicSystems();
         InitializeUI();
         InitializePeoplesSystems();
-        _hasDoneAwake = true;   
     }
 
     private void InitializeBootstrap()
@@ -61,6 +60,7 @@ public class Bootstrap : MonoBehaviour
         _statsText.Initialize();
         _levelProgressBar.Initialize();
         _registrationTableProgressBar.Initialize();
+        _sensitivityShower.Initialize();
     }
 
     private void InitializePlayer()
