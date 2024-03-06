@@ -8,7 +8,7 @@ namespace Player
         [Header("Properties")]
         [SerializeField] protected NavMeshAgent Agent;
         [SerializeField] protected float LookRotationSpeed;
-        [SerializeField] protected CameraType CameraType;
+        [SerializeField] protected CameraViewChanger CameraType;
         private float _defalultSpeed = 3.5f;
         private float _reducedSpeed = 1.5f;
         public bool IsWalking { get; set; }

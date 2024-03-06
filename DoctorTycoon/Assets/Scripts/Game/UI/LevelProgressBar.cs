@@ -8,32 +8,28 @@ namespace UI
     public class LevelProgressBar : LevelUpgrader
     {
         [SerializeField] private Image _levelProgressBar;
-        [SerializeField] private TMP_Text _oldLevel;
-        [SerializeField] private TMP_Text _newLevel;
+        [SerializeField] private TMP_Text _currentLevel;
 
         public void Initialize()
         {
             _levelProgressBar.fillAmount = SaveSystem._playerData.Expirience / 100f;
+            _currentLevel.text = SaveSystem._playerData.CurrentLvl.ToString();
+
         }
-        private void OnEnable()
+        private void Start()
         {
-            OnExpirienceChanged += UpdateProgressBar;
-            OnLevelReached += UpdateLevelText;
+            EventsManager.Instance.OnExpirienceChanged += UpdateProgressBar;
+            EventsManager.Instance.OnLevelReached += UpdateLevelText;
         }
 
         private void OnDisable()
         {
-            OnExpirienceChanged -= UpdateProgressBar;
-            OnLevelReached -= UpdateLevelText;
+            EventsManager.Instance.OnExpirienceChanged -= UpdateProgressBar;
+            EventsManager.Instance.OnLevelReached -= UpdateLevelText;
         }
- 
-        private void UpdateProgressBar() => _levelProgressBar.fillAmount = SaveSystem._playerData.Expirience / 100f;
 
-        private void UpdateLevelText() 
-        {
-            _oldLevel.text = SaveSystem._playerData.CurrentLvl.ToString();
-            _newLevel.text = (SaveSystem._playerData.CurrentLvl + 1).ToString();
-        }
+        private void UpdateProgressBar() => _levelProgressBar.fillAmount = SaveSystem._playerData.Expirience / 100f;
+        private void UpdateLevelText() => _currentLevel.text = SaveSystem._playerData.CurrentLvl.ToString();
     }
 }
     

@@ -37,7 +37,7 @@ namespace People
         }
         private void OnTriggerEnter(Collider other)
         {
-            if(other.TryGetComponent(out CameraViewChanger player))
+            if(other.TryGetComponent(out Player.CameraViewChanger player))
             {
                 _inZone = true;
                 if(_isBusy)
@@ -49,7 +49,7 @@ namespace People
 
         private void OnTriggerStay(Collider other)
         {
-            if (other.TryGetComponent(out CameraViewChanger player) && _isBusy)
+            if (other.TryGetComponent(out Player.CameraViewChanger player) && _isBusy)
             {
                 EventsManager.Instance.OnStayInBedTriggerZoneEvent();
                 _timeToHeal += Time.deltaTime;
@@ -65,7 +65,7 @@ namespace People
         }
         private void OnTriggerExit(Collider other)
         {
-            if (other.TryGetComponent(out CameraViewChanger player))
+            if (other.TryGetComponent(out Player.CameraViewChanger player))
             {
                 EventsManager.Instance.OnExitBedTriggerZoneEvent();
                 _inZone = false;

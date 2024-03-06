@@ -8,8 +8,9 @@ public class Bootstrap : MonoBehaviour
     [Header("Systems")]
     [SerializeField] private SaveSystem _saveSystem;
     [SerializeField] private HumansManager _humansManager;
-    [SerializeField] private CameraViewChanger _movementType;
+    [SerializeField] private CameraViewChanger _cameraViewChanger;
     [SerializeField] private RegistrationTable _registrationTable;
+    [SerializeField] private SensitivityChanger _sensitivityChanger;
 
     [Header("UI")]
     [SerializeField] private StatsTextShower _statsText;
@@ -65,6 +66,7 @@ public class Bootstrap : MonoBehaviour
 
     private void InitializePlayer()
     {
+        _sensitivityChanger.Initialize();
     }
 
     private void InitializePeoplesSystems()

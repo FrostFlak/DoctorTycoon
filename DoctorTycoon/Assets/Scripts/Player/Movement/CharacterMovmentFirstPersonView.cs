@@ -5,8 +5,12 @@ using UnityEngine.AI;
 namespace Player
 {
     public class CharacterMovmentFirstPersonView : CharacterMovment
-{
+    {
+        #region SerializedFields
         [SerializeField] private CinemachineVirtualCamera _virtualCamera;
+        #endregion
+
+        #region PrivateFields
         private bool _isCursorLocked;
         private Vector3 _targetVelocity;
         private float _horizontal;
@@ -16,14 +20,17 @@ namespace Player
         private string _mouseXAxis = "Mouse X";
         private float _yaw = 0.0f;
         private float _pitch = 0.0f;
+        #endregion
 
+        #region Properties
         public bool IsCursorLocked {  get { return _isCursorLocked; } set {  _isCursorLocked = value; } }
-
+        public CinemachineVirtualCamera VirtualCamera { get { return _virtualCamera; } set { _virtualCamera = value; } }
+        #endregion
 
         private void OnEnable()
         {
             _isCursorLocked = true;
-            Cursor.lockState = CursorLockMode.Locked;
+            //Cursor.lockState = CursorLockMode.Locked;
         }
 
         private void OnDisable()
@@ -68,7 +75,9 @@ namespace Player
 
             _pitch = Mathf.Clamp(_pitch, -180, 180);
             _virtualCamera.transform.localEulerAngles = new Vector3(_pitch, 0, 0);
+
         }
-}
+
+    }
 
 }

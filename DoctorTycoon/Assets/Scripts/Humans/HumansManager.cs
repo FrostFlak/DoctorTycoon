@@ -106,6 +106,7 @@ namespace People
             if (CheckSpawnPosibility())
             {
                 _humanPool.Get();
+                EventsManager.Instance.OnPatientSpawnedEvent(_allHumans.Count);
             }
         }
 
@@ -117,6 +118,7 @@ namespace People
                 {
                     yield return _waitForSpawnInterval;
                     _humanPool.Get();
+                    EventsManager.Instance.OnPatientSpawnedEvent(_allHumans.Count);
                 }
                 else yield break;
             }

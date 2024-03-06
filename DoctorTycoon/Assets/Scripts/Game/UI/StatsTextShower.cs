@@ -32,7 +32,7 @@ namespace UI
         }
         private void UpdateMoneyText()
         { 
-            _moneyText.text = _formatNumsHelper.FormatNum(SaveSystem._playerData.Money) + " $";
+            _moneyText.text = _formatNumsHelper.FormatNum(SaveSystem._playerData.Money);
         }
 
         private void UpdateClientsText(int count)

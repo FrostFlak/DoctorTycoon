@@ -1,47 +1,44 @@
 using UnityEngine;
-using UnityEngine.AI;
+using Cinemachine;
 
-public enum CameraTypes
-{
-    ThirdPerson = 0,
-    FirstPerson = 1,
-}
+
 namespace Player
 {
-    [RequireComponent(typeof(Rigidbody), typeof(NavMeshAgent), typeof(Animator))]
-    [RequireComponent(typeof(CameraType), typeof(CharacterMovmentFirstPersonView) , typeof(CharacterJoystickMovement))]
-    [RequireComponent(typeof(CharacterAnimationController))]
     public class CameraViewChanger : MonoBehaviour
     {
-        [SerializeField] private Camera _mainCamera;
-        [SerializeField] private LayerMask _thirdPersonViewableLayers;
-        [SerializeField] private LayerMask _firstPersonViewableLayers;
-        [SerializeField] private CameraType _cameraType;
-        [SerializeField] private CharacterMovmentFirstPersonView _characterMovmentFirstPersonView;
-        [SerializeField] private CharacterJoystickMovement _characterJoystickMovement;
+        [SerializeField] private CinemachineVirtualCamera[] _cameras;
+        [SerializeField] private int _currentCameraIndex;
+        [SerializeField] private bool _canChange = true;
+        [SerializeField] private float _timeInterval = 2;
+
+        public int CurrentCameraIndex { get { return _currentCameraIndex; } private set { } }
 
         private void Update()
         {
-            CheckViewType();
+            if (Input.GetKey(KeyCode.C) && _canChange)
+            {
+                ChangeCameraPriority();
+                _canChange = false;
+            }
+            else
+                _timeInterval -= Time.deltaTime;
+            if(_timeInterval <= 0 && !_canChange)
+            {
+                _canChange = true;
+                _timeInterval = 2;
+            }
+            else if(_timeInterval < 0)
+            {
+                _timeInterval = 2;
+            }
         }
-        private void CheckViewType()
-        {
-            if(_cameraType.CurrentCameraIndex == (int)CameraTypes.ThirdPerson)
-            {
-                _characterMovmentFirstPersonView.IsWalking = false;
-                _characterJoystickMovement.enabled = true;
-                _mainCamera.cullingMask = _thirdPersonViewableLayers;
-                _characterMovmentFirstPersonView.enabled = false;
 
-            }
-            else if(_cameraType.CurrentCameraIndex == (int)CameraTypes.FirstPerson)
-            {
-                _characterJoystickMovement.IsWalking = false;
-                _characterJoystickMovement.TurnOffJoystick();
-                _characterMovmentFirstPersonView.enabled = true;
-                _mainCamera.cullingMask = _firstPersonViewableLayers;
-                _characterJoystickMovement.enabled = false;
-            }
+        public void ChangeCameraPriority()
+        {
+            _cameras[_currentCameraIndex].Priority = 0;
+            _currentCameraIndex++;
+            if (_currentCameraIndex >= _cameras.Length) _currentCameraIndex = 0;
+            _cameras[_currentCameraIndex].Priority = 1;  
         }
     }
 

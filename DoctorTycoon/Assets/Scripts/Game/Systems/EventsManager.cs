@@ -22,6 +22,11 @@ public class EventsManager : MonoBehaviour
     public event UnityAction OnExitBedTriggerZone;
     #endregion
 
+    #region PlayerDataEvents
+    public event UnityAction OnLevelReached;
+    public event UnityAction OnExpirienceChanged;
+    #endregion
+
     #region UIEvents
     public event UnityAction OnMoneyAdded;
     #endregion
@@ -65,6 +70,9 @@ public class EventsManager : MonoBehaviour
     public void OnStayInBedTriggerZoneEvent() => OnStayInBedTriggerZone?.Invoke();
     public void OnExitRegistartionTriggerZoneEvent() => OnExitRegistartionTriggerZone?.Invoke();
     public void OnExitBedTriggerZoneEvent() => OnExitBedTriggerZone?.Invoke();
+    public void OnLevelReachedEvent() => OnLevelReached?.Invoke();
+    public void OnExpirienceChangedEvent() => OnExpirienceChanged?.Invoke();
+
     #endregion
 
     #region UI
