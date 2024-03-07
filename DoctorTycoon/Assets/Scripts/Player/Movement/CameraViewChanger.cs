@@ -15,21 +15,24 @@ namespace Player
 
         private void Update()
         {
-            if (Input.GetKey(KeyCode.C) && _canChange)
+            if (GameStateController.Instance.Started && !GameStateController.Instance.Paused && !GameStateController.Instance.Tutorial)
             {
-                ChangeCameraPriority();
-                _canChange = false;
-            }
-            else
-                _timeInterval -= Time.deltaTime;
-            if(_timeInterval <= 0 && !_canChange)
-            {
-                _canChange = true;
-                _timeInterval = 2;
-            }
-            else if(_timeInterval < 0)
-            {
-                _timeInterval = 2;
+                if (Input.GetKey(KeyCode.C) && _canChange)
+                {
+                    ChangeCameraPriority();
+                    _canChange = false;
+                }
+                else
+                    _timeInterval -= Time.deltaTime;
+                if (_timeInterval <= 0 && !_canChange)
+                {
+                    _canChange = true;
+                    _timeInterval = 2;
+                }
+                else if (_timeInterval < 0)
+                {
+                    _timeInterval = 2;
+                }
             }
         }
 

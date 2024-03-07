@@ -4,9 +4,8 @@ namespace Player
 {
     public class MoneyWallet : MonoBehaviour
     {
-
-        //change int to long
-        public void AddMoney(int count)
+        private long _maxCapacity = long.MaxValue;
+        public void AddMoney(long count)
         {
             if (TryAddMoney(count))
             {
@@ -16,7 +15,7 @@ namespace Player
         }
         private bool TryAddMoney(long count)
         {
-            if(count < long.MaxValue && count >= 0) return true;
+            if(count < _maxCapacity && count >= 0) return true;
             else return false;
         }
     }

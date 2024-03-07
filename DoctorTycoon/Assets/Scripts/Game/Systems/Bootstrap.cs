@@ -6,6 +6,7 @@ using People;
 public class Bootstrap : MonoBehaviour
 {
     [Header("Systems")]
+    [SerializeField] private GameStateController _gameStateController;
     [SerializeField] private SaveSystem _saveSystem;
     [SerializeField] private HumansManager _humansManager;
     [SerializeField] private CameraViewChanger _cameraViewChanger;
@@ -25,6 +26,7 @@ public class Bootstrap : MonoBehaviour
     {
         InitializeBootstrap();
         InitializeSaveSystem();
+        InitializePrincipalSystems();
         InitializePlayer();
         InitializeBasicSystems();
         InitializeUI();
@@ -51,6 +53,10 @@ public class Bootstrap : MonoBehaviour
         _saveSystem.LoadGame();
     }
 
+    private void InitializePrincipalSystems()
+    {
+        _gameStateController.Initialize();
+    }
     private void InitializeBasicSystems()
     {
         _registrationTable.Initialize();

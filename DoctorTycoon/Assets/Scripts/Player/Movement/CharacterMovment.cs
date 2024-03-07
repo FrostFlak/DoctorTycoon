@@ -3,7 +3,7 @@ using UnityEngine.AI;
 
 namespace Player
 {
-    public abstract class CharacterMovment : MonoBehaviour
+    public abstract class CharacterMovment : MonoBehaviour , IMovable
     {
         [Header("Properties")]
         [SerializeField] protected NavMeshAgent Agent;
@@ -35,7 +35,6 @@ namespace Player
 
         public virtual void AssignInputs() { }
         public virtual void TargetFace() { }
-        public virtual void TargetFace(NavMeshAgent agent) { }
         public virtual void Move(NavMeshAgent agent) { }
   
         private void ReduceSpeed() => Agent.speed = _reducedSpeed;

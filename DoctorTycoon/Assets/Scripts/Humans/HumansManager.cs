@@ -101,15 +101,6 @@ namespace People
             else return true;
         }
 
-        public void TryToSpawnHuman()
-        {
-            if (CheckSpawnPosibility())
-            {
-                _humanPool.Get();
-                EventsManager.Instance.OnPatientSpawnedEvent(_allHumans.Count);
-            }
-        }
-
         public IEnumerator SpawnCoroutine()
         {
             for (int i = 0; i < _maxHumanCount; i++)

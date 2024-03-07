@@ -4,30 +4,29 @@ namespace Player
 {
     public class LevelUpgrader : MonoBehaviour
     {
-        private bool TryReachNewLevel()
+        public void TryAddExpirience(int count)
         {
-            if (SaveSystem._playerData.Expirience >= SaveSystem._playerData.MaxExpirience)
+            if(count > 100 || count < 0)
             {
-                return true;
+                throw new System.Exception("Cant Add Expirience");  
             }
-            else return false;
+            else
+            {
+                SaveSystem._playerData.Expirience += count;
+                TryReachLevel(count);
+                EventsManager.Instance.OnExpirienceAddedEvent();
+            }
         }
 
-        public void ReachNewLevel()
+        private void TryReachLevel(int count)
         {
-            EventsManager.Instance.OnLevelReachedEvent();
-            EventsManager.Instance.OnExpirienceChangedEvent();
-            if (TryReachNewLevel())
+            if(SaveSystem._playerData.Expirience >= SaveSystem._playerData.MaxExpirience)
             {
                 SaveSystem._playerData.CurrentLvl += 1;
-                SaveSystem._playerData.Expirience = 0;
+                SaveSystem._playerData.Expirience -= SaveSystem._playerData.MaxExpirience;
+                EventsManager.Instance.OnLevelReachedEvent();
             }
-        }
-        //test
-        public void AddExpirience(int count)
-        {
-            SaveSystem._playerData.Expirience += count;
-            ReachNewLevel();
+
         }
     }
 

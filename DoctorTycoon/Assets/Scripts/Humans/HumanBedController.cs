@@ -39,22 +39,25 @@ namespace People
 
         public IEnumerator TakeBed(BedManager bedManager)
         {
-            _bedManager = bedManager;
-            for (int i = 0; i < _bedManager.Beds.Count; i++)
+            if (GameStateController.Instance.Started && !GameStateController.Instance.Paused && !GameStateController.Instance.Tutorial)
             {
-                if (_bedManager.Beds[i].IsBusy)
+                _bedManager = bedManager;
+                for (int i = 0; i < _bedManager.Beds.Count; i++)
                 {
-                    Debug.Log($"Place : {_bedManager.Beds[i].name} is Busy");
-                }
-                else
-                {
-                    Debug.Log($"Free Bed : {_bedManager.Beds[i].name}");
-                    _bedManager.Beds[i].IsBusy = true;
-                    SetPositions(i);
-                    _human.IsLaying = true;
-                    _index = i;
-                    StartCoroutine(GoToWayPointPosition(i, _onEntraceWaitingTimeInterval, _bedManager.FreeBed));
-                    yield break;
+                    if (_bedManager.Beds[i].IsBusy)
+                    {
+                        Debug.Log($"Place : {_bedManager.Beds[i].name} is Busy");
+                    }
+                    else
+                    {
+                        Debug.Log($"Free Bed : {_bedManager.Beds[i].name}");
+                        _bedManager.Beds[i].IsBusy = true;
+                        SetPositions(i);
+                        _human.IsLaying = true;
+                        _index = i;
+                        StartCoroutine(GoToWayPointPosition(i, _onEntraceWaitingTimeInterval, _bedManager.FreeBed));
+                        yield break;
+                    }
                 }
             }
         }

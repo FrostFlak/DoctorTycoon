@@ -17,6 +17,7 @@ namespace People
         [SerializeField] private bool _leftHospital;
         [SerializeField] private HumanBedController _bedController;
         [SerializeField] private HumanQueueController _queueController;
+
         #endregion
 
         #region Private Fields

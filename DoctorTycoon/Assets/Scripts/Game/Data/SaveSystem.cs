@@ -11,10 +11,26 @@ namespace Player
         public static PlayerData _playerData = new PlayerData() ;
         private string saveFilePath;
         [SerializeField] private long _money;
+        [SerializeField] private int _expirience;
+
+        private void Start()
+        {
+            EventsManager.Instance.OnMoneyAdded += SaveGame;
+            EventsManager.Instance.OnExpirienceAdded += SaveGame;
+            EventsManager.Instance.OnLevelReached += SaveGame;
+        }
+
+        private void OnDisable()
+        {
+            EventsManager.Instance.OnMoneyAdded -= SaveGame;
+            EventsManager.Instance.OnExpirienceAdded -= SaveGame;
+            EventsManager.Instance.OnLevelReached -= SaveGame;
+        }
 
         private void Update()
         {
             _money = _playerData.Money;
+            _expirience = _playerData.Expirience;
         }
         public void Initialize()
         {
@@ -69,6 +85,7 @@ namespace Player
             _playerData.CurrentLvl = 1;
             _playerData.Money = 0;
             //_playerData.PatientsCount = 0;
+            EventsManager.Instance.OnDataResetedEvent();
             SaveGame();
         }
         public void DeleteSaveFile()
@@ -99,15 +116,7 @@ namespace Player
         public int Expirience
         {
             get { return _expirience; }
-            set
-            {
-                if (value > 110 || value < 0)
-                {
-                    throw new ArgumentOutOfRangeException(nameof(_expirience));
-                }
-                else
-                    _expirience = value;
-            }
+            set { _expirience = value;}
         }
 
         public int MaxExpirience { get { return _maxExpirience; } private set { } }

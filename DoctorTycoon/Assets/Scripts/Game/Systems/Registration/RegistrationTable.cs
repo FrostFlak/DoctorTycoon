@@ -10,6 +10,8 @@ namespace People
         [SerializeField] private List<Waypoint> _points = new List<Waypoint>();
         [SerializeField] private float _acceptClientProgress;
         [SerializeField] private float _timeToAcceptClient;
+        [SerializeField] private MoneyWallet _moneyWallet;
+        [SerializeField] private LevelUpgrader _levelUpgrader;
         #endregion
 
         #region Private Fields
@@ -17,6 +19,10 @@ namespace People
         private Vector3 _quitQueuePosition;
         private Vector3 _freePlace;
         private bool _inZone;
+        private float _minMoney = 75;
+        private float _maxMoney = 100;
+        private int _minExpirience = 1;
+        private int _maxExpirience = 99;
         #endregion
 
         #region Properties
@@ -55,7 +61,7 @@ namespace People
 
         private void OnTriggerStay(Collider other)
         {
-            if(other.TryGetComponent(out Player.CameraViewChanger player) && IsSomeoneInQueue() && _bedManager.IsAnyBedAvailable() && _points[0].IsBusy)
+            if(other.TryGetComponent(out CameraViewChanger player) && IsSomeoneInQueue() && _bedManager.IsAnyBedAvailable() && _points[0].IsBusy)
             {
                 _inZone = true;
                 EventsManager.Instance.OnStayInRegistrationTriggerZoneEvent();
@@ -64,6 +70,8 @@ namespace People
                 {
                     EventsManager.Instance.OnTimerToAcceptPeopleEndEvent();
                     _acceptClientProgress = 0;
+                    ReciveMoney(_minMoney , _maxMoney);
+                    ReciveExpirience(_minExpirience, _maxExpirience);
                 }
             }
             
@@ -71,7 +79,7 @@ namespace People
 
         private void OnTriggerExit(Collider other)
         {
-            if(other.TryGetComponent(out Player.CameraViewChanger player))
+            if(other.TryGetComponent(out CameraViewChanger player))
             {
                 _inZone = false;
                 EventsManager.Instance.OnExitRegistartionTriggerZoneEvent();
@@ -86,11 +94,18 @@ namespace People
                 _acceptClientProgress = 0;
             }
         }
+        
+        private void ReciveMoney(float MinMoney , float MaxMoney)
+        {
+            float claimedMoney = Random.Range(MinMoney, MaxMoney);
+            _moneyWallet.AddMoney((long)claimedMoney);
+        }
 
-
-
-
-
+        private void ReciveExpirience(int MinExpirience , int MaxExpirience)
+        {
+            int claimedExpirience = Random.Range(MinExpirience, MaxExpirience);
+            _levelUpgrader.TryAddExpirience(claimedExpirience);
+        }
 
     }
 

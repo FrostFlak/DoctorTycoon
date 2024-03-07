@@ -24,11 +24,9 @@ public class EventsManager : MonoBehaviour
 
     #region PlayerDataEvents
     public event UnityAction OnLevelReached;
-    public event UnityAction OnExpirienceChanged;
-    #endregion
-
-    #region UIEvents
+    public event UnityAction OnExpirienceAdded;
     public event UnityAction OnMoneyAdded;
+    public event UnityAction OnDataReseted;
     #endregion
 
 
@@ -71,14 +69,12 @@ public class EventsManager : MonoBehaviour
     public void OnExitRegistartionTriggerZoneEvent() => OnExitRegistartionTriggerZone?.Invoke();
     public void OnExitBedTriggerZoneEvent() => OnExitBedTriggerZone?.Invoke();
     public void OnLevelReachedEvent() => OnLevelReached?.Invoke();
-    public void OnExpirienceChangedEvent() => OnExpirienceChanged?.Invoke();
-
-    #endregion
-
-    #region UI
+    public void OnExpirienceAddedEvent() => OnExpirienceAdded?.Invoke();
     public void OnMoneyAddedEvent() => OnMoneyAdded?.Invoke();
+    public void OnDataResetedEvent() => OnDataReseted?.Invoke();
 
     #endregion
+
 
     
 

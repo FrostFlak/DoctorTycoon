@@ -1,7 +1,6 @@
 using UnityEngine;
 using TMPro;
 using Player;
-using Unity.VisualScripting;
 
 namespace UI
 {
@@ -21,6 +20,7 @@ namespace UI
             EventsManager.Instance.OnMoneyAdded += UpdateMoneyText;
             EventsManager.Instance.OnPatientSpawned += UpdateClientsText;
             EventsManager.Instance.OnPatientLeaveHospital += UpdateClientsText;
+            EventsManager.Instance.OnDataReseted += UpdateMoneyText;
 
         }
 
@@ -29,6 +29,8 @@ namespace UI
             EventsManager.Instance.OnMoneyAdded -= UpdateMoneyText;
             EventsManager.Instance.OnPatientSpawned -= UpdateClientsText;
             EventsManager.Instance.OnPatientLeaveHospital -= UpdateClientsText;
+            EventsManager.Instance.OnDataReseted += UpdateMoneyText;
+
         }
         private void UpdateMoneyText()
         { 

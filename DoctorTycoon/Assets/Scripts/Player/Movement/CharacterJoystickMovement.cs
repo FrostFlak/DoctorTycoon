@@ -31,10 +31,13 @@ namespace Player
 
         private void Update()
         {
-            if (_joystick.CanInteract)
+            if (GameStateController.Instance.Started && !GameStateController.Instance.Paused && !GameStateController.Instance.Tutorial)
             {
-                TargetFace();
-                Move(Agent);
+                if (_joystick.CanInteract)
+                {
+                    TargetFace();
+                    Move(Agent);
+                }
             }
         }
         public override void Move(NavMeshAgent agent)

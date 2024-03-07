@@ -1,3 +1,4 @@
+using Player;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
@@ -16,6 +17,7 @@ namespace People
         private int _positionIndex;
         private float _timeIntervalBtwClaimPlace = 1.5f;
         private bool _humanClaimedPosition;
+        
 
 
         #region MonoBehaviour
@@ -47,37 +49,40 @@ namespace People
 
         public IEnumerator EnterInQueue(RegistrationTable registrationTable , BedManager bedManager)
         {
-            _bedManager = bedManager;
-            _registrationTable = registrationTable;
-            StartCoroutine(GoToStartPointPositions(_timeIntervalBtwClaimPlace));
-            _humanAnimationController.SetBedManager(bedManager);
-            _humanClaimedPosition = true;
-            yield return new WaitForSeconds(_timeIntervalBtwClaimPlace);
-            if (CheckEnoughSpaceInQueue() && !_human.IsInQueue)
+            if (GameStateController.Instance.Started && !GameStateController.Instance.Paused && !GameStateController.Instance.Tutorial)
             {
-                Debug.Log("Enter");
-                for (int i = 0; i < _registrationTable.Points.Count; i++)
+                _bedManager = bedManager;
+                _registrationTable = registrationTable;
+                StartCoroutine(GoToStartPointPositions(_timeIntervalBtwClaimPlace));
+                _humanAnimationController.SetBedManager(bedManager);
+                _humanClaimedPosition = true;
+                yield return new WaitForSeconds(_timeIntervalBtwClaimPlace);
+                if (CheckEnoughSpaceInQueue() && !_human.IsInQueue)
                 {
-                    if (_registrationTable.Points[i].IsBusy)
-                    { 
-                        Debug.Log($"Place : {_registrationTable.Points[i].name} is Busy");
-                    }
-                    else
+                    Debug.Log("Enter");
+                    for (int i = 0; i < _registrationTable.Points.Count; i++)
                     {
-                        Debug.Log($"Current index : {i}");
-                        Debug.Log($"Free Place : {_registrationTable.Points[i].name}");
-                        _registrationTable.FreePlace = _registrationTable.Points[i].transform.position;
-                        TakePositionInQueue(i);
-                        _positionIndex = i;
-                        SetAgentDestination(_registrationTable.FreePlace);
-                        yield break;
+                        if (_registrationTable.Points[i].IsBusy)
+                        {
+                            Debug.Log($"Place : {_registrationTable.Points[i].name} is Busy");
+                        }
+                        else
+                        {
+                            Debug.Log($"Current index : {i}");
+                            Debug.Log($"Free Place : {_registrationTable.Points[i].name}");
+                            _registrationTable.FreePlace = _registrationTable.Points[i].transform.position;
+                            TakePositionInQueue(i);
+                            _positionIndex = i;
+                            SetAgentDestination(_registrationTable.FreePlace);
+                            yield break;
+                        }
                     }
                 }
-            }
-            else
-            {
-                yield return new WaitForSeconds(3f);
-                StartCoroutine(EnterInQueue(registrationTable , bedManager));
+                else
+                {
+                    yield return new WaitForSeconds(3f);
+                    StartCoroutine(EnterInQueue(registrationTable, bedManager));
+                }
             }
         }
         private void ReleasePlaceInQueue(int index) 
@@ -173,9 +178,8 @@ namespace People
                 _human.IsGoingToBed = true;
                 _humanBedController.StartCoroutine(_humanBedController.TakeBed(_bedManager));
                 enabled = false;
-                //give money and ex event
             }
-            
+
         }
 
         #endregion

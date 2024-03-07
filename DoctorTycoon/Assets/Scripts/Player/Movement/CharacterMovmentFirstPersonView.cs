@@ -41,9 +41,12 @@ namespace Player
 
         private void Update()
         {
-            AssignInputs();
-            TargetFace();
-            Move(Agent);
+            if (GameStateController.Instance.Started && !GameStateController.Instance.Paused && !GameStateController.Instance.Tutorial)
+            {
+                AssignInputs();
+                TargetFace();
+                Move(Agent);
+            }
         }
 
         public override void AssignInputs()
