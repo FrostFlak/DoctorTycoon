@@ -11,11 +11,13 @@ namespace Player
         public static PlayerData _playerData = new PlayerData() ;
         private string saveFilePath;
         [SerializeField] private long _money;
+        [SerializeField] private int _pills;
         [SerializeField] private int _expirience;
 
         private void Start()
         {
             EventsManager.Instance.OnMoneyAdded += SaveGame;
+            EventsManager.Instance.OnPillsAdded += SaveGame;
             EventsManager.Instance.OnExpirienceAdded += SaveGame;
             EventsManager.Instance.OnLevelReached += SaveGame;
         }
@@ -23,6 +25,7 @@ namespace Player
         private void OnDisable()
         {
             EventsManager.Instance.OnMoneyAdded -= SaveGame;
+            EventsManager.Instance.OnPillsAdded -= SaveGame;
             EventsManager.Instance.OnExpirienceAdded -= SaveGame;
             EventsManager.Instance.OnLevelReached -= SaveGame;
         }
@@ -31,6 +34,7 @@ namespace Player
         {
             _money = _playerData.Money;
             _expirience = _playerData.Expirience;
+            _pills = _playerData.Pills;
         }
         public void Initialize()
         {
@@ -69,8 +73,8 @@ namespace Player
                 Debug.Log("Load game complete! \n" +
                     "Player Expirience: " + _playerData.Expirience +
                     " Player Current Lvl: " + _playerData.CurrentLvl +
-                    " Player Current Money: " + _playerData.Money);
-                    //" Count of Patients: " + _playerData.PatientsCount);
+                    " Player Current Money: " + _playerData.Money + 
+                    " Player Current Pills: " + _playerData.Pills);
                 EventsManager.Instance.OnMoneyAddedEvent();
             }
             else
@@ -84,7 +88,7 @@ namespace Player
             _playerData.Expirience = 0;
             _playerData.CurrentLvl = 1;
             _playerData.Money = 0;
-            //_playerData.PatientsCount = 0;
+            _playerData.Pills = 0;
             EventsManager.Instance.OnDataResetedEvent();
             SaveGame();
         }
@@ -104,12 +108,12 @@ namespace Player
     [Serializable]
     public class PlayerData
     {
-        public string _name;
+        public string _name = "Anonymous";
         public int _expirience = 0;
         public const int _maxExpirience = 100;
         public int _currentLvl = 1;
-        public long _money;
-        //public int _patientsCount;
+        public long _money = 0;
+        public int _pills = 0;
 
         #region Properties
         public string Name { get { return _name; } set { _name = value; } }
@@ -132,12 +136,16 @@ namespace Player
                     throw new ArgumentOutOfRangeException(nameof(_money));
                 else _money = value; 
             } }
-       /* public int PatientsCount { get {  return _patientsCount; } set {  
-                if(value < 0)
-                    throw new ArgumentOutOfRangeException(nameof(_patientsCount));
-                else _patientsCount = value;
+        public int Pills
+        {
+            get { return _pills; }
+            set
+            {
+                if (value < 0)
+                    throw new ArgumentOutOfRangeException(nameof(_pills));
+                else _pills = value;
             }
-        }*/
+        }
 
         #endregion
     }

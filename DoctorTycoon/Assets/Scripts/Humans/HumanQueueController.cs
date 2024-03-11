@@ -49,8 +49,8 @@ namespace People
 
         public IEnumerator EnterInQueue(RegistrationTable registrationTable , BedManager bedManager)
         {
-            if (GameStateController.Instance.Started && !GameStateController.Instance.Paused && !GameStateController.Instance.Tutorial)
-            {
+           /* if (GameStateController.Instance.Started && !GameStateController.Instance.Paused && !GameStateController.Instance.Tutorial)
+            {*/
                 _bedManager = bedManager;
                 _registrationTable = registrationTable;
                 StartCoroutine(GoToStartPointPositions(_timeIntervalBtwClaimPlace));
@@ -83,7 +83,7 @@ namespace People
                     yield return new WaitForSeconds(3f);
                     StartCoroutine(EnterInQueue(registrationTable, bedManager));
                 }
-            }
+            /*}*/
         }
         private void ReleasePlaceInQueue(int index) 
         {

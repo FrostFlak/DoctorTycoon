@@ -26,6 +26,7 @@ public class EventsManager : MonoBehaviour
     public event UnityAction OnLevelReached;
     public event UnityAction OnExpirienceAdded;
     public event UnityAction OnMoneyAdded;
+    public event UnityAction OnPillsAdded;
     public event UnityAction OnDataReseted;
     #endregion
 
@@ -71,6 +72,7 @@ public class EventsManager : MonoBehaviour
     public void OnLevelReachedEvent() => OnLevelReached?.Invoke();
     public void OnExpirienceAddedEvent() => OnExpirienceAdded?.Invoke();
     public void OnMoneyAddedEvent() => OnMoneyAdded?.Invoke();
+    public void OnPillsAddedEvent() => OnPillsAdded?.Invoke();
     public void OnDataResetedEvent() => OnDataReseted?.Invoke();
 
     #endregion
