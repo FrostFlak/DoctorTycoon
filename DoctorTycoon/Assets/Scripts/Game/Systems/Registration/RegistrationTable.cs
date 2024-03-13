@@ -71,7 +71,7 @@ namespace People
                     EventsManager.Instance.OnTimerToAcceptPeopleEndEvent();
                     _acceptClientProgress = 0;
                     ReciveMoney(_minMoney , _maxMoney);
-                    ReciveExpirience(_minExpirience, _maxExpirience);
+                    ReciveExperience(_minExpirience, _maxExpirience);
                 }
             }
             
@@ -101,10 +101,10 @@ namespace People
             _moneyWallet.AddMoney((long)claimedMoney);
         }
 
-        private void ReciveExpirience(int MinExpirience , int MaxExpirience)
+        private void ReciveExperience(int MinExperience , int MaxExperience)
         {
-            int claimedExpirience = Random.Range(MinExpirience, MaxExpirience);
-            _levelUpgrader.TryAddExpirience(claimedExpirience);
+            int claimedExpirience = Random.Range(MinExperience, MaxExperience);
+            _levelUpgrader.TryAddExperience(claimedExpirience);
         }
 
     }

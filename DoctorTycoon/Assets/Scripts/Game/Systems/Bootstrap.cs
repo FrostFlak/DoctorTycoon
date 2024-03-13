@@ -49,8 +49,10 @@ public class Bootstrap : MonoBehaviour
     private void InitializeSaveSystem()
     {
         _saveSystem.Initialize();
-        _saveSystem.AssignFilePath();
-        _saveSystem.LoadGame();
+        _saveSystem.AssignPlayerDataFilePath();
+        _saveSystem.AssignLevelDataFilePath();
+        _saveSystem.LoadPlayerData();
+        _saveSystem.LoadLevelData();
     }
 
     private void InitializePrincipalSystems()

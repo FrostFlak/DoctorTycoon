@@ -19,41 +19,38 @@ namespace UI
 
         private void Start()
         {
-            EventsManager.Instance.OnMoneyAdded += UpdateMoneyText;
-            EventsManager.Instance.OnPillsAdded += UpdatePillsText;
+            EventsManager.Instance.OnMoneyValueChanged += UpdateMoneyText;
+            EventsManager.Instance.OnPillsValueChanged += UpdatePillsText;
             EventsManager.Instance.OnPatientSpawned += UpdateClientsText;
             EventsManager.Instance.OnPatientLeaveHospital += UpdateClientsText;
             EventsManager.Instance.OnDataReseted += UpdateMoneyText;
-
+            EventsManager.Instance.OnDataReseted += UpdatePillsText;
         }
 
         private void OnDisable()
         {
-            EventsManager.Instance.OnMoneyAdded -= UpdateMoneyText;
-            EventsManager.Instance.OnPillsAdded -= UpdatePillsText;
+            EventsManager.Instance.OnMoneyValueChanged -= UpdateMoneyText;
+            EventsManager.Instance.OnPillsValueChanged -= UpdatePillsText;
             EventsManager.Instance.OnPatientSpawned -= UpdateClientsText;
             EventsManager.Instance.OnPatientLeaveHospital -= UpdateClientsText;
             EventsManager.Instance.OnDataReseted += UpdateMoneyText;
-
+            EventsManager.Instance.OnDataReseted -= UpdatePillsText;
         }
         private void UpdateMoneyText()
         { 
-            _moneyText.text = _formatNumsHelper.FormatNum(SaveSystem._playerData.Money);
+            _moneyText.text = _formatNumsHelper.FormatNum(SaveSystem.PlayerData.Money);
         }
 
         private void UpdatePillsText()
         {
-            _pillsText.text = SaveSystem._playerData.Pills.ToString();
+            _pillsText.text = SaveSystem.PlayerData.Pills.ToString();
         }
 
         private void UpdateClientsText(int count)
         {
             _patientsText.text = count.ToString();
         }
-        private void UpdatePersonalText()
-        {
-            //personal
-        }
+
 
     }
 

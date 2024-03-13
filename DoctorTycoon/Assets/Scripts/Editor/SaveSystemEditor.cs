@@ -12,21 +12,39 @@ public class SaveSystemEditor : Editor
         DrawDefaultInspector();
 
         SaveSystem saveSystem = (SaveSystem)target;
-        if (GUILayout.Button("Save Data"))
+        if (GUILayout.Button("Save Player Data"))
         {
-            saveSystem.SaveGame();
+            saveSystem.SavePlayerData();
         }
-        else if (GUILayout.Button("Load Data"))
+        else if (GUILayout.Button("Load Player Data"))
         {
-            saveSystem.LoadGame();
+            saveSystem.LoadPlayerData();
         }
-        else if (GUILayout.Button("Reset Data"))
+        else if (GUILayout.Button("Reset Player Data"))
         {
-            saveSystem.ResetData();
+            saveSystem.ResetPlayerData();
         }
-        else if (GUILayout.Button("Delete JSON"))
+        else if (GUILayout.Button("Delete PlayerData JSON"))
         {
-            saveSystem.DeleteSaveFile();
+            saveSystem.DeletePlayerDataSaveFiles();
+        }
+        EditorGUILayout.Space();
+
+        if (GUILayout.Button("Save Level Data"))
+        {
+            saveSystem.SaveLevelData();
+        }
+        else if (GUILayout.Button("Load Level Data"))
+        {
+            saveSystem.LoadLevelData();
+        }
+        else if (GUILayout.Button("Reset Level Data"))
+        {
+            saveSystem.ResetLevelData();
+        }
+        else if (GUILayout.Button("Delete Level JSON"))
+        {
+            saveSystem.DeleteLevelDataSaveFiles();
         }
     }
 }

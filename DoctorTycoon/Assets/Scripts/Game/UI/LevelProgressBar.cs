@@ -12,13 +12,13 @@ namespace UI
 
         public void Initialize()
         {
-            _levelProgressBar.fillAmount = SaveSystem._playerData.Expirience / 100f;
-            _currentLevel.text = SaveSystem._playerData.CurrentLvl.ToString();
+            _levelProgressBar.fillAmount = SaveSystem.PlayerData.Experience / 100f;
+            _currentLevel.text = SaveSystem.PlayerData.CurrentLvl.ToString();
 
         }
         private void Start()
         {
-            EventsManager.Instance.OnExpirienceAdded += UpdateProgressBar;
+            EventsManager.Instance.OnExperienceValueChanged += UpdateProgressBar;
             EventsManager.Instance.OnLevelReached += UpdateLevelText;
             EventsManager.Instance.OnDataReseted += UpdateLevelText;
             EventsManager.Instance.OnDataReseted += UpdateProgressBar;
@@ -26,15 +26,15 @@ namespace UI
 
         private void OnDisable()
         {
-            EventsManager.Instance.OnExpirienceAdded -= UpdateProgressBar;
+            EventsManager.Instance.OnExperienceValueChanged -= UpdateProgressBar;
             EventsManager.Instance.OnLevelReached -= UpdateLevelText;
             EventsManager.Instance.OnDataReseted -= UpdateLevelText;
             EventsManager.Instance.OnDataReseted -= UpdateProgressBar;
 
         }
 
-        private void UpdateProgressBar() => _levelProgressBar.fillAmount = SaveSystem._playerData.Expirience / 100f;
-        private void UpdateLevelText() => _currentLevel.text = SaveSystem._playerData.CurrentLvl.ToString();
+        private void UpdateProgressBar() => _levelProgressBar.fillAmount = SaveSystem.PlayerData.Experience / 100f;
+        private void UpdateLevelText() => _currentLevel.text = SaveSystem.PlayerData.CurrentLvl.ToString();
     }
 }
     
