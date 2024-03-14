@@ -30,6 +30,11 @@ public class EventsManager : MonoBehaviour
     public event UnityAction OnDataReseted;
     #endregion
 
+    #region UIEvents
+    public event UnityAction OnOpenLevelsUI;
+
+    #endregion
+
 
     public static EventsManager Instance { get; private set; }
 
@@ -77,8 +82,11 @@ public class EventsManager : MonoBehaviour
 
     #endregion
 
+    #region UI
+    public void OnOpenLevelsUIEvent() => OnOpenLevelsUI?.Invoke();
+    #endregion
 
-    
+
 
 
 }

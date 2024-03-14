@@ -9,14 +9,14 @@ namespace Player
     {
         public static SaveSystem Instance { get; private set; }
         public static PlayerData PlayerData = new PlayerData();
-        public static LevelData[] LevelsData = new LevelData[20];
+        public static LevelData[] LevelsData;
         private string _playerSaveFilePath;
         private string _levelSaveFilePath;
         [SerializeField] private long _money;
         [SerializeField] private int _pills;
         [SerializeField] private int _experience;
-        [SerializeField] private int _level;
-        private string saveLevelData;
+        [SerializeField] private int _currentLevel;
+        //private string saveLevelData;
 
         private void Start()
         {
@@ -24,8 +24,10 @@ namespace Player
             SaveLevelData();
             EventsManager.Instance.OnMoneyValueChanged += SavePlayerData;
             EventsManager.Instance.OnPillsValueChanged += SavePlayerData;
+
             EventsManager.Instance.OnExperienceValueChanged += SavePlayerData;
             EventsManager.Instance.OnExperienceValueChanged += SaveLevelData;
+
             EventsManager.Instance.OnLevelReached += SavePlayerData;
             EventsManager.Instance.OnLevelReached += SaveLevelData;
         }
@@ -34,8 +36,10 @@ namespace Player
         {
             EventsManager.Instance.OnMoneyValueChanged -= SavePlayerData;
             EventsManager.Instance.OnPillsValueChanged -= SavePlayerData;
+
             EventsManager.Instance.OnExperienceValueChanged -= SavePlayerData;
             EventsManager.Instance.OnExperienceValueChanged -= SaveLevelData;
+            
             EventsManager.Instance.OnLevelReached -= SavePlayerData;
             EventsManager.Instance.OnLevelReached -= SaveLevelData;
 
@@ -46,7 +50,7 @@ namespace Player
             _money = PlayerData.Money;
             _experience = PlayerData.Experience;
             _pills = PlayerData.Pills;
-            _level = PlayerData.CurrentLvl;
+            _currentLevel = PlayerData.CurrentLvl;
         }
         public void Initialize()
         {
@@ -84,7 +88,7 @@ namespace Player
                 string loadPlayerData = File.ReadAllText(_playerSaveFilePath);
                 PlayerData = JsonUtility.FromJson<PlayerData>(loadPlayerData);
 
-                Debug.Log("Load game complete! \n" +
+                Debug.Log("Load PlayerData Completed! \n" +
                     "Player Experience: " + PlayerData.Experience +
                     " Player Current Lvl: " + PlayerData.CurrentLvl +
                     " Player Current Money: " + PlayerData.Money + 
@@ -100,7 +104,7 @@ namespace Player
         {
             PlayerData.Name = "";
             PlayerData.Experience = 0;
-            PlayerData.CurrentLvl = 0;
+            PlayerData.CurrentLvl = 1;
             PlayerData.Money = 0;
             PlayerData.Pills = 0;
             EventsManager.Instance.OnDataResetedEvent();
@@ -126,10 +130,9 @@ namespace Player
         {
             _levelSaveFilePath = Application.persistentDataPath + "/LevelData.json";
         }
-
         public void SaveLevelData()
         {
-            saveLevelData = JsonHelper.ToJson(LevelsData, true);
+            string saveLevelData = JsonHelper.ToJson(LevelsData, true);
             File.WriteAllText(_levelSaveFilePath, saveLevelData); 
             if (File.Exists(_levelSaveFilePath))
                 Debug.Log("Level Data Saved");
@@ -137,15 +140,13 @@ namespace Player
                 Debug.Log("Save file created at: " + _levelSaveFilePath);
 
         }
-
         public void LoadLevelData()
         {
             if (File.Exists(_levelSaveFilePath))
             {
                 string loadLevelData = File.ReadAllText(_levelSaveFilePath);
-                LevelData[] levelData = JsonHelper.FromJson<LevelData>(loadLevelData);
-                Debug.Log("Load Data Completed: "
-                    );
+                LevelsData = JsonHelper.FromJson<LevelData>(loadLevelData);
+                Debug.Log("Load Levels Data Completed");
             }
             else
                 Debug.Log("There is no save files to load!");
@@ -159,13 +160,7 @@ namespace Player
                 level.HasRecivedReward = false;
             }
             SaveLevelData();
-           /* for (int i = 0; i < LevelsData.Length; i++)
-            {
-                LevelsData[i].Lvl = 1;
-                LevelsData[i].HasRecivedReward = false;
-            }*/
         }
-
         public void DeleteLevelDataSaveFiles()
         {
             if (File.Exists(_levelSaveFilePath))
