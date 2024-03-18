@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.IO;
 using System;
+using UnityEngine.SceneManagement;
 
 
 namespace Player
@@ -12,6 +13,9 @@ namespace Player
         public static LevelData[] LevelsData;
         private string _playerSaveFilePath;
         private string _levelSaveFilePath;
+        [SerializeField] private string _name;
+        [SerializeField] private bool _gender;
+        [SerializeField] private bool _firstPlay;
         [SerializeField] private long _money;
         [SerializeField] private int _pills;
         [SerializeField] private int _experience;
@@ -47,10 +51,13 @@ namespace Player
 
         private void Update()
         {
+            _name = PlayerData.Name;
+            _gender = PlayerData.Gender;
             _money = PlayerData.Money;
             _experience = PlayerData.Experience;
             _pills = PlayerData.Pills;
             _currentLevel = PlayerData.CurrentLvl;
+            _firstPlay = PlayerData.IsFirstPlay;
         }
         public void Initialize()
         {
@@ -63,6 +70,7 @@ namespace Player
             {
                 Destroy(gameObject);
             }
+            PlayerData.IsFirstPlay = false;
         }
 
         #region PlayerData
@@ -103,12 +111,16 @@ namespace Player
         public void ResetPlayerData()
         {
             PlayerData.Name = "";
+            PlayerData.Gender = false;
             PlayerData.Experience = 0;
             PlayerData.CurrentLvl = 1;
             PlayerData.Money = 0;
             PlayerData.Pills = 0;
+            PlayerData.IsFirstPlay = true;
             EventsManager.Instance.OnDataResetedEvent();
             SavePlayerData();
+            //for test 
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
         public void DeletePlayerDataSaveFiles()
@@ -180,11 +192,13 @@ namespace Player
     public class PlayerData
     {
         public string _name = "Anonymous";
+        public bool _gender = false;
         public int _experience = 0;
         public const int _maxExperience = 100;
         public int _currentLvl = 1;
         public long _money = 0;
         public int _pills = 0;
+        public bool _isFirstPlay = true;
 
         #region Properties
         public string Name { get { return _name; } set { _name = value; } }
@@ -221,6 +235,9 @@ namespace Player
                 else _pills = value;
             }
         }
+        public bool Gender { get { return _gender; } set { _gender = value; } }
+        public bool IsFirstPlay { get { return _isFirstPlay; } set { _isFirstPlay = value; } }
+
 
         #endregion
     }

@@ -8,7 +8,7 @@ namespace Player
 {
         [SerializeField] private CharacterMovmentFirstPersonView _firstPersonController;
         [SerializeField] private SensitivityShower _sensitivityShower;
-        public void Initialize()
+        public void Start()
         {
             _firstPersonController.LookRotationSpeedProperty = _sensitivityShower.Slider.value;
             _firstPersonController.VirtualCamera.GetCinemachineComponent<CinemachinePOV>().m_VerticalAxis.m_MaxSpeed = _sensitivityShower.Slider.value;

@@ -3,11 +3,11 @@ using UnityEngine;
 public class GameStateController : MonoBehaviour
 {
     [SerializeField] private bool _started;
-    [SerializeField] private bool _paused;
+    [SerializeField] private bool _firstPlaySetting;
     [SerializeField] private bool _tutorial;
 
     public bool Started { get { return _started; } set { _started = value; } }
-    public bool Paused { get { return _paused; } set { _paused = value; } }
+    public bool FirstPlaySetting { get { return _firstPlaySetting; } set { _firstPlaySetting = value; } }
     public bool Tutorial { get { return _tutorial; } set { _tutorial = value; } }
 
     public static GameStateController Instance { get; private set; }
@@ -24,8 +24,11 @@ public class GameStateController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        _tutorial = true;
     }
     #endregion
+
+    public void StartGame() => _started = true;
+    public void TurnOffFirstPlaySetting() => _firstPlaySetting = false;
+    public void TurnOffTutorial() => _tutorial = false;
+
 }

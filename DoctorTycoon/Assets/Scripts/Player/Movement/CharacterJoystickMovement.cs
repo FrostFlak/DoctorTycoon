@@ -28,10 +28,9 @@ namespace Player
             ETouch.Touch.onFingerMove -= HandleFingerMove;
             EnhancedTouchSupport.Disable();
         }
-
         private void Update()
         {
-            if (GameStateController.Instance.Started && !GameStateController.Instance.Paused && !GameStateController.Instance.Tutorial)
+            if (GameStateController.Instance.Started && !GameStateController.Instance.FirstPlaySetting && !GameStateController.Instance.Tutorial)
             {
                 if (_joystick.CanInteract)
                 {
@@ -132,8 +131,6 @@ namespace Player
             _joystick.gameObject.SetActive(false);
             _movementAmount = Vector2.zero;
         }
-
-
 
     }
 

@@ -35,6 +35,10 @@ public class EventsManager : MonoBehaviour
 
     #endregion
 
+    #region GameEvents
+    public event UnityAction OnGameStarted;
+    #endregion 
+
 
     public static EventsManager Instance { get; private set; }
 
@@ -86,6 +90,9 @@ public class EventsManager : MonoBehaviour
     public void OnOpenLevelsUIEvent() => OnOpenLevelsUI?.Invoke();
     #endregion
 
+    #region GameEvents
+    public void OnGameStartedEvent() => OnGameStarted?.Invoke();
+    #endregion 
 
 
 

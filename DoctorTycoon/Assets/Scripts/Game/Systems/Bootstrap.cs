@@ -9,13 +9,14 @@ public class Bootstrap : MonoBehaviour
     [SerializeField] private GameStateController _gameStateController;
     [SerializeField] private SaveSystem _saveSystem;
     [SerializeField] private HumansManager _humansManager;
-    [SerializeField] private CameraViewChanger _cameraViewChanger;
     [SerializeField] private RegistrationTable _registrationTable;
-    [SerializeField] private SensitivityChanger _sensitivityChanger;
+    [SerializeField] private CharacterJoystickMovement _joystickMovement;
 
     [Header("UI")]
     [SerializeField] private StatsTextShower _statsText;
     [SerializeField] private SensitivityShower _sensitivityShower;
+    [SerializeField] private GameObject _playerCreatePanelBackGround;
+    [SerializeField] private GameObject _playerCreatePanel;
 
     [Header("ProgressBars")]
     [SerializeField] private LevelProgressBar _levelProgressBar;
@@ -26,8 +27,8 @@ public class Bootstrap : MonoBehaviour
     {
         InitializeBootstrap();
         InitializeSaveSystem();
-        InitializePrincipalSystems();
-        InitializePlayer();
+        InitializeGameStateController();
+        InitializeGameSystems();
         InitializeBasicSystems();
         InitializeUI();
         InitializePeoplesSystems();
@@ -55,9 +56,39 @@ public class Bootstrap : MonoBehaviour
         _saveSystem.LoadLevelData();
     }
 
-    private void InitializePrincipalSystems()
+    private void InitializeGameStateController() => _gameStateController.Initialize();
+    public void InitializeGameSystems()
     {
-        _gameStateController.Initialize();
+        if (SaveSystem.PlayerData.IsFirstPlay)
+        {
+            InitializeFirstTimePlay();
+            _gameStateController.FirstPlaySetting = true;
+            _gameStateController.Started = false;
+            //lauch tutorial panel
+        }
+        else
+        {
+            _gameStateController.Tutorial = false;
+            _gameStateController.FirstPlaySetting = false;
+            _gameStateController.Started = true;
+        }
+            
+    }
+    private void InitializeFirstTimePlay()
+    {
+        if (SaveSystem.PlayerData.IsFirstPlay)
+        {
+            Debug.Log("Is Fp");
+            _playerCreatePanelBackGround.SetActive(true);
+            _playerCreatePanel.SetActive(true);
+            SaveSystem.PlayerData.IsFirstPlay = false;
+        }
+        else
+        {
+            Debug.Log("!Is Fp");
+            _playerCreatePanelBackGround.SetActive(false);
+            _playerCreatePanel.SetActive(false);
+        }
     }
     private void InitializeBasicSystems()
     {
@@ -72,10 +103,6 @@ public class Bootstrap : MonoBehaviour
         _sensitivityShower.Initialize();
     }
 
-    private void InitializePlayer()
-    {
-        _sensitivityChanger.Initialize();
-    }
 
     private void InitializePeoplesSystems()
     {

@@ -44,10 +44,12 @@ namespace People
         {
             StartCoroutine(SpawnCoroutine());
             EventsManager.Instance.OnPatientLeaveBed += RemovePeopleFromList;
+            EventsManager.Instance.OnGameStarted += StartSpawnCoroutine;
         }
         private void OnDisable()
         {
             EventsManager.Instance.OnPatientLeaveBed -= RemovePeopleFromList;
+            EventsManager.Instance.OnGameStarted -= StartSpawnCoroutine;
         }
         public void Initialize()
         {
@@ -100,12 +102,12 @@ namespace People
             if (_allHumans.Count > _maxHumanCount) return false;
             else return true;
         }
-
+        private void StartSpawnCoroutine() => StartCoroutine(SpawnCoroutine());
         public IEnumerator SpawnCoroutine()
         {
             for (int i = 0; i < _maxHumanCount; i++)
             {
-                if (CheckSpawnPosibility())
+                if (CheckSpawnPosibility() && GameStateController.Instance.Started && !GameStateController.Instance.FirstPlaySetting && !GameStateController.Instance.Tutorial)
                 {
                     yield return _waitForSpawnInterval;
                     _humanPool.Get();
@@ -114,6 +116,7 @@ namespace People
                 else yield break;
             }
             yield return _waitForCheckSpawnInterval;
+
         }
 
         private void RemovePeopleFromList(Human human)

@@ -15,7 +15,7 @@ namespace Player
 
         private void Update()
         {
-            if (GameStateController.Instance.Started && !GameStateController.Instance.Paused && !GameStateController.Instance.Tutorial)
+            if (GameStateController.Instance.Started && !GameStateController.Instance.Tutorial)
             {
                 if (Input.GetKey(KeyCode.C) && _canChange)
                 {
