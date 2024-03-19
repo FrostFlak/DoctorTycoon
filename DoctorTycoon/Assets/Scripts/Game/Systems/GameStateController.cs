@@ -12,7 +12,7 @@ public class GameStateController : MonoBehaviour
 
     public static GameStateController Instance { get; private set; }
 
-    #region 
+    #region Mono
     public void Initialize()
     {
         if (Instance == null)
@@ -25,9 +25,22 @@ public class GameStateController : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void Start()
+    {
+        EventsManager.Instance.OnGameStarted += StartGame;
+        EventsManager.Instance.OnTutorialStarted += StartTutorioal;
+    }
+
+    private void OnDisable()
+    {
+        EventsManager.Instance.OnGameStarted -= StartGame;
+        EventsManager.Instance.OnTutorialStarted -= StartTutorioal;
+    }
     #endregion
 
     public void StartGame() => _started = true;
+    public void StartTutorioal() => _tutorial = true;
     public void TurnOffFirstPlaySetting() => _firstPlaySetting = false;
     public void TurnOffTutorial() => _tutorial = false;
 

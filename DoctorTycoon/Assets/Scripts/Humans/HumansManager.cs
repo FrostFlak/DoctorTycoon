@@ -45,11 +45,13 @@ namespace People
             StartCoroutine(SpawnCoroutine());
             EventsManager.Instance.OnPatientLeaveBed += RemovePeopleFromList;
             EventsManager.Instance.OnGameStarted += StartSpawnCoroutine;
+            EventsManager.Instance.OnTutorialEnd += StartSpawnCoroutine;
         }
         private void OnDisable()
         {
             EventsManager.Instance.OnPatientLeaveBed -= RemovePeopleFromList;
             EventsManager.Instance.OnGameStarted -= StartSpawnCoroutine;
+            EventsManager.Instance.OnTutorialEnd -= StartSpawnCoroutine;
         }
         public void Initialize()
         {

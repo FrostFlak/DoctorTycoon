@@ -37,6 +37,8 @@ public class EventsManager : MonoBehaviour
 
     #region GameEvents
     public event UnityAction OnGameStarted;
+    public event UnityAction OnTutorialStarted;
+    public event UnityAction OnTutorialEnd;
     #endregion 
 
 
@@ -92,6 +94,8 @@ public class EventsManager : MonoBehaviour
 
     #region GameEvents
     public void OnGameStartedEvent() => OnGameStarted?.Invoke();
+    public void OnTutorialStartedEvent() => OnTutorialStarted?.Invoke();
+    public void OnTutorialEndEvent() => OnTutorialEnd?.Invoke();
     #endregion 
 
 

@@ -9,6 +9,7 @@ public class PlayerCreatorUI : MonoBehaviour
     [SerializeField] private Toggle _manToggle;
     [SerializeField] private Toggle _womanToggle;
     [SerializeField] private Toggle _tutorialToggle;
+    [SerializeField] private GameObject _tutorialPanel;
     public void ReadPlayerNameInput(string name) => _name = name;  
 
     public void ReadPlayerGender()
@@ -31,9 +32,8 @@ public class PlayerCreatorUI : MonoBehaviour
         SaveSystem.Instance.SavePlayerData();
         if (_tutorialToggle.isOn)
         {
-            print("Tutorial:");
-            //ui
-            EventsManager.Instance.OnGameStartedEvent();
+            _tutorialPanel.SetActive(true);
+            EventsManager.Instance.OnTutorialStartedEvent();
         }
         else
         {
