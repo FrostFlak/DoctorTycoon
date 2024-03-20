@@ -113,7 +113,7 @@ namespace People
                 {
                     yield return _waitForSpawnInterval;
                     _humanPool.Get();
-                    EventsManager.Instance.OnPatientSpawnedEvent(_allHumans.Count);
+                    EventsManager.Instance.OnPatientEnterHospitalEvent(_allHumans.Count);
                 }
                 else yield break;
             }

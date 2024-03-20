@@ -10,7 +10,7 @@ namespace Player
     {
         public static SaveSystem Instance { get; private set; }
         public static PlayerData PlayerData = new PlayerData();
-        public static LevelData[] LevelsData;
+        public static LevelData[] LevelsData = new LevelData[200];
         private string _playerSaveFilePath;
         private string _levelSaveFilePath;
         [SerializeField] private string _name;
@@ -20,7 +20,6 @@ namespace Player
         [SerializeField] private int _pills;
         [SerializeField] private int _experience;
         [SerializeField] private int _currentLevel;
-        //private string saveLevelData;
 
         private void Start()
         {

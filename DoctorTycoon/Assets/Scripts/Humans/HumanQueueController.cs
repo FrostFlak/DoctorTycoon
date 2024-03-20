@@ -72,7 +72,7 @@ namespace People
                         TakePositionInQueue(i);
                         _positionIndex = i;
                         SetAgentDestination(_registrationTable.FreePlace);
-                    yield break;
+                        yield break;
                     }
                 }
             }

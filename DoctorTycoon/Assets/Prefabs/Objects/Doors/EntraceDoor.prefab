@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33e5ed809b535944f81d6b5eceb354e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 0}
 --- !u!208 &5733566958942405750
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -429,6 +430,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33e5ed809b535944f81d6b5eceb354e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 0}
 --- !u!208 &7682541592410678239
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -632,6 +634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33e5ed809b535944f81d6b5eceb354e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 0}
 --- !u!208 &2735223496412116284
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -767,6 +770,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33e5ed809b535944f81d6b5eceb354e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 0}
 --- !u!208 &2294045205592370393
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -1149,6 +1153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33e5ed809b535944f81d6b5eceb354e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 0}
 --- !u!208 &2264729324569659141
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -1284,6 +1289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33e5ed809b535944f81d6b5eceb354e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 0}
 --- !u!208 &5262530147248551349
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -1368,6 +1374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33e5ed809b535944f81d6b5eceb354e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 8317261278604409}
 --- !u!1 &4928388894711809140
 GameObject:
   m_ObjectHideFlags: 0
@@ -1487,6 +1494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33e5ed809b535944f81d6b5eceb354e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 0}
 --- !u!208 &298683535583695813
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -1759,6 +1767,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33e5ed809b535944f81d6b5eceb354e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 0}
 --- !u!208 &4046906666303736457
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -2012,7 +2021,7 @@ Transform:
   m_GameObject: {fileID: 7175072087312420862}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
   m_LocalScale: {x: 0.16, y: 3, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2037,8 +2046,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 52.5, y: 0.049999993, z: 3.403228}
-  m_Center: {x: -0.38578808, y: -0.21989974, z: 0.69694114}
+  m_Size: {x: 40, y: 0.05, z: 3.4}
+  m_Center: {x: 0, y: 0, z: 0.7}
 --- !u!114 &320268943194623490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2081,6 +2090,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _canOpen: 1
 --- !u!1 &7216686937471370341
 GameObject:
   m_ObjectHideFlags: 0
@@ -2307,6 +2317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33e5ed809b535944f81d6b5eceb354e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 0}
 --- !u!208 &6135431584575000298
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -2442,6 +2453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33e5ed809b535944f81d6b5eceb354e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 0}
 --- !u!208 &3865637698280170894
 NavMeshObstacle:
   m_ObjectHideFlags: 0

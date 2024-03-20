@@ -21,7 +21,7 @@ namespace UI
         {
             EventsManager.Instance.OnMoneyValueChanged += UpdateMoneyText;
             EventsManager.Instance.OnPillsValueChanged += UpdatePillsText;
-            EventsManager.Instance.OnPatientSpawned += UpdateClientsText;
+            EventsManager.Instance.OnPatientEnterHospital += UpdateClientsText;
             EventsManager.Instance.OnPatientLeaveHospital += UpdateClientsText;
             EventsManager.Instance.OnDataReseted += UpdateMoneyText;
             EventsManager.Instance.OnDataReseted += UpdatePillsText;
@@ -31,7 +31,7 @@ namespace UI
         {
             EventsManager.Instance.OnMoneyValueChanged -= UpdateMoneyText;
             EventsManager.Instance.OnPillsValueChanged -= UpdatePillsText;
-            EventsManager.Instance.OnPatientSpawned -= UpdateClientsText;
+            EventsManager.Instance.OnPatientEnterHospital -= UpdateClientsText;
             EventsManager.Instance.OnPatientLeaveHospital -= UpdateClientsText;
             EventsManager.Instance.OnDataReseted += UpdateMoneyText;
             EventsManager.Instance.OnDataReseted -= UpdatePillsText;

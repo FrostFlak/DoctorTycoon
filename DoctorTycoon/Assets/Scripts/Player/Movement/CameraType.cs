@@ -19,6 +19,7 @@ namespace Player
         [SerializeField] private CameraViewChanger _cameraViewChanger;
         [SerializeField] private CharacterMovmentFirstPersonView _characterMovmentFirstPersonView;
         [SerializeField] private CharacterJoystickMovement _characterJoystickMovement;
+        [SerializeField] private GameObject _crosshair;
 
         private void Update()
         {
@@ -32,7 +33,7 @@ namespace Player
                 _characterJoystickMovement.enabled = true;
                 _mainCamera.cullingMask = _thirdPersonViewableLayers;
                 _characterMovmentFirstPersonView.enabled = false;
-
+                _crosshair.SetActive(false);
             }
             else if(_cameraViewChanger.CurrentCameraIndex == (int)CameraTypes.FirstPerson)
             {
@@ -41,6 +42,7 @@ namespace Player
                 _characterMovmentFirstPersonView.enabled = true;
                 _mainCamera.cullingMask = _firstPersonViewableLayers;
                 _characterJoystickMovement.enabled = false;
+                _crosshair.SetActive(true);
             }
         }
     }

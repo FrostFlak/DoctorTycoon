@@ -6,7 +6,7 @@ public class EventsManager : MonoBehaviour
 {
     #region PeopleEvents
     public event UnityAction<Human> OnPatientLeaveBed;
-    public event UnityAction<int> OnPatientSpawned;
+    public event UnityAction<int> OnPatientEnterHospital;
     public event UnityAction<int> OnPatientLeaveHospital;
     #endregion
 
@@ -65,7 +65,7 @@ public class EventsManager : MonoBehaviour
     #endregion
 
     #region People
-    public void OnPatientSpawnedEvent(int count) => OnPatientSpawned?.Invoke(count);
+    public void OnPatientEnterHospitalEvent(int count) => OnPatientEnterHospital?.Invoke(count);
     public void OnPatientLeaveHospitalEvent(int count) => OnPatientLeaveHospital?.Invoke(count);
     public void OnPatientLeaveBedEvent(Human human) => OnPatientLeaveBed?.Invoke(human);
     #endregion

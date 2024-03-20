@@ -2,25 +2,22 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    private Animator _animator;
+    [SerializeField] private Animator _animator;
+    private bool _canSwitch = true;
     private readonly string _open = "DoorOpen";
     private readonly string _close = "DoorClose";
-
-    private void Start()
-    {
-        _animator = GetComponent<Animator>();
-    }
-
     public void OpenDoor()
     {
-        _animator.Play(_open);
+        if (_canSwitch)
+            _animator.Play(_open);
     }
 
     public void CloseDoor()
     {
-        _animator.Play(_close);
+        if (!_canSwitch)
+            _animator.Play(_close);
     }
 
-
+    public void SwitchState() => _canSwitch = !_canSwitch;
 
 }

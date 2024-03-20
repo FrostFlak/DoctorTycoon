@@ -30,12 +30,14 @@ namespace Player
         private void OnEnable()
         {
             _isCursorLocked = true;
-            //Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Confined;
         }
 
         private void OnDisable()
         {
             _isCursorLocked = false;
+            Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
 
@@ -80,7 +82,6 @@ namespace Player
             _virtualCamera.transform.localEulerAngles = new Vector3(_pitch, 0, 0);
 
         }
-
     }
 
 }
