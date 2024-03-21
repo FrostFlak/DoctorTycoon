@@ -26,7 +26,6 @@ namespace People
         private bool _isAvailableBeds;
 
         private Vector3 _freeBed;
-
         public Vector3 FreeBed { get { return _freeBed; } set { _freeBed = value; } }
         public List<Transform> WaypointPosition { get { return _waypointPositions; } }
 

@@ -43,7 +43,7 @@ namespace People
             _bedManager = bedManager;
             for (int i = 0; i < _bedManager.Beds.Count; i++)
             {
-                if (_bedManager.Beds[i].IsBusy)
+                if (_bedManager.Beds[i].IsBusy && !_bedManager.Beds[i].IsPurchased)
                 {
                     Debug.Log($"Place : {_bedManager.Beds[i].name} is Busy");
                 }

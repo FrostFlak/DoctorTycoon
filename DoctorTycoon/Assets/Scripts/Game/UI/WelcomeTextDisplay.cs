@@ -30,7 +30,7 @@ namespace UI
         }
         private void OnEnable()
         {
-            _joystick.SwitchToFalseInteractability();
+            _joystick.TurnOffJoystick();
             for(int i = 0; i < _allButtons.Length; i++)
                 _allButtons[i].interactable = false;
             StartCoroutine(DisplayText());
