@@ -10,15 +10,14 @@ namespace People
         [SerializeField] private bool _isPurchased;
         [SerializeField] private float _timeToHeal;
         [SerializeField] private float _maxTimeToHeal;
-        [SerializeField] private bool _inZone;
-        [SerializeField] private bool _canLeaveBed;
+        [SerializeField] private bool _playerInZone;
         [SerializeField] private Image _progressBar;
         [SerializeField] private GameObject _progressBarParent;
+        private bool _canLeaveBed;
 
         public bool IsBusy { get { return _isBusy; } set { _isBusy = value; } }
         public bool IsPurchased { get { return _isPurchased; } set { _isPurchased = value; } }
         public bool CanLeaveBed { get { return _canLeaveBed; } set { _canLeaveBed = value; } }
-
         public float TimeToHeal { get { return _timeToHeal; } }
 
         private void Start()
@@ -27,7 +26,7 @@ namespace People
         }
         private void Update()
         {
-            if (!_inZone)
+            if (!_playerInZone)
             {
                 DecreaseProgress();
                 DecreaseProgressBar();
@@ -39,7 +38,7 @@ namespace People
         {
             if(other.TryGetComponent(out CameraViewChanger player))
             {
-                _inZone = true;
+                _playerInZone = true;
                 if(_isBusy)
                     _progressBarParent.SetActive(true);
             }
@@ -68,7 +67,7 @@ namespace People
             if (other.TryGetComponent(out CameraViewChanger player))
             {
                 EventsManager.Instance.OnExitBedTriggerZoneEvent();
-                _inZone = false;
+                _playerInZone = false;
                 _progressBarParent.SetActive(false);
             }
         }

@@ -12,10 +12,10 @@ namespace People
         [SerializeField] private float _timeToAcceptClient;
         [SerializeField] private MoneyWallet _moneyWallet;
         [SerializeField] private LevelUpgrader _levelUpgrader;
+        [SerializeField] private BedManager _bedManager;
         #endregion
 
         #region Private Fields
-        private BedManager _bedManager;
         private Vector3 _quitQueuePosition;
         private Vector3 _freePlace;
         private bool _inZone;
@@ -36,7 +36,6 @@ namespace People
 
         public void Initialize()
         {
-            _bedManager = FindObjectOfType<BedManager>();
             _quitQueuePosition = _points[0].transform.position;
         }
 

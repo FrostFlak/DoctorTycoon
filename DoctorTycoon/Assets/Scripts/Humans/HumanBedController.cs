@@ -39,11 +39,10 @@ namespace People
 
         public IEnumerator TakeBed(BedManager bedManager)
         {
-
             _bedManager = bedManager;
             for (int i = 0; i < _bedManager.Beds.Count; i++)
             {
-                if (_bedManager.Beds[i].IsBusy && !_bedManager.Beds[i].IsPurchased)
+                if (_bedManager.Beds[i].IsBusy)
                 {
                     Debug.Log($"Place : {_bedManager.Beds[i].name} is Busy");
                 }

@@ -35,11 +35,12 @@ public class EventsManager : MonoBehaviour
 
     #endregion
 
-    #region GameEvents
+    #region GameStateEvents
     public event UnityAction OnGameStarted;
     public event UnityAction OnTutorialStarted;
     public event UnityAction OnTutorialEnd;
-    #endregion 
+    #endregion
+
 
 
     public static EventsManager Instance { get; private set; }
@@ -92,7 +93,7 @@ public class EventsManager : MonoBehaviour
     public void OnOpenLevelsUIEvent() => OnOpenLevelsUI?.Invoke();
     #endregion
 
-    #region GameEvents
+    #region GameStateEvents
     public void OnGameStartedEvent() => OnGameStarted?.Invoke();
     public void OnTutorialStartedEvent() => OnTutorialStarted?.Invoke();
     public void OnTutorialEndEvent() => OnTutorialEnd?.Invoke();

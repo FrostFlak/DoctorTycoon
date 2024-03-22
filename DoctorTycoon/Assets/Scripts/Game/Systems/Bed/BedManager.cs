@@ -36,7 +36,7 @@ namespace People
         {
             foreach (Bed bed in _beds)
             {
-                if (!bed.IsBusy) return true;
+                if (!bed.IsBusy && bed.IsPurchased) return true;
             }
             return false;
         }

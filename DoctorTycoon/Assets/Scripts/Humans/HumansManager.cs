@@ -55,7 +55,7 @@ namespace People
         }
         public void Initialize()
         {
-            _maxHumanCount = _bedManager.Beds.Count - 2;
+            _maxHumanCount = _bedManager.Beds.Count;
             _humanPool = new ObjectPool<Human>(CreatePoolObject, OnTakeFromPool, OnReturnToPool, OnDestroyObject, false, _maxHumanCount, _maxHumanCount);
             _waitForSpawnInterval = new WaitForSeconds(_spawnRate);
             _waitForCheckSpawnInterval = new WaitForSeconds(_spawnCheckInterval);

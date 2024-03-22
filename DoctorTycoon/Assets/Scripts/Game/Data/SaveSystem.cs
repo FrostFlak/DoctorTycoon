@@ -266,4 +266,18 @@ namespace Player
         }
         #endregion
     }
+
+    [Serializable]
+    public class BedsData
+    {
+        public bool _purchased = false;
+
+        #region Properties
+        public bool Purchased
+        {
+            get { return _purchased; }
+            set { _purchased = value; }
+        }
+        #endregion
+    }
 }
