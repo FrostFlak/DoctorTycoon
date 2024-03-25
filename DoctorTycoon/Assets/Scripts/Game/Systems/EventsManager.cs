@@ -41,7 +41,10 @@ public class EventsManager : MonoBehaviour
     public event UnityAction OnTutorialEnd;
     #endregion
 
-
+    #region ShopEvents
+    public event UnityAction OnBedPurchased;
+    public event UnityAction OnBedUpgraded;
+    #endregion
 
     public static EventsManager Instance { get; private set; }
 
@@ -93,11 +96,17 @@ public class EventsManager : MonoBehaviour
     public void OnOpenLevelsUIEvent() => OnOpenLevelsUI?.Invoke();
     #endregion
 
-    #region GameStateEvents
+    #region GameState
     public void OnGameStartedEvent() => OnGameStarted?.Invoke();
     public void OnTutorialStartedEvent() => OnTutorialStarted?.Invoke();
     public void OnTutorialEndEvent() => OnTutorialEnd?.Invoke();
-    #endregion 
+    #endregion
+
+    #region Shop
+    public void OnBedPurchasedEvent() => OnBedPurchased?.Invoke();
+    public void OnBedUpgradedEvent() => OnBedUpgraded?.Invoke();
+
+    #endregion
 
 
 

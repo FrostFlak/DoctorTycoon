@@ -7,17 +7,20 @@ namespace People
     public class BedPurchaseSystem : MonoBehaviour
     {
         [SerializeField] private BedManager _bedManager;
-        private float _multiplier = 1.3f;
+        [SerializeField] private float _multiplier = 1.3f;
         public void PurchaseBed(int price)
         {
             for(int i = 0; i < _bedManager.Beds.Count; i++)
             {
-                //price *= Convert.ToInt64(_multiplier); ?
-                if (!_bedManager.Beds[i].IsPurchased)
+                float roundedPrice = price * _multiplier;
+                if (!SaveSystem.BedsData[i].Purchased && SaveSystem.PlayerData.Money >= price)
                 {
-                    _bedManager.Beds[i].IsPurchased = true;
-                    ReduceMoneyCount(price);
-                    Debug.Log($"Purchased Bed:{i + 1}. Price:{price}");
+                    SaveSystem.BedsData[i].Purchased = true;
+                    _bedManager.CurrentPurchasedBedsCount++;
+                    //?????
+                    EventsManager.Instance.OnBedPurchasedEvent();
+                    ReduceMoneyCount((int)Math.Round(roundedPrice));
+                    Debug.Log($"Purchased Bed: {i + 1}. Price: {roundedPrice}");
                     EventsManager.Instance.OnMoneyValueChangedEvent();
                     return;
                 }

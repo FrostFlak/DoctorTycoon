@@ -11,6 +11,7 @@ public class Bootstrap : MonoBehaviour
     [SerializeField] private HumansManager _humansManager;
     [SerializeField] private RegistrationTable _registrationTable;
     [SerializeField] private CharacterJoystickMovement _joystickMovement;
+    [SerializeField] private BedManager _bedManager;
 
     [Header("UI")]
     [SerializeField] private StatsTextShower _statsText;
@@ -52,8 +53,10 @@ public class Bootstrap : MonoBehaviour
         _saveSystem.Initialize();
         _saveSystem.AssignPlayerDataFilePath();
         _saveSystem.AssignLevelDataFilePath();
+        _saveSystem.AssignBedsDataFilePath();
         _saveSystem.LoadPlayerData();
         _saveSystem.LoadLevelData();
+        _saveSystem.LoadBedsData();
     }
 
     private void InitializeGameStateController() => _gameStateController.Initialize();
@@ -64,7 +67,6 @@ public class Bootstrap : MonoBehaviour
             InitializeFirstTimePlay();
             _gameStateController.FirstPlaySetting = true;
             _gameStateController.Started = false;
-            //lauch tutorial panel
         }
         else
         {
@@ -93,6 +95,7 @@ public class Bootstrap : MonoBehaviour
     private void InitializeBasicSystems()
     {
         _registrationTable.Initialize();
+        _bedManager.AssignBedState();
     }
 
     private void InitializeUI()

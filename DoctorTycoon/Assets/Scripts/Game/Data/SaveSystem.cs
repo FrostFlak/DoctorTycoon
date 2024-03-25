@@ -11,8 +11,10 @@ namespace Player
         public static SaveSystem Instance { get; private set; }
         public static PlayerData PlayerData = new PlayerData();
         public static LevelData[] LevelsData = new LevelData[200];
+        public static BedsData[] BedsData = new BedsData[100];
         private string _playerSaveFilePath;
         private string _levelSaveFilePath;
+        private string _bedsSaveFilePath;
         [SerializeField] private string _name;
         [SerializeField] private bool _gender;
         [SerializeField] private bool _firstPlay;
@@ -25,6 +27,7 @@ namespace Player
         {
             SavePlayerData();
             SaveLevelData();
+            SaveBedsData();
             EventsManager.Instance.OnMoneyValueChanged += SavePlayerData;
             EventsManager.Instance.OnPillsValueChanged += SavePlayerData;
 
@@ -33,6 +36,8 @@ namespace Player
 
             EventsManager.Instance.OnLevelReached += SavePlayerData;
             EventsManager.Instance.OnLevelReached += SaveLevelData;
+
+            EventsManager.Instance.OnBedPurchased += SaveBedsData;
         }
 
         private void OnDisable()
@@ -45,6 +50,9 @@ namespace Player
             
             EventsManager.Instance.OnLevelReached -= SavePlayerData;
             EventsManager.Instance.OnLevelReached -= SaveLevelData;
+
+            EventsManager.Instance.OnBedPurchased += SaveBedsData;
+
 
         }
 
@@ -117,6 +125,7 @@ namespace Player
             PlayerData.Pills = 0;
             PlayerData.IsFirstPlay = true;
             EventsManager.Instance.OnDataResetedEvent();
+            Debug.Log("Player Data Reseted");
             SavePlayerData();
             //for test 
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -170,6 +179,7 @@ namespace Player
                 level.Lvl = 1;
                 level.HasRecivedReward = false;
             }
+            Debug.Log("Level Data Reseted");
             SaveLevelData();
         }
         public void DeleteLevelDataSaveFiles()
@@ -179,6 +189,55 @@ namespace Player
                 ResetLevelData();
                 File.Delete(_levelSaveFilePath);
                 Debug.Log("Level Save file deleted!");
+            }
+            else
+                Debug.Log("There is nothing to delete!");
+        }
+        #endregion
+
+        #region BedsData
+        public void AssignBedsDataFilePath()
+        {
+            _bedsSaveFilePath = Application.persistentDataPath + "/BedsData.json";
+        }
+        public void SaveBedsData()
+        {
+            string saveBedsData = JsonHelper.ToJson(BedsData, true);
+            File.WriteAllText(_bedsSaveFilePath, saveBedsData);
+            if (File.Exists(_bedsSaveFilePath))
+                Debug.Log("Beds Data Saved");
+            else
+                Debug.Log("Save file created at: " + _bedsSaveFilePath);
+
+        }
+        public void LoadBedsData()
+        {
+            if (File.Exists(_bedsSaveFilePath))
+            {
+                string loadBedsData = File.ReadAllText(_bedsSaveFilePath);
+                BedsData = JsonHelper.FromJson<BedsData>(loadBedsData);
+                Debug.Log("Load Beds Data Completed");
+            }
+            else
+                Debug.Log("There is no save files to load!");
+
+        }
+        public void ResetBedsData()
+        {
+            foreach (var bed in BedsData)
+            {
+                bed.Purchased = false;
+            }
+            Debug.Log("Beds Data Reseted");
+            SaveBedsData();
+        }
+        public void DeleteBedsDataSaveFiles()
+        {
+            if (File.Exists(_bedsSaveFilePath))
+            {
+                ResetLevelData();
+                File.Delete(_bedsSaveFilePath);
+                Debug.Log("Beds Save file deleted!");
             }
             else
                 Debug.Log("There is nothing to delete!");

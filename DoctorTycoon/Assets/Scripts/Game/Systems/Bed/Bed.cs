@@ -13,17 +13,20 @@ namespace People
         [SerializeField] private bool _playerInZone;
         [SerializeField] private Image _progressBar;
         [SerializeField] private GameObject _progressBarParent;
+        [SerializeField] private GameObject _bedObject;
         private bool _canLeaveBed;
 
         public bool IsBusy { get { return _isBusy; } set { _isBusy = value; } }
         public bool IsPurchased { get { return _isPurchased; } set { _isPurchased = value; } }
         public bool CanLeaveBed { get { return _canLeaveBed; } set { _canLeaveBed = value; } }
         public float TimeToHeal { get { return _timeToHeal; } }
+        public GameObject BedObject {  get { return _bedObject; } set { _bedObject = value; } }
 
         private void Start()
         {
             _progressBarParent.SetActive(false);
         }
+
         private void Update()
         {
             if (!_playerInZone)
@@ -71,6 +74,7 @@ namespace People
                 _progressBarParent.SetActive(false);
             }
         }
+
         private void DecreaseProgress()
         {
             _timeToHeal -= Time.deltaTime;

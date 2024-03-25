@@ -1,3 +1,4 @@
+using Player;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,6 +24,8 @@ namespace People
     {
         [SerializeField] private List<Bed> _beds = new List<Bed>();
         [SerializeField] private List<Transform> _waypointPositions;
+        [SerializeField] private int _currentPurchasedBedsCount;
+        //??
         private bool _isAvailableBeds;
 
         private Vector3 _freeBed;
@@ -31,6 +34,26 @@ namespace People
 
         public bool IsAvailableBeds {  get { return _isAvailableBeds; } }
         public List<Bed> Beds {  get { return _beds; } }
+        public int CurrentPurchasedBedsCount { get {  return _currentPurchasedBedsCount; } set { _currentPurchasedBedsCount = value; } }
+
+        private void Start()
+        {
+            EventsManager.Instance.OnBedPurchased += AssignBedState;
+        }
+
+        private void OnDisable()
+        {
+            EventsManager.Instance.OnBedPurchased -= AssignBedState;
+        }
+        public void AssignBedState()
+        {
+            for (int i = 0; i < _beds.Count; i++)
+            {
+                _beds[i].IsPurchased = SaveSystem.BedsData[i].Purchased;
+                if (_beds[i].IsPurchased)
+                    _beds[i].BedObject.SetActive(true);
+            }
+        }
 
         public bool IsAnyBedAvailable()
         {
@@ -40,6 +63,8 @@ namespace People
             }
             return false;
         }
+
+     
     }
 
 }

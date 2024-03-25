@@ -28,6 +28,7 @@ public class SaveSystemEditor : Editor
         {
             saveSystem.DeletePlayerDataSaveFiles();
         }
+
         EditorGUILayout.Space();
 
         if (GUILayout.Button("Save Level Data"))
@@ -45,6 +46,24 @@ public class SaveSystemEditor : Editor
         else if (GUILayout.Button("Delete Level JSON"))
         {
             saveSystem.DeleteLevelDataSaveFiles();
+        }
+        EditorGUILayout.Space();
+
+        if (GUILayout.Button("Save Beds Data"))
+        {
+            saveSystem.SaveBedsData();
+        }
+        else if (GUILayout.Button("Load Beds Data"))
+        {
+            saveSystem.LoadBedsData();
+        }
+        else if (GUILayout.Button("Reset Beds Data"))
+        {
+            saveSystem.ResetBedsData();
+        }
+        else if (GUILayout.Button("Delete Beds JSON"))
+        {
+            saveSystem.DeleteBedsDataSaveFiles();
         }
     }
 }
