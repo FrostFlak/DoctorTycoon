@@ -12,12 +12,14 @@ public class Bootstrap : MonoBehaviour
     [SerializeField] private RegistrationTable _registrationTable;
     [SerializeField] private CharacterJoystickMovement _joystickMovement;
     [SerializeField] private BedManager _bedManager;
+    [SerializeField] private BedPurchaseSystem _bedPurchaseSystem;
 
     [Header("UI")]
     [SerializeField] private StatsTextShower _statsText;
     [SerializeField] private SensitivityShower _sensitivityShower;
     [SerializeField] private GameObject _playerCreatePanelBackGround;
     [SerializeField] private GameObject _playerCreatePanel;
+    [SerializeField] private ShopTextDisplay _shopTextDisplay;
 
     [Header("ProgressBars")]
     [SerializeField] private LevelProgressBar _levelProgressBar;
@@ -95,7 +97,8 @@ public class Bootstrap : MonoBehaviour
     private void InitializeBasicSystems()
     {
         _registrationTable.Initialize();
-        _bedManager.AssignBedState();
+        _bedManager.Initialize();
+        _bedPurchaseSystem.Initialize();
     }
 
     private void InitializeUI()
@@ -104,6 +107,7 @@ public class Bootstrap : MonoBehaviour
         _levelProgressBar.Initialize();
         _registrationTableProgressBar.Initialize();
         _sensitivityShower.Initialize();
+        _shopTextDisplay.Initialize();
     }
 
 

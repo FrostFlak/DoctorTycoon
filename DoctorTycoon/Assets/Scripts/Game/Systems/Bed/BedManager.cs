@@ -24,8 +24,7 @@ namespace People
     {
         [SerializeField] private List<Bed> _beds = new List<Bed>();
         [SerializeField] private List<Transform> _waypointPositions;
-        [SerializeField] private int _currentPurchasedBedsCount;
-        //??
+        private int _currentPurchasedBedsCount;
         private bool _isAvailableBeds;
 
         private Vector3 _freeBed;
@@ -38,14 +37,14 @@ namespace People
 
         private void Start()
         {
-            EventsManager.Instance.OnBedPurchased += AssignBedState;
+            EventsManager.Instance.OnBedPurchased += Initialize;
         }
 
         private void OnDisable()
         {
-            EventsManager.Instance.OnBedPurchased -= AssignBedState;
+            EventsManager.Instance.OnBedPurchased -= Initialize;
         }
-        public void AssignBedState()
+        public void Initialize()
         {
             for (int i = 0; i < _beds.Count; i++)
             {

@@ -10197,7 +10197,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &266579819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10878,7 +10878,6 @@ MonoBehaviour:
   - {fileID: 443700842}
   - {fileID: 1344100571}
   - {fileID: 228015243}
-  _currentPurchasedBedsCount: 0
 --- !u!4 &280591783
 Transform:
   m_ObjectHideFlags: 0
@@ -45585,7 +45584,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1176577758}
-  - component: {fileID: 1176577759}
   m_Layer: 5
   m_Name: Shop
   m_TagString: Untagged
@@ -45614,22 +45612,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1176577759
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1176577757}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f926a0916c3dde8499e66984d734235d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _bedPrice: {fileID: 1577770909}
-  _bedCount: {fileID: 2123913163}
-  _bedUpgradePrice: {fileID: 1618063158}
-  _bedUpgradedSpeed: {fileID: 1960505891}
 --- !u!1 &1181545628
 GameObject:
   m_ObjectHideFlags: 0
@@ -49584,7 +49566,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bedManager: {fileID: 280591782}
-  _multiplier: 1.3
+  _multiplier: 2
+  _bedPrice: 100
+  _nextBedPrice: 0
 --- !u!1 &1279410229
 GameObject:
   m_ObjectHideFlags: 0
@@ -62083,7 +62067,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1276476718}
         m_TargetAssemblyTypeName: People.BedPurchaseSystem, Assembly-CSharp
         m_MethodName: PurchaseBed
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -62774,7 +62758,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 50000
+          m_IntArgument: 1000
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -65563,10 +65547,12 @@ MonoBehaviour:
   _registrationTable: {fileID: 6149468972301475347}
   _joystickMovement: {fileID: 0}
   _bedManager: {fileID: 280591782}
+  _bedPurchaseSystem: {fileID: 1276476718}
   _statsText: {fileID: 18769076}
   _sensitivityShower: {fileID: 1281504192}
   _playerCreatePanelBackGround: {fileID: 2079100189}
   _playerCreatePanel: {fileID: 1253075604}
+  _shopTextDisplay: {fileID: 1752908507}
   _levelProgressBar: {fileID: 1511344059}
   _registrationTableProgressBar: {fileID: 1216723856}
 --- !u!1 &1717660966
@@ -67099,6 +67085,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1752908506}
+  - component: {fileID: 1752908507}
   m_Layer: 5
   m_Name: ShopParent
   m_TagString: Untagged
@@ -67127,6 +67114,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1752908507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752908505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f926a0916c3dde8499e66984d734235d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bedPrice: {fileID: 1577770909}
+  _bedCount: {fileID: 2123913163}
+  _bedUpgradePrice: {fileID: 1618063158}
+  _bedUpgradedSpeed: {fileID: 1960505891}
+  _bedManager: {fileID: 280591782}
+  _bedPurchaseSystem: {fileID: 1276476718}
 --- !u!1001 &1756450102
 PrefabInstance:
   m_ObjectHideFlags: 0
