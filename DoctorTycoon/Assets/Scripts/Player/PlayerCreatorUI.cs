@@ -4,12 +4,12 @@ using UnityEngine.UI;
 
 public class PlayerCreatorUI : MonoBehaviour
 {
-    [SerializeField] private string _name;
-    [SerializeField] private bool _gender;
     [SerializeField] private Toggle _manToggle;
     [SerializeField] private Toggle _womanToggle;
     [SerializeField] private Toggle _tutorialToggle;
     [SerializeField] private GameObject _tutorialPanel;
+    private string _name;
+    private bool _gender;
     public void ReadPlayerNameInput(string name) => _name = name;  
 
     public void ReadPlayerGender()

@@ -13,6 +13,7 @@ public class Bootstrap : MonoBehaviour
     [SerializeField] private CharacterJoystickMovement _joystickMovement;
     [SerializeField] private BedManager _bedManager;
     [SerializeField] private BedPurchaseSystem _bedPurchaseSystem;
+    [SerializeField] private RegistartionTableUpgrader _registartionTableUpgrader;
 
     [Header("UI")]
     [SerializeField] private StatsTextShower _statsText;
@@ -56,9 +57,11 @@ public class Bootstrap : MonoBehaviour
         _saveSystem.AssignPlayerDataFilePath();
         _saveSystem.AssignLevelDataFilePath();
         _saveSystem.AssignBedsDataFilePath();
+        _saveSystem.AssignShopDataFilePath();
         _saveSystem.LoadPlayerData();
         _saveSystem.LoadLevelData();
         _saveSystem.LoadBedsData();
+        _saveSystem.LoadShopData();
     }
 
     private void InitializeGameStateController() => _gameStateController.Initialize();
@@ -99,6 +102,7 @@ public class Bootstrap : MonoBehaviour
         _registrationTable.Initialize();
         _bedManager.Initialize();
         _bedPurchaseSystem.Initialize();
+        _registartionTableUpgrader.Initialize();
     }
 
     private void InitializeUI()

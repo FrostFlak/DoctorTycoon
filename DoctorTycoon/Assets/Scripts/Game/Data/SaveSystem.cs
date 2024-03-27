@@ -12,9 +12,11 @@ namespace Player
         public static PlayerData PlayerData = new PlayerData();
         public static LevelData[] LevelsData = new LevelData[200];
         public static BedsData[] BedsData = new BedsData[100];
+        public static ShopData ShopData = new ShopData();
         private string _playerSaveFilePath;
         private string _levelSaveFilePath;
         private string _bedsSaveFilePath;
+        private string _shopSaveFilePath;
         [SerializeField] private string _name;
         [SerializeField] private bool _gender;
         [SerializeField] private bool _firstPlay;
@@ -22,12 +24,17 @@ namespace Player
         [SerializeField] private int _pills;
         [SerializeField] private int _experience;
         [SerializeField] private int _currentLevel;
+        [SerializeField] private int _currentBedPrice;
+        [SerializeField] private int _currentUpgradeBedPrice;
+        [SerializeField] private int _currentUpgradeRegistartionPrice;
+        [SerializeField] private float _currentUpgradeRegistartionSpeed;
 
         private void Start()
         {
             SavePlayerData();
             SaveLevelData();
             SaveBedsData();
+            SaveShopData();
             EventsManager.Instance.OnMoneyValueChanged += SavePlayerData;
             EventsManager.Instance.OnPillsValueChanged += SavePlayerData;
 
@@ -38,6 +45,9 @@ namespace Player
             EventsManager.Instance.OnLevelReached += SaveLevelData;
 
             EventsManager.Instance.OnBedPurchased += SaveBedsData;
+            EventsManager.Instance.OnBedPurchased += SaveShopData;
+            EventsManager.Instance.OnBedUpgraded += SaveShopData;
+            EventsManager.Instance.OnRegistrationUpgraded += SaveShopData;
         }
 
         private void OnDisable()
@@ -51,13 +61,15 @@ namespace Player
             EventsManager.Instance.OnLevelReached -= SavePlayerData;
             EventsManager.Instance.OnLevelReached -= SaveLevelData;
 
-            EventsManager.Instance.OnBedPurchased += SaveBedsData;
-
-
+            EventsManager.Instance.OnBedPurchased -= SaveBedsData;
+            EventsManager.Instance.OnBedPurchased -= SaveShopData;
+            EventsManager.Instance.OnBedUpgraded -= SaveShopData;
+            EventsManager.Instance.OnRegistrationUpgraded -= SaveShopData;
         }
 
         private void Update()
         {
+            //For Testing
             _name = PlayerData.Name;
             _gender = PlayerData.Gender;
             _money = PlayerData.Money;
@@ -65,6 +77,10 @@ namespace Player
             _pills = PlayerData.Pills;
             _currentLevel = PlayerData.CurrentLvl;
             _firstPlay = PlayerData.IsFirstPlay;
+            _currentBedPrice = ShopData.CurrentBedPrice;
+            _currentUpgradeBedPrice = ShopData.CurrentUpgradeBedPrice;
+            _currentUpgradeRegistartionPrice = ShopData.CurrentUpgradeRegistartionPrice;
+            _currentUpgradeRegistartionSpeed = ShopData.CurrentUpgradeRegistartionSpeed;
         }
         public void Initialize()
         {
@@ -78,6 +94,17 @@ namespace Player
                 Destroy(gameObject);
             }
             PlayerData.IsFirstPlay = false;
+        }
+        private void SaveAll()
+        {
+            SavePlayerData();
+            SaveLevelData();
+            SaveBedsData();
+            SaveShopData();
+        }
+        private void OnApplicationQuit()
+        {
+            SaveAll();
         }
 
         #region PlayerData
@@ -227,6 +254,7 @@ namespace Player
             foreach (var bed in BedsData)
             {
                 bed.Purchased = false;
+                bed.MaxTimeToHeal = 5f;
             }
             Debug.Log("Beds Data Reseted");
             SaveBedsData();
@@ -235,9 +263,56 @@ namespace Player
         {
             if (File.Exists(_bedsSaveFilePath))
             {
-                ResetLevelData();
                 File.Delete(_bedsSaveFilePath);
                 Debug.Log("Beds Save file deleted!");
+            }
+            else
+                Debug.Log("There is nothing to delete!");
+        }
+        #endregion
+
+        #region ShopData
+        public void AssignShopDataFilePath()
+        {
+            _shopSaveFilePath = Application.persistentDataPath + "/ShopData.json";
+        }
+        public void SaveShopData()
+        {
+            string saveShopData = JsonUtility.ToJson(ShopData, true);
+            File.WriteAllText(_shopSaveFilePath, saveShopData);
+            if (File.Exists(_shopSaveFilePath))
+                Debug.Log("Shop Data Saved");
+            else
+                Debug.Log("Save file created at: " + _shopSaveFilePath);
+
+        }
+        public void LoadShopData()
+        {
+            if (File.Exists(_shopSaveFilePath))
+            {
+                string loadShopData = File.ReadAllText(_shopSaveFilePath);
+                ShopData = JsonUtility.FromJson<ShopData>(loadShopData);
+                Debug.Log("Load Shop Data Completed");
+            }
+            else
+                Debug.Log("There is no save files to load!");
+
+        }
+        public void ResetShopData()
+        {
+            ShopData.CurrentBedPrice = 100;
+            ShopData.CurrentUpgradeBedPrice = 100;
+            ShopData.CurrentUpgradeRegistartionPrice = 100;
+            ShopData.CurrentUpgradeRegistartionSpeed = 3f;
+            Debug.Log("Shop Data Reseted");
+            SaveShopData();
+        }
+        public void DeleteShopDataSaveFiles()
+        {
+            if (File.Exists(_shopSaveFilePath))
+            {
+                File.Delete(_shopSaveFilePath);
+                Debug.Log("Shop Save file deleted!");
             }
             else
                 Debug.Log("There is nothing to delete!");
@@ -330,12 +405,62 @@ namespace Player
     public class BedsData
     {
         public bool _purchased = false;
+        public float _maxTimeToHeal = 5;
 
         #region Properties
         public bool Purchased
         {
             get { return _purchased; }
             set { _purchased = value; }
+        }
+
+        public float MaxTimeToHeal
+        { 
+            get { return _maxTimeToHeal; }
+            set
+            {
+                if (value <= 0.6f) throw new ArgumentOutOfRangeException(nameof(_maxTimeToHeal));
+                else _maxTimeToHeal = value;
+            }
+        }
+        #endregion
+    }
+
+    [Serializable]
+    public class ShopData
+    {
+        public int _currentBedPrice = 100;
+        public int _currentUpgradeBedPrice = 100;
+        public int _currentUpgradeRegistrationPrice = 100;
+        public float _currentUpgradeRegistrationSpeed = 3f;
+
+        #region Properties
+        public int CurrentBedPrice
+        {
+            get { return _currentBedPrice; }
+            set { _currentBedPrice = value; }
+        }
+
+        public int CurrentUpgradeBedPrice
+        {
+            get { return _currentUpgradeBedPrice; }
+            set { _currentUpgradeBedPrice = value;}
+        }
+
+        public int CurrentUpgradeRegistartionPrice
+        {
+            get { return _currentUpgradeRegistrationPrice; }
+            set { _currentUpgradeRegistrationPrice = value; }
+        }
+        public float CurrentUpgradeRegistartionSpeed
+        {
+            
+            get { return _currentUpgradeRegistrationSpeed; }
+            set 
+            {
+                if (value <= 0.6f) throw new ArgumentOutOfRangeException(nameof(_currentUpgradeRegistrationSpeed));
+                else _currentUpgradeRegistrationSpeed = value;
+            }
         }
         #endregion
     }

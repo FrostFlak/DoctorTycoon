@@ -44,6 +44,7 @@ public class EventsManager : MonoBehaviour
     #region ShopEvents
     public event UnityAction OnBedPurchased;
     public event UnityAction OnBedUpgraded;
+    public event UnityAction OnRegistrationUpgraded;
     #endregion
 
     public static EventsManager Instance { get; private set; }
@@ -105,6 +106,7 @@ public class EventsManager : MonoBehaviour
     #region Shop
     public void OnBedPurchasedEvent() => OnBedPurchased?.Invoke();
     public void OnBedUpgradedEvent() => OnBedUpgraded?.Invoke();
+    public void OnRegistartionUpgradedEvent() => OnRegistrationUpgraded?.Invoke();
 
     #endregion
 

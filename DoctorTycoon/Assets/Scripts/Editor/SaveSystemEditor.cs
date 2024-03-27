@@ -1,6 +1,4 @@
 using Player;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -64,6 +62,24 @@ public class SaveSystemEditor : Editor
         else if (GUILayout.Button("Delete Beds JSON"))
         {
             saveSystem.DeleteBedsDataSaveFiles();
+        }
+        EditorGUILayout.Space();
+
+        if (GUILayout.Button("Save Shop Data"))
+        {
+            saveSystem.SaveShopData();
+        }
+        else if (GUILayout.Button("Load Shop Data"))
+        {
+            saveSystem.LoadShopData();
+        }
+        else if (GUILayout.Button("Reset Shop Data"))
+        {
+            saveSystem.ResetShopData();
+        }
+        else if (GUILayout.Button("Delete Shop JSON"))
+        {
+            saveSystem.DeleteShopDataSaveFiles();
         }
     }
 }

@@ -31,12 +31,23 @@ namespace People
         public Vector3 FreePlace { get { return _freePlace; } set { _freePlace = value; } }
         public List<Waypoint> Points { get { return _points; } set { _points = value; } }
         public float AcceptClientProgress { get { return _acceptClientProgress; } private set { } }
-        public float TimeToAcceptClient { get { return _timeToAcceptClient; } }
+        public float TimeToAcceptClient { get { return _timeToAcceptClient; } set { _timeToAcceptClient = value; } }
         #endregion
 
         public void Initialize()
         {
             _quitQueuePosition = _points[0].transform.position;
+            SetUpgradedSpeed();
+        }
+
+        private void Start()
+        {
+            EventsManager.Instance.OnRegistrationUpgraded += SetUpgradedSpeed;
+        }
+
+        private void OnDisable()
+        {
+            EventsManager.Instance.OnRegistrationUpgraded -= SetUpgradedSpeed;
         }
 
         private void Update()
@@ -45,7 +56,10 @@ namespace People
                 DecreaseProgress();
             IsSomeoneInQueue();
         }
-
+        private void SetUpgradedSpeed()
+        {
+            _timeToAcceptClient = SaveSystem.ShopData.CurrentUpgradeRegistartionSpeed;
+        }
         private bool IsSomeoneInQueue()
         {
             for(int i = 0; i < _points.Count; i++)

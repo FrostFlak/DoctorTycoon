@@ -37,20 +37,38 @@ namespace People
 
         private void Start()
         {
-            EventsManager.Instance.OnBedPurchased += Initialize;
+            EventsManager.Instance.OnBedPurchased += SetPurchasedBeds;
+            EventsManager.Instance.OnBedPurchased += SetUpgradedBeds;
+            EventsManager.Instance.OnBedUpgraded += SetUpgradedBeds;
         }
 
         private void OnDisable()
         {
-            EventsManager.Instance.OnBedPurchased -= Initialize;
+            EventsManager.Instance.OnBedPurchased -= SetPurchasedBeds;
+            EventsManager.Instance.OnBedPurchased -= SetUpgradedBeds;
+            EventsManager.Instance.OnBedUpgraded -= SetUpgradedBeds;
         }
         public void Initialize()
+        {
+            SetPurchasedBeds();
+            SetUpgradedBeds();
+        }
+
+        private void SetPurchasedBeds()
         {
             for (int i = 0; i < _beds.Count; i++)
             {
                 _beds[i].IsPurchased = SaveSystem.BedsData[i].Purchased;
                 if (_beds[i].IsPurchased)
                     _beds[i].BedObject.SetActive(true);
+            }
+        }
+
+        private void SetUpgradedBeds()
+        {
+            for (int i = 0; i < _beds.Count; i++)
+            {
+                _beds[i].MaxTimeToHeal = SaveSystem.BedsData[i].MaxTimeToHeal;
             }
         }
 

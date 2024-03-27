@@ -1,4 +1,5 @@
 ﻿using Player;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,6 +21,7 @@ namespace People
         public bool IsPurchased { get { return _isPurchased; } set { _isPurchased = value; } }
         public bool CanLeaveBed { get { return _canLeaveBed; } set { _canLeaveBed = value; } }
         public float TimeToHeal { get { return _timeToHeal; } }
+        public float MaxTimeToHeal { get { return _maxTimeToHeal; } set { _maxTimeToHeal = value; } }
         public GameObject BedObject {  get { return _bedObject; } set { _bedObject = value; } }
 
         private void Start()
@@ -34,7 +36,7 @@ namespace People
                 DecreaseProgress();
                 DecreaseProgressBar();
             }
-            if(_canLeaveBed)
+            if (_canLeaveBed)
                 _isBusy = false;
         }
         private void OnTriggerEnter(Collider other)

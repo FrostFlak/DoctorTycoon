@@ -7,7 +7,6 @@ public class DoorPlate : MonoBehaviour
 {
     [SerializeField] private UnityEvent _onEnter;
     [SerializeField] private UnityEvent _onExit;
-    [SerializeField] private bool _canOpen = true;
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out CameraViewChanger player) || other.TryGetComponent(out Human human))
