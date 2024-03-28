@@ -7,6 +7,7 @@ namespace People
     public class RegistartionTableUpgrader : MonoBehaviour
     {
         [SerializeField] private RegistrationTable _registartionTable;
+        [SerializeField] private GameObject _notEnoughMoneyPanel;
         [SerializeField] private int _registrationUpgradePrice;
         [SerializeField] private float _registrationUpgradeSpeed;
         [SerializeField] private float _priceMultiplier = 2;
@@ -27,15 +28,26 @@ namespace People
 
         public void UpgradeRegistartionTable()
         {
-            SaveSystem.ShopData.CurrentUpgradeRegistartionSpeed -= _registrationUpgradeSpeed;
-            SaveSystem.ShopData.CurrentUpgradeRegistartionPrice = _registrationUpgradePrice;
-            ReduceMoneyCount(_registrationUpgradePrice);
-            Debug.Log($"Upgraded Registartion. Price: {_registrationUpgradePrice}");
-            _registrationUpgradePrice = MultiplyPrice(_registrationUpgradePrice, _priceMultiplier);
-            SaveSystem.ShopData.CurrentUpgradeRegistartionPrice = _registrationUpgradePrice;
-            _currentRegistartionSpeed = SaveSystem.ShopData.CurrentUpgradeRegistartionSpeed;
-            EventsManager.Instance.OnRegistartionUpgradedEvent();
-            EventsManager.Instance.OnMoneyValueChangedEvent();
+            if(SaveSystem.PlayerData.Money >= _registrationUpgradePrice)
+            {
+                SaveSystem.ShopData.CurrentUpgradeRegistartionSpeed -= _registrationUpgradeSpeed;
+                SaveSystem.ShopData.CurrentUpgradeRegistartionPrice = _registrationUpgradePrice;
+                ReduceMoneyCount(_registrationUpgradePrice);
+                Debug.Log($"Upgraded Registartion. Price: {_registrationUpgradePrice}");
+                _registrationUpgradePrice = MultiplyPrice(_registrationUpgradePrice, _priceMultiplier);
+                SaveSystem.ShopData.CurrentUpgradeRegistartionPrice = _registrationUpgradePrice;
+                _currentRegistartionSpeed = SaveSystem.ShopData.CurrentUpgradeRegistartionSpeed;
+                EventsManager.Instance.OnRegistartionUpgradedEvent();
+                EventsManager.Instance.OnMoneyValueChangedEvent();
+            }
+            else
+            {
+                Vector2 currentMousePosition = Input.mousePosition;
+                Vector2 appearPosition = new Vector2(currentMousePosition.x, currentMousePosition.y + 125f);
+                _notEnoughMoneyPanel.transform.position = appearPosition;
+                _notEnoughMoneyPanel.SetActive(true);
+                return;
+            }
         }
 
         private int MultiplyPrice(int price, float multiplier)

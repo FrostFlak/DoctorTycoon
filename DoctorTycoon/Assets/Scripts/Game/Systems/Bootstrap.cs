@@ -72,6 +72,7 @@ public class Bootstrap : MonoBehaviour
             InitializeFirstTimePlay();
             _gameStateController.FirstPlaySetting = true;
             _gameStateController.Started = false;
+            SaveSystem.PlayerData.IsFirstPlay = false;
         }
         else
         {
@@ -85,14 +86,13 @@ public class Bootstrap : MonoBehaviour
     {
         if (SaveSystem.PlayerData.IsFirstPlay)
         {
-            Debug.Log("Is Fp");
+            Debug.Log("It Is FirstTimePlay");
             _playerCreatePanelBackGround.SetActive(true);
             _playerCreatePanel.SetActive(true);
-            SaveSystem.PlayerData.IsFirstPlay = false;
         }
         else
         {
-            Debug.Log("!Is Fp");
+            Debug.Log("It Is Not FirstTimePlay");
             _playerCreatePanelBackGround.SetActive(false);
             _playerCreatePanel.SetActive(false);
         }

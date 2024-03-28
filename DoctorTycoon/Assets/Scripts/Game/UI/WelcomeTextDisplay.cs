@@ -2,7 +2,11 @@ using Player;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
+using UnityEngine.Localization;
 using UnityEngine.UI;
+using People;
+using System;
 
 namespace UI
 {
@@ -12,26 +16,46 @@ namespace UI
         [SerializeField] private TMP_Text _continueComponent;
         [SerializeField] private Button _continueButton;
         [SerializeField] private float _letterDelay;
-        [SerializeField, TextArea(10, 3)] private string _fullText;
+        [SerializeField, TextArea(7, 3)] private string _enText;
+        [SerializeField, TextArea(7, 3)] private string _ruText;
+        [SerializeField, TextArea(7, 3)] private string _trText;
         [SerializeField] private FloatingJoystick _joystick;
         [SerializeField] private Button[] _allButtons;
+        private string _fullText;
         private string _name;
         private string _gender;
+        private Locale _currentSelectedLocale;
+        private ILocalesProvider _availableLocales;
         private void Start()
         {
-            _fullText = _textComponent.text;
+            _currentSelectedLocale = LocalizationSettings.SelectedLocale;
+            _availableLocales = LocalizationSettings.AvailableLocales;
+            if (_currentSelectedLocale == _availableLocales.GetLocale("en")) _fullText = _enText;
+            else if(_currentSelectedLocale == _availableLocales.GetLocale("ru")) _fullText = _ruText; 
+            else if(_currentSelectedLocale == _availableLocales.GetLocale("tr")) _fullText = _trText; 
+
             _textComponent.text = "";
             _name = SaveSystem.PlayerData.Name;
-            if (SaveSystem.PlayerData.Gender)
+
+            if (SaveSystem.PlayerData.Gender && _currentSelectedLocale == _availableLocales.GetLocale("en"))
                 _gender = "Mr.";
-            else
+            else if(SaveSystem.PlayerData.Gender && _currentSelectedLocale == _availableLocales.GetLocale("ru"))
+                _gender = "Mr.";
+            else if (SaveSystem.PlayerData.Gender && _currentSelectedLocale == _availableLocales.GetLocale("tr"))
+                _gender = "Bay.";
+            else if (!SaveSystem.PlayerData.Gender && _currentSelectedLocale == _availableLocales.GetLocale("en"))
                 _gender = "Mrs.";
+            else if (!SaveSystem.PlayerData.Gender && _currentSelectedLocale == _availableLocales.GetLocale("ru"))
+                _gender = "Ms.";
+            else if (!SaveSystem.PlayerData.Gender && _currentSelectedLocale == _availableLocales.GetLocale("tr"))
+                _gender = "Bayan.";
 
         }
         private void OnEnable()
         {
             _joystick.TurnOffJoystick();
-            for(int i = 0; i < _allButtons.Length; i++)
+            _continueComponent.gameObject.SetActive(false);
+            for (int i = 0; i < _allButtons.Length; i++)
                 _allButtons[i].interactable = false;
             StartCoroutine(DisplayText());
         }

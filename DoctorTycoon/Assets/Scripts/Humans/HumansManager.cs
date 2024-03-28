@@ -1,3 +1,4 @@
+using Player;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,7 +17,6 @@ namespace People
 
         [Header("SpawnSettings")]
         [SerializeField] private Transform[] _spawnPositions;
-        [SerializeField] private float _spawnRate;
 
 
         [Header("Managers")]
@@ -30,7 +30,9 @@ namespace People
         private ObjectPool<Human> _humanPool;
         private WaitForSeconds _waitForSpawnInterval;
         private WaitForSeconds _waitForCheckSpawnInterval;
+        [SerializeField] private float _spawnRate = 3f;
         private float _spawnCheckInterval = 5f;
+        private float _divider = 1.35f;
 
         #endregion
 
@@ -46,12 +48,14 @@ namespace People
             EventsManager.Instance.OnPatientLeaveBed += RemovePeopleFromList;
             EventsManager.Instance.OnGameStarted += StartSpawnCoroutine;
             EventsManager.Instance.OnTutorialEnd += StartSpawnCoroutine;
+            EventsManager.Instance.OnBedPurchased += RaiseSpawnRate;
         }
         private void OnDisable()
         {
             EventsManager.Instance.OnPatientLeaveBed -= RemovePeopleFromList;
             EventsManager.Instance.OnGameStarted -= StartSpawnCoroutine;
             EventsManager.Instance.OnTutorialEnd -= StartSpawnCoroutine;
+            EventsManager.Instance.OnBedPurchased -= RaiseSpawnRate;
         }
         public void Initialize()
         {
@@ -103,6 +107,18 @@ namespace People
         {
             if (_allHumans.Count > _maxHumanCount) return false;
             else return true;
+        }
+
+        private void RaiseSpawnRate()
+        {
+            if (_bedManager.CurrentPurchasedBedsCount >= 3 && _bedManager.CurrentPurchasedBedsCount <= 6)
+                _spawnRate /= _divider;
+            else if (_bedManager.CurrentPurchasedBedsCount >= 6 && _bedManager.CurrentPurchasedBedsCount <= 9)
+                _spawnRate /= _divider;
+            else if (_bedManager.CurrentPurchasedBedsCount >= 9 && _bedManager.CurrentPurchasedBedsCount <= 12)
+                _spawnRate /= _divider;
+            else if (_bedManager.CurrentPurchasedBedsCount >= 12)
+                _spawnRate /= _divider;
         }
         private void StartSpawnCoroutine() => StartCoroutine(SpawnCoroutine());
         public IEnumerator SpawnCoroutine()

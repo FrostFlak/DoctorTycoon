@@ -93,7 +93,6 @@ namespace Player
             {
                 Destroy(gameObject);
             }
-            PlayerData.IsFirstPlay = false;
         }
         private void SaveAll()
         {
@@ -419,7 +418,7 @@ namespace Player
             get { return _maxTimeToHeal; }
             set
             {
-                if (value <= 0.6f) throw new ArgumentOutOfRangeException(nameof(_maxTimeToHeal));
+                if (value <= 0.38f) throw new ArgumentOutOfRangeException(nameof(_maxTimeToHeal));
                 else _maxTimeToHeal = value;
             }
         }
@@ -458,7 +457,7 @@ namespace Player
             get { return _currentUpgradeRegistrationSpeed; }
             set 
             {
-                if (value <= 0.6f) throw new ArgumentOutOfRangeException(nameof(_currentUpgradeRegistrationSpeed));
+                if (value <= 0.38f) throw new ArgumentOutOfRangeException(nameof(_currentUpgradeRegistrationSpeed));
                 else _currentUpgradeRegistrationSpeed = value;
             }
         }

@@ -1,0 +1,151 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: LocalizationString_tr
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: tr
+  m_SharedData: {fileID: 11400000, guid: da248c5d4a475434dbe312b4bf9fac52, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 26691148738560
+    m_Localized: Para
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27111002763264
+    m_Localized: Magaza
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27767759466496
+    m_Localized: Kitler
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28314449244160
+    m_Localized: Haplar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28762384134144
+    m_Localized: Ayarlar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 29074683621376
+    m_Localized: Muzik
+    m_Metadata:
+      m_Items: []
+  - m_Id: 29305676525568
+    m_Localized: Etkileri
+    m_Metadata:
+      m_Items: []
+  - m_Id: 29506554327040
+    m_Localized: Birinci Sahis Hassasiyeti
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31241238769664
+    m_Localized: Dil
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35141417201664
+    m_Localized: "S\u0131f\u0131rla"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35457055354880
+    m_Localized: Emin misin?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35630833758208
+    m_Localized: Evet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35804545052672
+    m_Localized: HAYIR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36366401433600
+    m_Localized: "Oynat\u0131c\u0131n\u0131z\u0131 \xD6zellestirin"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36690562412544
+    m_Localized: Isim
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36883143880704
+    m_Localized: NickName'i girin...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37223134162944
+    m_Localized: Cins
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37378059169792
+    m_Localized: Erkekler
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37912577077248
+    m_Localized: Kadin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38142240387072
+    m_Localized: Ogretici
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38851421696000
+    m_Localized: "Baslang\u0131c"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 49366424383488
+    m_Localized: "Devam Etmek I\xE7in Buraya Dokunun"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56525073707008
+    m_Localized: "Hastane Y\xF6netimi"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56701033148416
+    m_Localized: Yataklar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56913243959296
+    m_Localized: "Sat\u0131n almak"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57175908052992
+    m_Localized: "G\xFCncelleme"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57345383100416
+    m_Localized: "Yatak Say\u0131s\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57495237193728
+    m_Localized: "Iyile\u015Ftirilmi\u015F Yataklar"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57760774385664
+    m_Localized: Kayit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57987346493440
+    m_Localized: "G\xFCncelleme"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 58326355308544
+    m_Localized: Ambulanslar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 58519565922304
+    m_Localized: Yetersiz para
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

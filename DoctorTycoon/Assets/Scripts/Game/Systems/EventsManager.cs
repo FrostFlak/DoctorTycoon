@@ -39,6 +39,7 @@ public class EventsManager : MonoBehaviour
     public event UnityAction OnGameStarted;
     public event UnityAction OnTutorialStarted;
     public event UnityAction OnTutorialEnd;
+    public event UnityAction OnLanguageChanged;
     #endregion
 
     #region ShopEvents
@@ -101,6 +102,7 @@ public class EventsManager : MonoBehaviour
     public void OnGameStartedEvent() => OnGameStarted?.Invoke();
     public void OnTutorialStartedEvent() => OnTutorialStarted?.Invoke();
     public void OnTutorialEndEvent() => OnTutorialEnd?.Invoke();
+    public void OnLanguageChangedEvent() => OnLanguageChanged?.Invoke();
     #endregion
 
     #region Shop

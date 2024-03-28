@@ -1,0 +1,157 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: LocalizationString_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: da248c5d4a475434dbe312b4bf9fac52, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 589202223104
+    m_Localized: 
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26691148738560
+    m_Localized: Money
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27111002763264
+    m_Localized: Shop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27767759466496
+    m_Localized: Kits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28314449244160
+    m_Localized: Pills
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28762384134144
+    m_Localized: Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 29074683621376
+    m_Localized: Music
+    m_Metadata:
+      m_Items: []
+  - m_Id: 29305676525568
+    m_Localized: Effects
+    m_Metadata:
+      m_Items: []
+  - m_Id: 29506554327040
+    m_Localized: First Person Sensitivity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31241238769664
+    m_Localized: Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35141417201664
+    m_Localized: Reset
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35457055354880
+    m_Localized: Are You Sure?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35630833758208
+    m_Localized: Yes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35804545052672
+    m_Localized: No
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36366401433600
+    m_Localized: Custom Your Player
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36690562412544
+    m_Localized: Name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36883143880704
+    m_Localized: Enter NickName...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37223134162944
+    m_Localized: Gender
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37378059169792
+    m_Localized: Man
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37912577077248
+    m_Localized: Woman
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38142240387072
+    m_Localized: 'Tutorial '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38851421696000
+    m_Localized: Start
+    m_Metadata:
+      m_Items: []
+  - m_Id: 49366424383488
+    m_Localized: Tap Here To Continue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56525073707008
+    m_Localized: 'Hospital
+
+      Management'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56701033148416
+    m_Localized: Beds
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56913243959296
+    m_Localized: Purchase
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57175908052992
+    m_Localized: Upgrade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57345383100416
+    m_Localized: Count Of Beds
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57495237193728
+    m_Localized: Upgraded Beds
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57760774385664
+    m_Localized: Registration
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57987346493440
+    m_Localized: Upgrade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 58326355308544
+    m_Localized: 'Ambulances '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 58519565922304
+    m_Localized: 'Not Enough Money '
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

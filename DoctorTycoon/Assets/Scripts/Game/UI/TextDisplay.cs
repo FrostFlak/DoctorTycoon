@@ -1,6 +1,8 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
 using UnityEngine.UI;
 
 namespace UI
@@ -11,15 +13,24 @@ namespace UI
         [SerializeField] private TMP_Text _continueComponent;
         [SerializeField] private Button _continueButton;
         [SerializeField] private float _letterDelay;
-        [SerializeField,TextArea(10 , 3)] private string _fullText;
-
+        [SerializeField, TextArea(7, 3)] private string _enText;
+        [SerializeField, TextArea(7, 3)] private string _ruText;
+        [SerializeField, TextArea(7, 3)] private string _trText;
+        private string _fullText;
+        private Locale _currentSelectedLocale;
+        private ILocalesProvider _availableLocales;
         private void Start()
         {
-            _fullText = _textComponent.text;
+            _currentSelectedLocale = LocalizationSettings.SelectedLocale;
+            _availableLocales = LocalizationSettings.AvailableLocales;
+            if (_currentSelectedLocale == _availableLocales.GetLocale("en")) _fullText = _enText;
+            else if (_currentSelectedLocale == _availableLocales.GetLocale("ru")) _fullText = _ruText;
+            else if (_currentSelectedLocale == _availableLocales.GetLocale("tr")) _fullText = _trText;
             _textComponent.text = ""; 
         }
         private void OnEnable()
         {
+            _continueComponent.gameObject.SetActive(false);
             StartCoroutine(DisplayText());
         }
 

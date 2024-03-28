@@ -7,6 +7,7 @@ namespace People
     public class BedPurchaseSystem : MonoBehaviour
     {
         [SerializeField] private BedManager _bedManager;
+        [SerializeField] private GameObject _notEnoughMoneyPanel;
         [SerializeField] private float _priceMultiplier = 2;
         [SerializeField] private int _bedPrice;
         [SerializeField] private int _bedUpgradePrice;
@@ -40,6 +41,14 @@ namespace People
                     EventsManager.Instance.OnMoneyValueChangedEvent();
                     return;
                 }
+                else if(!SaveSystem.BedsData[i].Purchased && !(SaveSystem.PlayerData.Money >= _bedPrice))
+                {
+                    Vector2 currentMousePosition = Input.mousePosition;
+                    Vector2 appearPosition = new Vector2(currentMousePosition.x , currentMousePosition.y + 125f);
+                    _notEnoughMoneyPanel.transform.position = appearPosition;
+                    _notEnoughMoneyPanel.SetActive(true);
+                    return;
+                }
             }
         }
 
@@ -58,6 +67,14 @@ namespace People
                 SaveSystem.ShopData.CurrentUpgradeBedPrice = _bedUpgradePrice;
                 EventsManager.Instance.OnBedUpgradedEvent();
                 EventsManager.Instance.OnMoneyValueChangedEvent();
+            }
+            else if (SaveSystem.BedsData[0].Purchased && !(SaveSystem.PlayerData.Money >= _bedPrice))
+            {
+                Vector2 currentMousePosition = Input.mousePosition;
+                Vector2 appearPosition = new Vector2(currentMousePosition.x, currentMousePosition.y + 125f);
+                _notEnoughMoneyPanel.transform.position = appearPosition;
+                _notEnoughMoneyPanel.SetActive(true);
+                return;
             }
         }
 

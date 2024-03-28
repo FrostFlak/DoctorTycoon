@@ -1,0 +1,164 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: LocalizationString Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: LocalizationString
+  m_TableCollectionNameGuidString: da248c5d4a475434dbe312b4bf9fac52
+  m_Entries:
+  - m_Id: 26691148738560
+    m_Key: 'Level/UI/PanelsCanvas/DonateParent/DonatePanel/Scroll View/Viewport/Content/MoneyPart/MoneyTextPanel/MoneyText '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27111002763264
+    m_Key: Level/UI/PanelsCanvas/DonateParent/DonatePanel/Scroll View/Viewport/Content/ShopText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27767759466496
+    m_Key: Level/UI/PanelsCanvas/DonateParent/DonatePanel/Scroll View/Viewport/Content/PacksPart/KitTextPanel/KitText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28314449244160
+    m_Key: Level/UI/PanelsCanvas/DonateParent/DonatePanel/Scroll View/Viewport/Content/MoneyPart/PillsTextPanel/PillsText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28762384134144
+    m_Key: Level/UI/PanelsCanvas/SettingsParent/Settings/SettingsText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 29074683621376
+    m_Key: Level/UI/PanelsCanvas/SettingsParent/Settings/SoundSettings/MusicToggle/Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 29305676525568
+    m_Key: Level/UI/PanelsCanvas/SettingsParent/Settings/SoundSettings/SFXToggle/Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 29506554327040
+    m_Key: Level/UI/PanelsCanvas/SettingsParent/Settings/FirstPersonSettings/Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31241238769664
+    m_Key: Level/UI/PanelsCanvas/SettingsParent/Settings/Language/Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35141417201664
+    m_Key: Level/UI/PanelsCanvas/SettingsParent/Settings/ResetSetting/ResetButton/Text
+      (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35457055354880
+    m_Key: Level/UI/PanelsCanvas/SettingsParent/Settings/ResetSetting/ResetPanel/Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35630833758208
+    m_Key: Level/UI/PanelsCanvas/SettingsParent/Settings/ResetSetting/ResetPanel/Yes/Text
+      (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35804545052672
+    m_Key: Level/UI/PanelsCanvas/SettingsParent/Settings/ResetSetting/ResetPanel/No/Text
+      (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36366401433600
+    m_Key: Level/UI/PanelsCanvas/PlayerCreateParent/PlayerCreate/CustomText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36690562412544
+    m_Key: Level/UI/PanelsCanvas/PlayerCreateParent/PlayerCreate/NamePanel/Name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36883143880704
+    m_Key: Level/UI/PanelsCanvas/PlayerCreateParent/PlayerCreate/NamePanel/Name/InputField
+      (TMP)/Text Area/Placeholder
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37223134162944
+    m_Key: Level/UI/PanelsCanvas/PlayerCreateParent/PlayerCreate/GenderPanel/Gender
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37378059169792
+    m_Key: Level/UI/PanelsCanvas/PlayerCreateParent/PlayerCreate/GenderPanel/Gender/Man/ManText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37912577077248
+    m_Key: Level/UI/PanelsCanvas/PlayerCreateParent/PlayerCreate/GenderPanel/Gender/Woman/WomanText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38142240387072
+    m_Key: Level/UI/PanelsCanvas/PlayerCreateParent/PlayerCreate/TutorialPanel/Tutorial
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38851421696000
+    m_Key: Level/UI/PanelsCanvas/PlayerCreateParent/PlayerCreate/StartButton/Text
+      (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 49366424383488
+    m_Key: Level/UI/PanelsCanvas/TutorialParent/TutorialPanel/Doctor/ClickForNext
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56525073707008
+    m_Key: Level/UI/PanelsCanvas/HospitalManagerParent/HospitalManager/Scroll View/Viewport/Content/Shop/ShopText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56701033148416
+    m_Key: Level/UI/PanelsCanvas/HospitalManagerParent/HospitalManager/Scroll View/Viewport/Content/Shop/Bed/BedTextPanel/PackText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 56913243959296
+    m_Key: Level/UI/PanelsCanvas/HospitalManagerParent/HospitalManager/Scroll View/Viewport/Content/Shop/Bed/Purchase/BuyBed/Text
+      (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57175908052992
+    m_Key: Level/UI/PanelsCanvas/HospitalManagerParent/HospitalManager/Scroll View/Viewport/Content/Shop/Bed/Upgrade/UpgradeBed/Text
+      (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57345383100416
+    m_Key: Level/UI/PanelsCanvas/HospitalManagerParent/HospitalManager/Scroll View/Viewport/Content/Shop/Bed/CountOfBeds
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57495237193728
+    m_Key: Level/UI/PanelsCanvas/HospitalManagerParent/HospitalManager/Scroll View/Viewport/Content/Shop/Bed/Upgrades
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57760774385664
+    m_Key: Level/UI/PanelsCanvas/HospitalManagerParent/HospitalManager/Scroll View/Viewport/Content/Shop/Registration/RegistrationTextPanel/PackText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57987346493440
+    m_Key: Level/UI/PanelsCanvas/HospitalManagerParent/HospitalManager/Scroll View/Viewport/Content/Shop/Registration/Upgrade/UpgradeBed/Text
+      (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 58326355308544
+    m_Key: Level/UI/PanelsCanvas/HospitalManagerParent/HospitalManager/Scroll View/Viewport/Content/Shop/Ambulances/AmbulancesTextPanel/PackText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 58519565922304
+    m_Key: Level/UI/PanelsCanvas/NotEnoughMoneyParent/NotEnoughMoneyText
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 2404105911309697075
+  references:
+    version: 2
+    RefIds:
+    - rid: 2404105911309697075
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1711635083310
