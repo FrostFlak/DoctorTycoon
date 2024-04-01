@@ -152,6 +152,22 @@ MonoBehaviour:
     m_Localized: 'Not Enough Money '
     m_Metadata:
       m_Items: []
+  - m_Id: 1422230759174144
+    m_Localized: Upgrades
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1424342352162816
+    m_Localized: Coming
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1424397167521792
+    m_Localized: Soon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1432330769035264
+    m_Localized: Hospital Boom
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -146,6 +146,22 @@ MonoBehaviour:
     m_Localized: Yetersiz para
     m_Metadata:
       m_Items: []
+  - m_Id: 1422230759174144
+    m_Localized: Iyilestirmeler
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1424342352162816
+    m_Localized: Yakinda
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1424397167521792
+    m_Localized: Gelecek
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1432330769035264
+    m_Localized: Hastane Patlamasi
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

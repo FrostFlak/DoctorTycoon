@@ -14,7 +14,7 @@ public class LoaderSceneChanger : MonoBehaviour
 
     public AsyncOperation LoadOperation {  get { return _loadOperation; } } 
 
-    private void Start()
+    public void OnEnable()
     {
         StartCoroutine(LoadMainScene());
     }

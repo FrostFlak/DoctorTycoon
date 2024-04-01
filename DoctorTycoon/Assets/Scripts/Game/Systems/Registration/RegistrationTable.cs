@@ -1,4 +1,5 @@
 using Player;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,10 +20,11 @@ namespace People
         private Vector3 _quitQueuePosition;
         private Vector3 _freePlace;
         private bool _inZone;
-        private float _minMoney = 75;
-        private float _maxMoney = 100;
+        [SerializeField] private int _minMoney = 15;
+        [SerializeField] private int _maxMoney = 30;
         private int _minExpirience = 1;
-        private int _maxExpirience = 99;
+        private int _maxExpirience = 10;
+        [SerializeField] private float _multiplier; 
         #endregion
 
         #region Properties
@@ -43,11 +45,14 @@ namespace People
         private void Start()
         {
             EventsManager.Instance.OnRegistrationUpgraded += SetUpgradedSpeed;
+            EventsManager.Instance.OnTimerToAcceptPeopleEnd += IncreaseRecivedMoney;
         }
 
         private void OnDisable()
         {
             EventsManager.Instance.OnRegistrationUpgraded -= SetUpgradedSpeed;
+            EventsManager.Instance.OnTimerToAcceptPeopleEnd -= IncreaseRecivedMoney;
+
         }
 
         private void Update()
@@ -59,6 +64,12 @@ namespace People
         private void SetUpgradedSpeed()
         {
             _timeToAcceptClient = SaveSystem.ShopData.CurrentUpgradeRegistartionSpeed;
+        }
+
+        private void IncreaseRecivedMoney()
+        {
+            _minMoney = Mathf.RoundToInt(_multiplier * _minMoney);
+            _maxMoney = Mathf.RoundToInt(_multiplier * _maxMoney);
         }
         private bool IsSomeoneInQueue()
         {
@@ -108,15 +119,15 @@ namespace People
             }
         }
         
-        private void ReciveMoney(float MinMoney , float MaxMoney)
+        private void ReciveMoney(int MinMoney , int MaxMoney)
         {
-            float claimedMoney = Random.Range(MinMoney, MaxMoney);
-            _moneyWallet.AddMoney((long)claimedMoney);
+            int claimedMoney = UnityEngine.Random.Range(MinMoney, MaxMoney);
+            _moneyWallet.AddMoney(claimedMoney);
         }
 
         private void ReciveExperience(int MinExperience , int MaxExperience)
         {
-            int claimedExpirience = Random.Range(MinExperience, MaxExperience);
+            int claimedExpirience = UnityEngine.Random.Range(MinExperience, MaxExperience);
             _levelUpgrader.TryAddExperience(claimedExpirience);
         }
 

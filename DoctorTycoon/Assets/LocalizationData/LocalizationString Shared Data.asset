@@ -151,6 +151,22 @@ MonoBehaviour:
     m_Key: Level/UI/PanelsCanvas/NotEnoughMoneyParent/NotEnoughMoneyText
     m_Metadata:
       m_Items: []
+  - m_Id: 1422230759174144
+    m_Key: Level/UI/PanelsCanvas/HospitalManagerParent/HospitalManager/Scroll View/Viewport/Content/Shop/Registration/Upgrades
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1424342352162816
+    m_Key: SoonImage/Canvas (Environment)/SoonImage/ComingText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1424397167521792
+    m_Key: SoonImage/Canvas (Environment)/SoonImage/SoonText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1432330769035264
+    m_Key: LoadingScene/LoadingCanvas/Name
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

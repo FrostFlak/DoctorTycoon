@@ -1,4 +1,3 @@
-using Player;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,11 +27,10 @@ namespace People
         #region PrivateFields
         private int _maxHumanCount;
         private ObjectPool<Human> _humanPool;
-        private WaitForSeconds _waitForSpawnInterval;
         private WaitForSeconds _waitForCheckSpawnInterval;
-        [SerializeField] private float _spawnRate = 3f;
+        [SerializeField] private float _spawnRate = 3.5f;
         private float _spawnCheckInterval = 5f;
-        private float _divider = 1.35f;
+        private float _multiplier = 1.35f;
 
         #endregion
 
@@ -61,7 +59,6 @@ namespace People
         {
             _maxHumanCount = _bedManager.Beds.Count;
             _humanPool = new ObjectPool<Human>(CreatePoolObject, OnTakeFromPool, OnReturnToPool, OnDestroyObject, false, _maxHumanCount, _maxHumanCount);
-            _waitForSpawnInterval = new WaitForSeconds(_spawnRate);
             _waitForCheckSpawnInterval = new WaitForSeconds(_spawnCheckInterval);
         }
 
@@ -112,13 +109,13 @@ namespace People
         private void RaiseSpawnRate()
         {
             if (_bedManager.CurrentPurchasedBedsCount >= 3 && _bedManager.CurrentPurchasedBedsCount <= 6)
-                _spawnRate /= _divider;
+                _spawnRate *= _multiplier;
             else if (_bedManager.CurrentPurchasedBedsCount >= 6 && _bedManager.CurrentPurchasedBedsCount <= 9)
-                _spawnRate /= _divider;
+                _spawnRate *= _multiplier;
             else if (_bedManager.CurrentPurchasedBedsCount >= 9 && _bedManager.CurrentPurchasedBedsCount <= 12)
-                _spawnRate /= _divider;
+                _spawnRate *= _multiplier;
             else if (_bedManager.CurrentPurchasedBedsCount >= 12)
-                _spawnRate /= _divider;
+                _spawnRate *= _multiplier;
         }
         private void StartSpawnCoroutine() => StartCoroutine(SpawnCoroutine());
         public IEnumerator SpawnCoroutine()
@@ -127,7 +124,7 @@ namespace People
             {
                 if (CheckSpawnPosibility() && GameStateController.Instance.Started && !GameStateController.Instance.FirstPlaySetting && !GameStateController.Instance.Tutorial)
                 {
-                    yield return _waitForSpawnInterval;
+                    yield return new WaitForSeconds(_spawnRate);
                     _humanPool.Get();
                     EventsManager.Instance.OnPatientEnterHospitalEvent(_allHumans.Count);
                 }

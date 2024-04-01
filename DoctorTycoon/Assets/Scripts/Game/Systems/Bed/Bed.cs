@@ -15,6 +15,7 @@ namespace People
         [SerializeField] private Image _progressBar;
         [SerializeField] private GameObject _progressBarParent;
         [SerializeField] private GameObject _bedObject;
+        [SerializeField] private ParticleSystem _heartParticle;
         private bool _canLeaveBed;
 
         public bool IsBusy { get { return _isBusy; } set { _isBusy = value; } }
@@ -62,6 +63,8 @@ namespace People
                 {
                     _canLeaveBed = true;
                     EventsManager.Instance.OnTimerToHealPatinetEndEvent();
+                    _heartParticle.gameObject.SetActive(true);
+                    _heartParticle.Play();
                     _timeToHeal = 0;
                     _progressBarParent.SetActive(false);
                 }

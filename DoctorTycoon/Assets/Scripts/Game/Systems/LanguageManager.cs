@@ -3,9 +3,9 @@ using UnityEngine.Localization.Settings;
 
 public class LanguageManager : MonoBehaviour
 {
-    [SerializeField] private int _englishIndex = 0;
-    [SerializeField] private int _russianIndex = 1;
-    [SerializeField] private int _turkishIndex = 2;
+    private int _englishIndex = 0;
+    private int _russianIndex = 1;
+    private int _turkishIndex = 2;
     public void ChangeLanguageToEnglish()
     {
         LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[_englishIndex];

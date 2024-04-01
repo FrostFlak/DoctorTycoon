@@ -8,10 +8,6 @@ namespace UI
         [SerializeField] private Image _barFill;
         [SerializeField] private LoaderSceneChanger _sceneChanger;
 
-        private void Awake()
-        {
-            _barFill.fillAmount = 0f;
-        }
         private void Update()
         {
             FillProgressBar();

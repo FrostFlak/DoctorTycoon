@@ -153,8 +153,7 @@ namespace Player
             EventsManager.Instance.OnDataResetedEvent();
             Debug.Log("Player Data Reseted");
             SavePlayerData();
-            //for test 
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            SceneManager.LoadScene((int)Scenes.Loader);
         }
 
         public void DeletePlayerDataSaveFiles()
