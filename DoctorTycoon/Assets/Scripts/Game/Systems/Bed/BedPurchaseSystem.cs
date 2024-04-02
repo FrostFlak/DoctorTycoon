@@ -9,12 +9,12 @@ namespace People
         [SerializeField] private BedManager _bedManager;
         [SerializeField] private GameObject _notEnoughMoneyPanel;
         [SerializeField] private float _priceMultiplier;
-        [SerializeField] private int _bedPrice;
-        [SerializeField] private int _bedUpgradePrice;
+        [SerializeField] private long _bedPrice;
+        [SerializeField] private long _bedUpgradePrice;
         [SerializeField] private float _bedUpgradeSpeed;
         private float _currentHealSpeed;
-        public int BedPrice { get { return _bedPrice; }  }
-        public int BedUpgradePrice { get { return _bedUpgradePrice; }  }
+        public long BedPrice { get { return _bedPrice; }  }
+        public long BedUpgradePrice { get { return _bedUpgradePrice; }  }
         public float CurrentHealSpeed { get { return _currentHealSpeed; }  }
         public void Initialize()
         {
@@ -63,7 +63,7 @@ namespace People
                     _currentHealSpeed = SaveSystem.BedsData[i].MaxTimeToHeal;
                 }
                 ReduceMoneyCount(_bedUpgradePrice);
-                _bedUpgradePrice = MultiplyPrice(_bedUpgradePrice + _bedUpgradePrice, _priceMultiplier);
+                _bedUpgradePrice = MultiplyPrice(_bedUpgradePrice, _priceMultiplier + _priceMultiplier);
                 SaveSystem.ShopData.CurrentUpgradeBedPrice = _bedUpgradePrice;
                 EventsManager.Instance.OnBedUpgradedEvent();
                 EventsManager.Instance.OnMoneyValueChangedEvent();
@@ -78,10 +78,10 @@ namespace People
             }
         }
 
-        private int MultiplyPrice(int price ,float multiplier)
+        private long MultiplyPrice(long price ,float multiplier)
         {
             return Mathf.RoundToInt(price * multiplier);
         }
-        private void ReduceMoneyCount(int price) => SaveSystem.PlayerData.Money -= price;
+        private void ReduceMoneyCount(long price) => SaveSystem.PlayerData.Money -= price;
     }
 }

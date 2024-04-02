@@ -8,12 +8,12 @@ namespace People
     {
         [SerializeField] private RegistrationTable _registartionTable;
         [SerializeField] private GameObject _notEnoughMoneyPanel;
-        [SerializeField] private int _registrationUpgradePrice;
+        [SerializeField] private long _registrationUpgradePrice;
         [SerializeField] private float _registrationUpgradeSpeed;
         [SerializeField] private float _priceMultiplier = 2;
         private float _currentRegistartionSpeed;
 
-        public int RegistrationUpgradePrice
+        public long RegistrationUpgradePrice
         {
             get { return _registrationUpgradePrice; }
             set { _registrationUpgradePrice = value; }
@@ -50,10 +50,10 @@ namespace People
             }
         }
 
-        private int MultiplyPrice(int price, float multiplier)
+        private long MultiplyPrice(long price, float multiplier)
         {
             return Mathf.RoundToInt(price * multiplier);
         }
-        private void ReduceMoneyCount(int price) => SaveSystem.PlayerData.Money -= price;
+        private void ReduceMoneyCount(long price) => SaveSystem.PlayerData.Money -= price;
     }
 }

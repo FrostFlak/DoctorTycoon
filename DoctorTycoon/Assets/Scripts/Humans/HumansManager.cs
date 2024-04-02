@@ -29,7 +29,7 @@ namespace People
         private ObjectPool<Human> _humanPool;
         private WaitForSeconds _waitForCheckSpawnInterval;
         [SerializeField] private float _spawnRate = 3.5f;
-        private float _spawnCheckInterval = 5f;
+        private float _spawnCheckInterval = 3f;
         private float _multiplier = 1.35f;
 
         #endregion

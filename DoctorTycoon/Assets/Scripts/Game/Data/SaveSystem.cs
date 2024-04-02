@@ -24,10 +24,6 @@ namespace Player
         [SerializeField] private int _pills;
         [SerializeField] private int _experience;
         [SerializeField] private int _currentLevel;
-        [SerializeField] private int _currentBedPrice;
-        [SerializeField] private int _currentUpgradeBedPrice;
-        [SerializeField] private int _currentUpgradeRegistartionPrice;
-        [SerializeField] private float _currentUpgradeRegistartionSpeed;
 
         private void Start()
         {
@@ -77,10 +73,6 @@ namespace Player
             _pills = PlayerData.Pills;
             _currentLevel = PlayerData.CurrentLvl;
             _firstPlay = PlayerData.IsFirstPlay;
-            _currentBedPrice = ShopData.CurrentBedPrice;
-            _currentUpgradeBedPrice = ShopData.CurrentUpgradeBedPrice;
-            _currentUpgradeRegistartionPrice = ShopData.CurrentUpgradeRegistartionPrice;
-            _currentUpgradeRegistartionSpeed = ShopData.CurrentUpgradeRegistartionSpeed;
         }
         public void Initialize()
         {
@@ -427,32 +419,31 @@ namespace Player
     [Serializable]
     public class ShopData
     {
-        public int _currentBedPrice = 100;
-        public int _currentUpgradeBedPrice = 100;
-        public int _currentUpgradeRegistrationPrice = 100;
+        public long _currentBedPrice = 100;
+        public long _currentUpgradeBedPrice = 100;
+        public long _currentUpgradeRegistrationPrice = 100;
         public float _currentUpgradeRegistrationSpeed = 3f;
 
         #region Properties
-        public int CurrentBedPrice
+        public long CurrentBedPrice
         {
             get { return _currentBedPrice; }
             set { _currentBedPrice = value; }
         }
 
-        public int CurrentUpgradeBedPrice
+        public long CurrentUpgradeBedPrice
         {
             get { return _currentUpgradeBedPrice; }
             set { _currentUpgradeBedPrice = value;}
         }
 
-        public int CurrentUpgradeRegistartionPrice
+        public long CurrentUpgradeRegistartionPrice
         {
             get { return _currentUpgradeRegistrationPrice; }
             set { _currentUpgradeRegistrationPrice = value; }
         }
         public float CurrentUpgradeRegistartionSpeed
         {
-            
             get { return _currentUpgradeRegistrationSpeed; }
             set 
             {

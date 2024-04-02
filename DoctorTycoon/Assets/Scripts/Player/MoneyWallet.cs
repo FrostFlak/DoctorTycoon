@@ -6,9 +6,9 @@ namespace Player
     {
         private long _maxLongCapacity = long.MaxValue;
         private int _maxIntCapacity = int.MaxValue;
-        private int _fivePills = 1000;
-        private int _twentyPills = 8300;
-        private int _fiftyPills = 12000;
+        private int _moneyForFivePills = 1000;
+        private int _moneyForTwentyPills = 8300;
+        private int _moneyForFiftyPills = 12000;
         public void AddMoney(long count)
         {
             if (TryAddMoney(count))
@@ -48,21 +48,20 @@ namespace Player
             {
                 if(pillsCount > 1 && pillsCount <= 5)
                 {
-                    AddMoney(_fivePills);
+                    AddMoney(_moneyForFivePills);
                     SaveSystem.PlayerData.Pills -= pillsCount;
                 }
                 else if(pillsCount > 5 && pillsCount <= 20)
                 {
-                    AddMoney(_twentyPills);
+                    AddMoney(_moneyForTwentyPills);
                     SaveSystem.PlayerData.Pills -= pillsCount;
                 }
                 else if (pillsCount > 20 && pillsCount <= 50)
                 {
-                    AddMoney(_fiftyPills);
+                    AddMoney(_moneyForFiftyPills);
                     SaveSystem.PlayerData.Pills -= pillsCount;
                 }
                 EventsManager.Instance.OnPillsValueChangedEvent();
-               
             }
         }
 

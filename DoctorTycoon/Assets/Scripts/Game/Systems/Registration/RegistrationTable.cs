@@ -18,7 +18,6 @@ namespace People
 
         #region Private Fields
         private Vector3 _quitQueuePosition;
-        private Vector3 _freePlace;
         private bool _inZone;
         [SerializeField] private int _minMoney = 15;
         [SerializeField] private int _maxMoney = 30;
@@ -30,7 +29,6 @@ namespace People
         #region Properties
         public bool InZone { get { return _inZone; } }
         public Vector3 QuitQueuePosition { get { return _quitQueuePosition; } private set { } }
-        public Vector3 FreePlace { get { return _freePlace; } set { _freePlace = value; } }
         public List<Waypoint> Points { get { return _points; } set { _points = value; } }
         public float AcceptClientProgress { get { return _acceptClientProgress; } private set { } }
         public float TimeToAcceptClient { get { return _timeToAcceptClient; } set { _timeToAcceptClient = value; } }

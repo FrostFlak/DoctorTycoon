@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 namespace People
@@ -20,8 +19,6 @@ namespace People
 
         #endregion
 
-        #region Private Fields
-        #endregion
 
         #region Properties
         public bool IsLaying { get { return _isLaying; } set { _isLaying = value; } }

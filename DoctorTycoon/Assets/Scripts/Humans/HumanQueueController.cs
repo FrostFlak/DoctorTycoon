@@ -1,4 +1,3 @@
-using Player;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
@@ -7,37 +6,47 @@ namespace People
 {
     public class HumanQueueController : MonoBehaviour
 {
+        #region SerializedFields
         [Header("Human")]
         [SerializeField] private Human _human;
         [SerializeField] private NavMeshAgent _agent;
         [SerializeField] private HumanBedController _humanBedController;
         [SerializeField] private HumanAnimationController _humanAnimationController;
+        [Header("Places")]
+        [SerializeField] private Vector3 _enterFreePlace;
+        [SerializeField] private Vector3 _nextFreePlace;
+        #endregion
+
+        #region PrivateFields
         private RegistrationTable _registrationTable;
         private BedManager _bedManager;
         private int _positionIndex;
         private float _timeIntervalBtwClaimPlace = 1.5f;
         private bool _humanClaimedPosition;
-        
+        private float _timeIntervalBtwCheckQueuePlaces = 5f;
+        private WaitForSeconds _waitIntervalBtwCheckQueuePlace;
+        #endregion
 
 
         #region MonoBehaviour
+        private void Start()
+        {
+            _waitIntervalBtwCheckQueuePlace = new WaitForSeconds(_timeIntervalBtwCheckQueuePlaces);
+        }
+
         private void OnEnable()
         {
-            EventsManager.Instance.OnTimerToAcceptPeopleEnd += OnTimerToAcceptPeopleEnd;
+            EventsManager.Instance.OnTimerToAcceptPeopleEnd += QuitQueue;
         }
 
         private void OnDisable()
         {
-            EventsManager.Instance.OnTimerToAcceptPeopleEnd -= OnTimerToAcceptPeopleEnd;
+            EventsManager.Instance.OnTimerToAcceptPeopleEnd -= QuitQueue;
         }
 
-        private void OnTimerToAcceptPeopleEnd()
-        {
-            QuitQueue();
-        }
         #endregion
 
-        #region Enter && Relase Queue
+        #region Enter && Release Queue
 
         private bool CheckEnoughSpaceInQueue()
         {
@@ -66,39 +75,31 @@ namespace People
                     }
                     else
                     {
-                        Debug.Log($"Current index : {i}");
                         Debug.Log($"Free Place : {_registrationTable.Points[i].name}");
-                        _registrationTable.FreePlace = _registrationTable.Points[i].transform.position;
+                        _enterFreePlace = _registrationTable.Points[i].transform.position;
                         TakePositionInQueue(i);
                         _positionIndex = i;
-                        SetAgentDestination(_registrationTable.FreePlace);
+                        SetAgentDestination(_enterFreePlace);
                         yield break;
                     }
                 }
             }
             else
             {
-                yield return new WaitForSeconds(3f);
+                yield return _waitIntervalBtwCheckQueuePlace;
                 StartCoroutine(EnterInQueue(registrationTable, bedManager));
             }
         }
         private void ReleasePlaceInQueue(int index) 
         {
-            if (_registrationTable.Points[index].IsBusy)
-            {
-                _registrationTable.Points[index].IsBusy = false;
-            }
+            if (_registrationTable.Points[index].IsBusy) _registrationTable.Points[index].IsBusy = false;
         }
         private void TakePositionInQueue(int index)
         {
             _registrationTable.Points[index].IsBusy = true;
             _human.IsInQueue = true;
         }
-        private void SetAgentDestination(Vector3 position)
-        {
-            _agent.SetDestination(position);
-        }
-
+        private void SetAgentDestination(Vector3 position) => _agent.SetDestination(position);
         private IEnumerator GoToStartPointPositions(float timeInterval)
         {
             if (!_humanClaimedPosition)
@@ -122,8 +123,8 @@ namespace People
                     if (!_registrationTable.Points[i - number].IsBusy)
                     {
                         Debug.Log($"Next Position : {_registrationTable.Points[i - number].name}");
-                        _registrationTable.FreePlace = _registrationTable.Points[i - number].transform.position;
-                        SetAgentDestination(_registrationTable.FreePlace);
+                        _nextFreePlace = _registrationTable.Points[i - number].transform.position;
+                        SetAgentDestination(_nextFreePlace);
                         TakePositionInQueue(i - number);
                         ReleasePlaceInQueue(i);
                         _positionIndex = i - number;

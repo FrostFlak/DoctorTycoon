@@ -3880,19 +3880,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 100
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 101174680}
-        m_TargetAssemblyTypeName: Player.LevelController, Assembly-CSharp
-        m_MethodName: RecivePills
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 60000
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -8392,19 +8380,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 100
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 204980835}
-        m_TargetAssemblyTypeName: Player.LevelController, Assembly-CSharp
-        m_MethodName: RecivePills
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 5000
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -11336,19 +11312,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 100
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 277867060}
-        m_TargetAssemblyTypeName: Player.LevelController, Assembly-CSharp
-        m_MethodName: RecivePills
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 1000
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -12118,19 +12082,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 100
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 298670410}
-        m_TargetAssemblyTypeName: Player.LevelController, Assembly-CSharp
-        m_MethodName: RecivePills
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 30000
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -13525,7 +13477,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &317596691
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17498,19 +17450,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 100
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 377426121}
-        m_TargetAssemblyTypeName: Player.LevelController, Assembly-CSharp
-        m_MethodName: RecivePills
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 25000
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -28526,7 +28466,7 @@ MonoBehaviour:
           value: 1
         - localeIdentifier:
             m_Code: ru
-          value: 1
+          value: 0
     - rid: 2404105911309697104
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -28537,7 +28477,7 @@ MonoBehaviour:
           value: 1
         - localeIdentifier:
             m_Code: ru
-          value: 1
+          value: 0
     - rid: 2404105911309697105
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -28548,7 +28488,7 @@ MonoBehaviour:
           value: 500
         - localeIdentifier:
             m_Code: ru
-          value: 500
+          value: 0
     - rid: 2404105911309697106
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -28559,7 +28499,7 @@ MonoBehaviour:
           value: -120
         - localeIdentifier:
             m_Code: ru
-          value: -120
+          value: 0
     - rid: 2404105911309697107
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -28570,7 +28510,7 @@ MonoBehaviour:
           value: 250
         - localeIdentifier:
             m_Code: ru
-          value: 250
+          value: 0
     - rid: 2404105911309697108
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -28581,7 +28521,7 @@ MonoBehaviour:
           value: 240
         - localeIdentifier:
             m_Code: ru
-          value: 240
+          value: 0
 --- !u!1 &690371751
 GameObject:
   m_ObjectHideFlags: 0
@@ -29109,19 +29049,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 100
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 706554154}
-        m_TargetAssemblyTypeName: Player.LevelController, Assembly-CSharp
-        m_MethodName: RecivePills
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 55000
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -30076,19 +30004,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 100
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 740263227}
-        m_TargetAssemblyTypeName: Player.LevelController, Assembly-CSharp
-        m_MethodName: RecivePills
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 60000
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -35720,7 +35636,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 5
+          m_IntArgument: 50
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -35802,7 +35718,7 @@ MonoBehaviour:
           value: 1
         - localeIdentifier:
             m_Code: ru
-          value: 1
+          value: 0
     - rid: 2404105911309697153
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -35813,7 +35729,7 @@ MonoBehaviour:
           value: 1
         - localeIdentifier:
             m_Code: ru
-          value: 1
+          value: 0
     - rid: 2404105911309697154
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -35824,7 +35740,7 @@ MonoBehaviour:
           value: 810
         - localeIdentifier:
             m_Code: ru
-          value: 810
+          value: 0
     - rid: 2404105911309697155
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -35835,7 +35751,7 @@ MonoBehaviour:
           value: -120
         - localeIdentifier:
             m_Code: ru
-          value: -120
+          value: 0
     - rid: 2404105911309697156
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -35846,7 +35762,7 @@ MonoBehaviour:
           value: 250
         - localeIdentifier:
             m_Code: ru
-          value: 250
+          value: 0
     - rid: 2404105911309697157
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -35857,7 +35773,7 @@ MonoBehaviour:
           value: 240
         - localeIdentifier:
             m_Code: ru
-          value: 240
+          value: 0
 --- !u!1 &876827050
 GameObject:
   m_ObjectHideFlags: 0
@@ -36141,19 +36057,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 100
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 883232396}
-        m_TargetAssemblyTypeName: Player.LevelController, Assembly-CSharp
-        m_MethodName: RecivePills
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 30000
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -38192,7 +38096,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 100
+          m_IntArgument: 10000
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -38204,7 +38108,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 5
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -42021,7 +41925,7 @@ MonoBehaviour:
           value: 1
         - localeIdentifier:
             m_Code: ru
-          value: 1
+          value: 0
     - rid: 2404105911309697111
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -42032,7 +41936,7 @@ MonoBehaviour:
           value: 1
         - localeIdentifier:
             m_Code: ru
-          value: 1
+          value: 0
     - rid: 2404105911309697112
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -42043,7 +41947,7 @@ MonoBehaviour:
           value: 810
         - localeIdentifier:
             m_Code: ru
-          value: 810
+          value: 0
     - rid: 2404105911309697113
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -42054,7 +41958,7 @@ MonoBehaviour:
           value: -120
         - localeIdentifier:
             m_Code: ru
-          value: -120
+          value: 0
     - rid: 2404105911309697114
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -42065,7 +41969,7 @@ MonoBehaviour:
           value: 250
         - localeIdentifier:
             m_Code: ru
-          value: 250
+          value: 0
     - rid: 2404105911309697115
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -42076,7 +41980,7 @@ MonoBehaviour:
           value: 240
         - localeIdentifier:
             m_Code: ru
-          value: 240
+          value: 0
 --- !u!1 &1019954650
 GameObject:
   m_ObjectHideFlags: 0
@@ -43646,19 +43550,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 100
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1049387116}
-        m_TargetAssemblyTypeName: Player.LevelController, Assembly-CSharp
-        m_MethodName: RecivePills
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 5000
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -46060,19 +45952,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 100
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1093208092}
-        m_TargetAssemblyTypeName: Player.LevelController, Assembly-CSharp
-        m_MethodName: RecivePills
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 20000
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -46545,18 +46425,6 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 100
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1107862155}
-        m_TargetAssemblyTypeName: Player.LevelController, Assembly-CSharp
-        m_MethodName: RecivePills
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -47786,19 +47654,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 100
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1126265925}
-        m_TargetAssemblyTypeName: Player.LevelController, Assembly-CSharp
-        m_MethodName: RecivePills
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 55000
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -48883,7 +48739,7 @@ MonoBehaviour:
           value: 1
         - localeIdentifier:
             m_Code: ru
-          value: 1
+          value: 0
     - rid: 2404105911309697097
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -48894,7 +48750,7 @@ MonoBehaviour:
           value: 1
         - localeIdentifier:
             m_Code: ru
-          value: 1
+          value: 0
     - rid: 2404105911309697098
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -48905,7 +48761,7 @@ MonoBehaviour:
           value: 190
         - localeIdentifier:
             m_Code: ru
-          value: 190
+          value: 0
     - rid: 2404105911309697099
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -48916,7 +48772,7 @@ MonoBehaviour:
           value: -120
         - localeIdentifier:
             m_Code: ru
-          value: -120
+          value: 0
     - rid: 2404105911309697100
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -48927,7 +48783,7 @@ MonoBehaviour:
           value: 250
         - localeIdentifier:
             m_Code: ru
-          value: 250
+          value: 0
     - rid: 2404105911309697101
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -48938,7 +48794,7 @@ MonoBehaviour:
           value: 240
         - localeIdentifier:
             m_Code: ru
-          value: 240
+          value: 0
 --- !u!4 &1150988602 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8771310592368203889, guid: f931af8d2514e104fbd377be6ff14588, type: 3}
@@ -52233,7 +52089,7 @@ MonoBehaviour:
           value: 1
         - localeIdentifier:
             m_Code: ru
-          value: 1
+          value: 0
     - rid: 2404105911309697139
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -52244,7 +52100,7 @@ MonoBehaviour:
           value: 1
         - localeIdentifier:
             m_Code: ru
-          value: 1
+          value: 0
     - rid: 2404105911309697140
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -52255,7 +52111,7 @@ MonoBehaviour:
           value: 190
         - localeIdentifier:
             m_Code: ru
-          value: 190
+          value: 0
     - rid: 2404105911309697141
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -52266,7 +52122,7 @@ MonoBehaviour:
           value: -120
         - localeIdentifier:
             m_Code: ru
-          value: -120
+          value: 0
     - rid: 2404105911309697142
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -52277,7 +52133,7 @@ MonoBehaviour:
           value: 250
         - localeIdentifier:
             m_Code: ru
-          value: 250
+          value: 0
     - rid: 2404105911309697143
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -52288,7 +52144,7 @@ MonoBehaviour:
           value: 240
         - localeIdentifier:
             m_Code: ru
-          value: 240
+          value: 0
 --- !u!1001 &1238186172
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52762,7 +52618,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 100
+          m_IntArgument: 30000
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -52774,7 +52630,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 5
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -53807,7 +53663,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 100
+          m_IntArgument: 70000
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -53819,7 +53675,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 5
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -54035,7 +53891,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bedManager: {fileID: 280591782}
   _notEnoughMoneyPanel: {fileID: 128943969}
-  _priceMultiplier: 5
+  _priceMultiplier: 3.5
   _bedPrice: 100
   _bedUpgradePrice: 100
   _bedUpgradeSpeed: 0.2
@@ -54055,7 +53911,7 @@ MonoBehaviour:
   _notEnoughMoneyPanel: {fileID: 128943969}
   _registrationUpgradePrice: 100
   _registrationUpgradeSpeed: 0.2
-  _priceMultiplier: 5
+  _priceMultiplier: 3.5
 --- !u!1 &1279410229
 GameObject:
   m_ObjectHideFlags: 0
@@ -57807,19 +57663,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 100
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1359284795}
-        m_TargetAssemblyTypeName: Player.LevelController, Assembly-CSharp
-        m_MethodName: RecivePills
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 25000
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -68205,19 +68049,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 100
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1641415814}
-        m_TargetAssemblyTypeName: Player.LevelController, Assembly-CSharp
-        m_MethodName: RecivePills
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 20000
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -71315,19 +71147,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 100
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1724861822}
-        m_TargetAssemblyTypeName: Player.LevelController, Assembly-CSharp
-        m_MethodName: RecivePills
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 15000
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -72332,7 +72152,7 @@ MonoBehaviour:
           value: 1
         - localeIdentifier:
             m_Code: ru
-          value: 1
+          value: 0
     - rid: 2404105911309697132
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -72343,7 +72163,7 @@ MonoBehaviour:
           value: 1
         - localeIdentifier:
             m_Code: ru
-          value: 1
+          value: 0
     - rid: 2404105911309697133
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -72354,7 +72174,7 @@ MonoBehaviour:
           value: 810
         - localeIdentifier:
             m_Code: ru
-          value: 810
+          value: 0
     - rid: 2404105911309697134
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -72365,7 +72185,7 @@ MonoBehaviour:
           value: -410
         - localeIdentifier:
             m_Code: ru
-          value: -410
+          value: 0
     - rid: 2404105911309697135
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -72376,7 +72196,7 @@ MonoBehaviour:
           value: 250
         - localeIdentifier:
             m_Code: ru
-          value: 250
+          value: 0
     - rid: 2404105911309697136
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -72387,7 +72207,7 @@ MonoBehaviour:
           value: 240
         - localeIdentifier:
             m_Code: ru
-          value: 240
+          value: 0
 --- !u!4 &1749597156 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8098049533996508799, guid: 0018271305e7a8d488965a7e6c5c4a7f, type: 3}
@@ -74125,19 +73945,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 100
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1785400412}
-        m_TargetAssemblyTypeName: Player.LevelController, Assembly-CSharp
-        m_MethodName: RecivePills
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 15000
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -75464,7 +75272,7 @@ MonoBehaviour:
           value: 1
         - localeIdentifier:
             m_Code: ru
-          value: 1
+          value: 0
     - rid: 2404105911309697118
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -75475,7 +75283,7 @@ MonoBehaviour:
           value: 1
         - localeIdentifier:
             m_Code: ru
-          value: 1
+          value: 0
     - rid: 2404105911309697119
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -75486,7 +75294,7 @@ MonoBehaviour:
           value: 190
         - localeIdentifier:
             m_Code: ru
-          value: 190
+          value: 0
     - rid: 2404105911309697120
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -75497,7 +75305,7 @@ MonoBehaviour:
           value: -410
         - localeIdentifier:
             m_Code: ru
-          value: -410
+          value: 0
     - rid: 2404105911309697121
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -75508,7 +75316,7 @@ MonoBehaviour:
           value: 250
         - localeIdentifier:
             m_Code: ru
-          value: 250
+          value: 0
     - rid: 2404105911309697122
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -75519,7 +75327,7 @@ MonoBehaviour:
           value: 240
         - localeIdentifier:
             m_Code: ru
-          value: 240
+          value: 0
 --- !u!1 &1826536040
 GameObject:
   m_ObjectHideFlags: 0
@@ -77031,7 +76839,7 @@ MonoBehaviour:
           value: 1
         - localeIdentifier:
             m_Code: ru
-          value: 1
+          value: 0
     - rid: 2404105911309697125
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -77042,7 +76850,7 @@ MonoBehaviour:
           value: 1
         - localeIdentifier:
             m_Code: ru
-          value: 1
+          value: 0
     - rid: 2404105911309697126
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -77053,7 +76861,7 @@ MonoBehaviour:
           value: 500
         - localeIdentifier:
             m_Code: ru
-          value: 500
+          value: 0
     - rid: 2404105911309697127
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -77064,7 +76872,7 @@ MonoBehaviour:
           value: -410
         - localeIdentifier:
             m_Code: ru
-          value: -410
+          value: 0
     - rid: 2404105911309697128
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -77075,7 +76883,7 @@ MonoBehaviour:
           value: 250
         - localeIdentifier:
             m_Code: ru
-          value: 250
+          value: 0
     - rid: 2404105911309697129
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -77086,7 +76894,7 @@ MonoBehaviour:
           value: 240
         - localeIdentifier:
             m_Code: ru
-          value: 240
+          value: 0
 --- !u!1 &1868299391
 GameObject:
   m_ObjectHideFlags: 0
@@ -77311,7 +77119,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 100
+          m_IntArgument: 50000
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -77323,7 +77131,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 5
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -83473,7 +83281,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 5
+          m_IntArgument: 20
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -83555,7 +83363,7 @@ MonoBehaviour:
           value: 1
         - localeIdentifier:
             m_Code: ru
-          value: 1
+          value: 0
     - rid: 2404105911309697146
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -83566,7 +83374,7 @@ MonoBehaviour:
           value: 1
         - localeIdentifier:
             m_Code: ru
-          value: 1
+          value: 0
     - rid: 2404105911309697147
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -83577,7 +83385,7 @@ MonoBehaviour:
           value: 500
         - localeIdentifier:
             m_Code: ru
-          value: 500
+          value: 0
     - rid: 2404105911309697148
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -83588,7 +83396,7 @@ MonoBehaviour:
           value: -120
         - localeIdentifier:
             m_Code: ru
-          value: -120
+          value: 0
     - rid: 2404105911309697149
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -83599,7 +83407,7 @@ MonoBehaviour:
           value: 250
         - localeIdentifier:
             m_Code: ru
-          value: 250
+          value: 0
     - rid: 2404105911309697150
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -83610,7 +83418,7 @@ MonoBehaviour:
           value: 240
         - localeIdentifier:
             m_Code: ru
-          value: 240
+          value: 0
 --- !u!1 &2038090686
 GameObject:
   m_ObjectHideFlags: 0
