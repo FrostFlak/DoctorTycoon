@@ -20,6 +20,7 @@ public class EventsManager : MonoBehaviour
     public event UnityAction OnStayInBedTriggerZone;
     public event UnityAction OnExitRegistartionTriggerZone;
     public event UnityAction OnExitBedTriggerZone;
+    public event UnityAction OnCameraChanged;
     #endregion
 
     #region PlayerDataEvents
@@ -91,6 +92,7 @@ public class EventsManager : MonoBehaviour
     public void OnMoneyValueChangedEvent() => OnMoneyValueChanged?.Invoke();
     public void OnPillsValueChangedEvent() => OnPillsValueChanged?.Invoke();
     public void OnDataResetedEvent() => OnDataReseted?.Invoke();
+    public void OnCameraChangedEvent() => OnCameraChanged?.Invoke();
 
     #endregion
 

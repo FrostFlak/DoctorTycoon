@@ -20,6 +20,7 @@ namespace Player
                 if (Input.GetKey(KeyCode.C) && _canChange)
                 {
                     ChangeCameraPriority();
+                    EventsManager.Instance.OnCameraChangedEvent();
                     _canChange = false;
                 }
                 else

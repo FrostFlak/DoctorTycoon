@@ -18,7 +18,6 @@ namespace Player
         private string _bedsSaveFilePath;
         private string _shopSaveFilePath;
         [SerializeField] private string _name;
-        [SerializeField] private bool _gender;
         [SerializeField] private bool _firstPlay;
         [SerializeField] private long _money;
         [SerializeField] private int _pills;
@@ -67,7 +66,6 @@ namespace Player
         {
             //For Testing
             _name = PlayerData.Name;
-            _gender = PlayerData.Gender;
             _money = PlayerData.Money;
             _experience = PlayerData.Experience;
             _pills = PlayerData.Pills;
@@ -136,7 +134,6 @@ namespace Player
         public void ResetPlayerData()
         {
             PlayerData.Name = "";
-            PlayerData.Gender = false;
             PlayerData.Experience = 0;
             PlayerData.CurrentLvl = 1;
             PlayerData.Money = 0;
@@ -315,7 +312,6 @@ namespace Player
     public class PlayerData
     {
         public string _name = "Anonymous";
-        public bool _gender = false;
         public int _experience = 0;
         public const int _maxExperience = 100;
         public int _currentLvl = 1;
@@ -358,7 +354,6 @@ namespace Player
                 else _pills = value;
             }
         }
-        public bool Gender { get { return _gender; } set { _gender = value; } }
         public bool IsFirstPlay { get { return _isFirstPlay; } set { _isFirstPlay = value; } }
 
 

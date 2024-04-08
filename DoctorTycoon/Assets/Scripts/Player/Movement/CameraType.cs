@@ -10,7 +10,7 @@ namespace Player
 {
     [RequireComponent(typeof(Rigidbody), typeof(NavMeshAgent), typeof(Animator))]
     [RequireComponent(typeof(CameraViewChanger), typeof(CharacterMovmentFirstPersonView) , typeof(CharacterJoystickMovement))]
-    [RequireComponent(typeof(CharacterAnimationController) , typeof(SensitivityChanger))]
+    [RequireComponent(typeof(CharacterAnimationController))]
     public class CameraType : MonoBehaviour
     {
         [SerializeField] private Camera _mainCamera;
@@ -22,29 +22,36 @@ namespace Player
         [SerializeField] private FloatingJoystick _joystick;
         [SerializeField] private GameObject _crosshair;
 
-        private void Update()
+        private void Start()
         {
-            CheckViewType();
+            EventsManager.Instance.OnCameraChanged += ChangeCameraType;
         }
-        private void CheckViewType()
+
+        private void OnDisable()
         {
-            if(_cameraViewChanger.CurrentCameraIndex == (int)CameraTypes.ThirdPerson)
+            EventsManager.Instance.OnCameraChanged -= ChangeCameraType;
+        }
+        public void ChangeCameraType()
+        {
+            switch (_cameraViewChanger.CurrentCameraIndex)
             {
-                _characterMovmentFirstPersonView.IsWalking = false;
-                _characterJoystickMovement.enabled = true;
-                _joystick.TurnOnJoystick();
-                _mainCamera.cullingMask = _thirdPersonViewableLayers;
-                _characterMovmentFirstPersonView.enabled = false;
-                _crosshair.SetActive(false);
-            }
-            else if(_cameraViewChanger.CurrentCameraIndex == (int)CameraTypes.FirstPerson)
-            {
-                _characterJoystickMovement.IsWalking = false;
-                _joystick.TurnOffJoystick();
-                _characterMovmentFirstPersonView.enabled = true;
-                _mainCamera.cullingMask = _firstPersonViewableLayers;
-                _characterJoystickMovement.enabled = false;
-                _crosshair.SetActive(true);
+                case (int)CameraTypes.ThirdPerson:
+                    _characterMovmentFirstPersonView.IsWalking = false;
+                    _characterJoystickMovement.enabled = true;
+                    _joystick.TurnOnJoystick();
+                    _mainCamera.cullingMask = _thirdPersonViewableLayers;
+                    _characterMovmentFirstPersonView.enabled = false;
+                    _crosshair.SetActive(false);
+                    break;
+
+                case (int)CameraTypes.FirstPerson:
+                    _characterJoystickMovement.IsWalking = false;
+                    _joystick.TurnOffJoystick();
+                    _characterMovmentFirstPersonView.enabled = true;
+                    _mainCamera.cullingMask = _firstPersonViewableLayers;
+                    _characterJoystickMovement.enabled = false;
+                    _crosshair.SetActive(true);
+                    break;
             }
         }
     }

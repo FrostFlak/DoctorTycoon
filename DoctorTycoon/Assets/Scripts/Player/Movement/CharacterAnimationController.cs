@@ -30,22 +30,27 @@ namespace Player
         #endregion
         private void Start()
         {
+
             EventsManager.Instance.OnStayInRegistrationTriggerZone += StartRegistrationAnimation;
-            EventsManager.Instance.OnStayInBedTriggerZone += StartHealAnimation;
             EventsManager.Instance.OnExitRegistartionTriggerZone += OffRegistrationAnimation;
-            EventsManager.Instance.OnTimerToHealPatinetEnd += OffHealingAnimation;
             EventsManager.Instance.OnTimerToAcceptPeopleEnd += OffRegistrationAnimation;
+            
+            EventsManager.Instance.OnStayInBedTriggerZone += StartHealAnimation;
+            EventsManager.Instance.OnTimerToHealPatinetEnd += OffHealingAnimation;
+            EventsManager.Instance.OnExitBedTriggerZone += OffHealingAnimation;
         }
 
         private void OnDisable()
         {
             EventsManager.Instance.OnStayInRegistrationTriggerZone -= StartRegistrationAnimation;
-            EventsManager.Instance.OnStayInBedTriggerZone -= StartHealAnimation;
             EventsManager.Instance.OnExitRegistartionTriggerZone -= OffRegistrationAnimation;
-            EventsManager.Instance.OnTimerToHealPatinetEnd -= OffHealingAnimation;
             EventsManager.Instance.OnTimerToAcceptPeopleEnd -= OffRegistrationAnimation;
+            
+            EventsManager.Instance.OnStayInBedTriggerZone -= StartHealAnimation;
+            EventsManager.Instance.OnTimerToHealPatinetEnd -= OffHealingAnimation;
+            EventsManager.Instance.OnExitBedTriggerZone -= OffHealingAnimation;
         }
-        void Update()
+        private void Update()
         {
             if (!_isPlayingRegistrationAnimation && !_isPlayingHealingAnimation)
                 StartWalkAnimation();
@@ -54,10 +59,7 @@ namespace Player
         private void StartWalkAnimation()
         {
             if (_firstPersonController.IsWalking || _characterJoystickMovement.IsWalking)
-            {
                 _animator.Play(WALK);
-
-            }
             else
                 _animator.Play(IDLE);
         }

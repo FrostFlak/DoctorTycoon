@@ -5,8 +5,6 @@ using UnityEngine;
 using UnityEngine.Localization.Settings;
 using UnityEngine.Localization;
 using UnityEngine.UI;
-using People;
-using System;
 
 namespace UI
 {
@@ -23,7 +21,6 @@ namespace UI
         [SerializeField] private Button[] _allButtons;
         private string _fullText;
         private string _name;
-        private string _gender;
         private Locale _currentSelectedLocale;
         private ILocalesProvider _availableLocales;
         private void Start()
@@ -36,20 +33,6 @@ namespace UI
 
             _textComponent.text = "";
             _name = SaveSystem.PlayerData.Name;
-
-            if (SaveSystem.PlayerData.Gender && _currentSelectedLocale == _availableLocales.GetLocale("en"))
-                _gender = "Mr.";
-            else if(SaveSystem.PlayerData.Gender && _currentSelectedLocale == _availableLocales.GetLocale("ru"))
-                _gender = "Mr.";
-            else if (SaveSystem.PlayerData.Gender && _currentSelectedLocale == _availableLocales.GetLocale("tr"))
-                _gender = "Bay.";
-            else if (!SaveSystem.PlayerData.Gender && _currentSelectedLocale == _availableLocales.GetLocale("en"))
-                _gender = "Mrs.";
-            else if (!SaveSystem.PlayerData.Gender && _currentSelectedLocale == _availableLocales.GetLocale("ru"))
-                _gender = "Ms.";
-            else if (!SaveSystem.PlayerData.Gender && _currentSelectedLocale == _availableLocales.GetLocale("tr"))
-                _gender = "Bayan.";
-
         }
         private void OnEnable()
         {
@@ -67,7 +50,7 @@ namespace UI
             {
                 if (_fullText[i] == '{')
                 {
-                    _textComponent.text += _gender + _name;
+                    _textComponent.text += _name;
                     yield return new WaitForSeconds(_letterDelay);
                 }
                 else
