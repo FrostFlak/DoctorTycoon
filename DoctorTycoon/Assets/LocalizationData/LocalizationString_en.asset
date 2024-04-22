@@ -168,6 +168,28 @@ MonoBehaviour:
     m_Localized: Hospital Boom
     m_Metadata:
       m_Items: []
+  - m_Id: 8999637791830016
+    m_Localized: Personal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9001881270513664
+    m_Localized: Levels
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9003134666960896
+    m_Localized: Controls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9004316030431232
+    m_Localized: '-Move
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9005733986201600
+    m_Localized: -Change Camera
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

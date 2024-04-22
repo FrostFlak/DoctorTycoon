@@ -167,6 +167,26 @@ MonoBehaviour:
     m_Key: LoadingScene/LoadingCanvas/Name
     m_Metadata:
       m_Items: []
+  - m_Id: 8999637791830016
+    m_Key: Level/UI/PanelsCanvas/HospitalManagerParent/HospitalManager/Scroll View/Viewport/Content/Shop/Personal/PersonalTextPanel/PackText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9001881270513664
+    m_Key: Level/UI/PanelsCanvas/LevelsParent/Levels/LevelsText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9003134666960896
+    m_Key: LoadingScene/LoadingCanvas/MovementParent/StartLanguagePanel/Movement
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9004316030431232
+    m_Key: LoadingScene/LoadingCanvas/MovementParent/MovementPanel/Wasd/Move
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9005733986201600
+    m_Key: LoadingScene/LoadingCanvas/MovementParent/MovementPanel/Camera/ChangeCamera
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
